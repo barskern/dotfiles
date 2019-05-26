@@ -1,0 +1,12 @@
+set date_format="%d/%m/%y %H:%M"
+set index_format="%2C %Z %?X?A& ? %D %-20.20F %s"
+
+# Use khard as a addressbook manager
+set query_command = "khard email --parsable %s"
+macro index,pager a "|khard add-email\n" 'add sender to khard addressbook'
+
+# Setup gpg signing by default
+set pgp_default_key=0x1A7F2DC6
+set pgp_sign_as=0x850EFDA2
+set crypt_use_gpgme=yes
+set crypt_autosign=no

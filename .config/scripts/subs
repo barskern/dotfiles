@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# subs
+#
+
+choice=$(\
+    fd '^\w{3}\d{4}$' --type d --max-depth 1 $HOME/Dokumenter/ntnu \
+    | xargs basename -a \
+    | fzf \
+)
+
+eval "cd $HOME/Dokumenter/ntnu/$choice"

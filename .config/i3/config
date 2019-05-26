@@ -1,0 +1,354 @@
+# Settings {{{
+
+# Set local enviroment variables
+set $mod Mod4
+
+# Run terminal with working directory
+set $term_wd --no-startup-id $TERMINAL --working-directory `xcwd`
+# Normal term
+set $term --no-startup-id $TERMINAL
+
+font pango:monospace 12
+focus_follows_mouse yes
+mouse_warping none
+smart_borders on
+popup_during_fullscreen leave_fullscreen
+focus_on_window_activation focus
+workspace_auto_back_and_forth yes
+
+exec --no-startup-id wallpaper
+# Bar for primary
+bar {
+    font pango:monospace, FontAwesome 12
+    position bottom
+		output primary
+    status_command i3status-rs ~/.config/i3/status.toml
+		tray_output primary
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
+# Bar for secondary monitor
+bar {
+    font pango:monospace, FontAwesome 12
+    position bottom
+		output HDMI-0
+		tray_output none
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Set default layout to tabbed
+workspace_layout tabbed
+
+# Recommended to make i3-gaps work correctly
+for_window [class="^.*"] border pixel 3
+
+# Set all windows with custom class to floating
+for_window [instance="floater"] floating enable
+
+# Make volume controls floating and centered with a maximum size
+for_window [instance="pavucontrol"] floating enable, floating_maximum_size 100 x 100
+
+# }}}
+
+# i3-specific keybindings {{{
+
+# Restart i3 inplace
+bindsym $mod+Shift+Ctrl+r restart
+
+# Move focus and containers (vim-like or arrow keys)
+bindsym --release $mod+h focus left
+bindsym --release $mod+j focus down
+bindsym --release $mod+k focus up
+bindsym --release $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Make current container into a split container
+bindsym $mod+bar split horizontal
+bindsym $mod+minus split vertical
+
+# Change container layout
+bindsym $mod+t layout tabbed
+bindsym $mod+y layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+Shift+t focus mode_toggle
+
+# Change focus
+bindsym $mod+a focus parent
+bindsym $mod+d focus child
+
+# }}}
+
+# Application keybindings {{{
+
+# Start a terminal
+bindsym $mod+Return exec $term_wd --title "shell"
+bindsym $mod+Shift+Return exec $term_wd --title "shell as root" -e sudo -i
+bindsym $mod+Ctrl+Return exec $term \
+  --title "tmux" \
+  --class "floater" \
+  --command tmux attach-session -d -t $USER
+
+# Shortcuts to programs
+bindsym $mod+r       exec $term --title "ranger" -e ranger `xcwd`
+bindsym $mod+Shift+r exec $term --title "ranger as root" -e sudo ranger `xcwd`
+
+bindsym $mod+b exec --no-startup-id $BROWSER
+
+bindsym $mod+n exec $term --title "neomutt" --class "mail" -e neomutt
+
+bindsym $mod+Shift+m exec $term --title "ghci" --class "floater" -e stack ghci
+
+# Run config menu which lets the user chose a config file to edit
+bindsym $mod+c       exec --no-startup-id cred-menu
+bindsym $mod+Shift+c exec --no-startup-id config-menu
+
+# Run wifi menu
+bindsym $mod+w exec $term --title "wpa_cli" --class "floater" -e wpa_cli
+
+# Run pavucontrol
+bindsym $mod+s exec pavucontrol
+
+# Run todoman in a floating window
+bindsym $mod+Ctrl+c exec $term --title "calendar" --class "floater" -e ikhal
+
+# Run bluetoothctl
+bindsym $mod+Shift+b exec $term --title "bluetoothctl" --class "floater" -e bluetoothctl
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Run a menu which could be dmenu or rofi etc
+bindsym --release $mod+space       exec --no-startup-id rofi -show drun
+bindsym --release $mod+Shift+space exec --no-startup-id rofi -show window
+bindsym --release $mod+Ctrl+space  exec --no-startup-id rofi -show run
+
+# }}}
+
+# Special keys {{{
+
+# Media keys
+bindsym XF86AudioPlay        exec --no-startup-id music-controls toggle
+bindsym XF86AudioNext        exec --no-startup-id music-controls next
+bindsym XF86AudioPrev        exec --no-startup-id music-controls prev
+bindsym XF86AudioStop        exec --no-startup-id music-controls stop
+bindsym XF86AudioLowerVolume exec --no-startup-id music-controls down 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id music-controls up   5
+bindsym XF86AudioMute        exec --no-startup-id music-controls mute
+#XF86AudioMedia
+
+bindsym --release Print exec --no-startup-id i3scrot --select
+bindsym --release Shift+Print exec --no-startup-id i3scrot --window
+bindsym --release Ctrl+Shift+Print exec --no-startup-id i3scrot --fullscreen
+
+bindsym XF86Search exec --no-startup-id rofi -show drun
+
+# Adjust brightness with keybindings
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+
+# }}}
+
+# Workspaces {{{
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1:terminal"
+set $ws2 "2:editor"
+set $ws3 "3:editor"
+set $ws4 "4:web"
+set $ws5 "5:web"
+set $ws6 "6:social"
+set $ws7 "7:mail"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10:video"
+
+# Assign applications to specific workspaces
+assign [instance="discord"] $ws6
+assign [instance="zulip"] $ws6
+assign [instance="keybase"] $ws6
+assign [instance="whats-app*"] $ws6
+assign [instance="mail"] $ws7
+assign [class="mpv"] $ws10
+
+# Move to workspaces (absolute)
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move to workspaces (relative)
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+l workspace next
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# }}}
+
+# Modes {{{
+
+set $sessionctl "session |s|hutdown |r|eboot sus|p|end |h|ibernate"
+bindsym $mod+Shift+Delete mode $sessionctl
+mode $sessionctl {
+	bindsym s mode "default" ; exec --no-startup-id systemctl poweroff
+	bindsym r mode "default" ; exec --no-startup-id systemctl reboot
+	bindsym p mode "default" ; exec --no-startup-id systemctl suspend
+	bindsym h mode "default" ; exec --no-startup-id systemctl hibernate
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+Shift+Delete mode "default"
+}
+
+set $music "music |p|lay |p|ause |n|ext p|r|evious |s|top |u|pdate"
+bindsym $mod+m mode $music
+mode $music {
+	bindsym p exec --no-startup-id music-controls toggle ; mode "default"
+	bindsym n exec --no-startup-id music-controls next
+	bindsym r exec --no-startup-id music-controls prev
+	bindsym s exec --no-startup-id music-controls stop ; mode "default"
+	bindsym u exec --no-startup-id mpc update --wait && mpc clear && mpc add /
+
+	bindsym XF86AudioPlay        exec --no-startup-id music-controls toggle
+	bindsym XF86AudioNext        exec --no-startup-id music-controls next
+	bindsym XF86AudioPrev        exec --no-startup-id music-controls prev
+	bindsym XF86AudioStop        exec --no-startup-id music-controls stop
+	bindsym XF86AudioLowerVolume exec --no-startup-id music-controls down 5
+	bindsym XF86AudioRaiseVolume exec --no-startup-id music-controls up   5
+	bindsym XF86AudioMute        exec --no-startup-id music-controls mute
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+m mode "default"
+}
+
+set $move_and_resize "move and resize"
+bindsym $mod+Ctrl+r mode $move_and_resize
+mode $move_and_resize {
+  bindsym l resize shrink width 5 px or 5 ppt
+  bindsym k resize grow height 5 px or 5 ppt
+  bindsym j resize shrink height 5 px or 5 ppt
+  bindsym h resize grow width 5 px or 5 ppt
+
+  bindsym Shift+l resize shrink width 10 px or 10 ppt
+  bindsym Shift+k resize grow height 10 px or 10 ppt
+  bindsym Shift+j resize shrink height 10 px or 10 ppt
+  bindsym Shift+h resize grow width 10 px or 10 ppt
+
+  bindsym Ctrl+h move container left
+  bindsym Ctrl+j move container down
+  bindsym Ctrl+k move container up
+  bindsym Ctrl+l move container right
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+Ctrl+r mode "default"
+}
+
+# }}}
+
+# i3-gaps specific {{{
+
+# Default gaps
+gaps inner 0
+gaps outer 0
+
+# Disables gaps when only one window
+smart_gaps on
+
+set $mode_gaps       "gaps |o|uter |i|nner"
+set $mode_gaps_outer "outer gaps (+|-|0)"
+set $mode_gaps_inner "inner gaps (+|-|0)"
+bindsym $mod+Shift+g mode $mode_gaps
+
+mode $mode_gaps {
+  bindsym o      mode $mode_gaps_outer
+  bindsym i      mode $mode_gaps_inner
+
+  bindsym Return       mode "default"
+  bindsym Escape       mode "default"
+  bindsym $mod+Shift+g mode "default"
+}
+
+mode $mode_gaps_inner {
+  bindsym plus  gaps inner current plus 5
+  bindsym minus gaps inner current minus 5
+  bindsym 0     gaps inner current set 0
+
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
+
+  bindsym Return       mode $mode_gaps
+  bindsym Escape       mode $mode_gaps
+  bindsym $mod+Shift+g mode $mode_gaps
+}
+
+mode $mode_gaps_outer {
+  bindsym plus  gaps outer current plus 5
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
+
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
+
+  bindsym Return       mode $mode_gaps
+  bindsym Escape       mode $mode_gaps
+  bindsym $mod+Shift+g mode $mode_gaps
+}
+
+# }}}
+
+# vim:foldmethod=marker:ts=2:sw=2

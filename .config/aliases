@@ -1,0 +1,57 @@
+#
+# ~/.aliases
+#
+
+# Basic cmds
+alias e="$EDITOR"
+alias se="sudoedit"
+alias yay="yay --color=always"
+
+# Enable aliases to be sudoed
+alias sudo="sudo "
+
+# List files
+alias ls="ls --human-readable --color=auto"
+alias la="ls --almost-all --classify"
+alias ll="ls --almost-all -l --classify"
+alias lsl="ls -l --classify"
+alias lsd="ls --almost-all -l --classify --directory */"
+alias lld="ls --almost-all -l --classify --directory */ .*/"
+
+# Show path separated by newline and sorted
+alias path="echo -e \${PATH//:/'\n'} | sort"
+
+# Clipboard
+alias c="xclip -in -sel clipboard"
+alias v="xclip -out -sel clipboard"
+
+# IP-addresses
+alias ip="ip --color"
+
+## Get public IP
+alias ipg="dig +short myip.opendns.com @resolver1.opendns.com"
+
+## Get local IPs
+alias ipl="ip --brief addr"
+alias ipl4="ip --brief -4 addr"
+alias ipl6="ip --brief -6 addr"
+
+# {M,Unm}ount keyusb
+alias keyusb-mount="sudo cryptsetup open /dev/disk/by-partuuid/28e23ac4-b0e5-47c3-bc1d-11fbd3b4fbc3 keyusb && sudo mount /dev/mapper/keyusb /media/usb/keyusb"
+alias keyusb-umount="sudo umount /media/usb/keyusb || sudo cryptsetup close keyusb"
+
+# Screencast
+alias screencast="ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i ${DISPLAY:-:0}.0 $(xdg-user-dir VIDEOS)/Skjermdump/$(date '+%F_%H-%M-%S').mkv"
+
+# Spring-cleaning
+alias cargo-clean-all="fd 'Cargo.toml' -x cargo -v clean --manifest-path={}"
+
+# Dotfile management
+alias dtt="/usr/bin/git --git-dir=/home/oruud/.config/dotfiles --work-tree=/home/oruud"
+
+# Alias for installing packages from base packages using fzf as a interactive
+# menu
+alias fzp="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S"
+
+# Openstack
+alias os="openstack"

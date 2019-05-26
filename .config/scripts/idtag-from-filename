@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# idtag-from-filename
+#
+
+set -e
+
+fullfilename=$1
+filename=${fullfilename//.*}
+ext=${fullfilename##*.}
+
+artist=$(echo "$filename" | cut -d '-' -f 1 | tr '_' ' ')
+title=$(echo "$filename" | cut -d '-' -f 2 | tr '_' ' ')
+
+if [[ "$title" = "$artist" ]]; then
+    artist=""
+fi
+
+id3tag --artist="$artist" --song="$title" $fullfilename

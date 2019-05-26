@@ -1,0 +1,13 @@
+# Shortcuts to common folders
+# These will be generated for the shell, ranger and qutebrowser
+# After change the `shortcuts` script has to be run to update generated files
+h	~/
+c   ~/.config
+s	~/.config/scripts
+dn	~/Dokumenter/ntnu
+D	~/Nedlastinger
+m	~/Musikk
+M	/media/
+i	~/Bilder
+v	~/Videoklipp
+pp  ~/Programming

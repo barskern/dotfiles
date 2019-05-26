@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+homessids=("toastmaster5" "toastmaster2")
+
+ssid=$(iw dev | rg ssid | cut -d ' ' -f 2)
+
+for hssid in ${homessids[@]}
+do
+    if [ "$ssid" == "$hssid" ]
+    then
+        exit 0
+    fi
+done
+
+# Did not find the ssid in the list of homessids
+exit 1

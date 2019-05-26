@@ -1,0 +1,99 @@
+#!/bin/sh
+#
+# nat-from-to
+#
+
+print_help()
+{
+    local help_string
+    read -d '' help_string <<- EOF
+usage: nat-from-to [-h] {-t|-s} -i <internal> -e <external>
+usage: nat-from-to [--help] {--takedown|--setup} --internal <internal> --external <external>
+
+Example:
+
+Create a NAT that lets all clients connected to
+wlan0 use our ip-address to communicate on wlan1:
+    nat-from-to -s -i wlan0 -e wlan1
+
+Takedown previously created NAT:
+    nat-from-to -t -i wlan0 -e wlan1
+EOF
+    echo "$help_string"
+}
+
+INTERNAL=false
+EXTERNAL=false
+SETUP=false
+TAKEDOWN=false
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -e|--external)
+        EXTERNAL="$2"
+        shift # past argument
+        shift # past value
+        ;;
+        -i|--internal)
+        INTERNAL="$2"
+        shift # past argument
+        shift # past value
+        ;;
+        -s|--setup)
+        SETUP=true
+        shift # past argument
+        ;;
+        -t|--takedown)
+        TAKEDOWN=true
+        shift # past argument
+        ;;
+        -h|--help)    # unknown option
+        print_help
+        exit 0
+        ;;
+        *)    # unknown option
+        shift # past argument
+        ;;
+    esac
+done
+
+if [[ "$INTERNAL" == false ]]; then echo -e "Specify internal interface (-i|--internal)\n"; print_help; exit 1; fi
+if [[ "$EXTERNAL" == false ]]; then echo -e "Specify external interface (-e|--external)\n"; print_help; exit 1; fi
+
+# Setup or take down based on options
+if [[ "$SETUP" == true ]]; then
+    sysctl -w net.ipv4.ip_forward=1
+
+    iptables --table nat --append POSTROUTING \
+        --out-interface ${EXTERNAL} \
+        --jump MASQUERADE
+
+    iptables --table filter --append FORWARD \
+        --in-interface ${EXTERNAL} --out-interface ${INTERNAL} \
+        --match state --state RELATED,ESTABLISHED \
+        --jump ACCEPT
+
+    iptables --table filter --append FORWARD \
+        --in-interface ${INTERNAL} --out-interface ${EXTERNAL} \
+        --jump ACCEPT
+elif [[ "$TAKEDOWN" == true ]]; then
+    sysctl -w net.ipv4.ip_forward=0
+
+    iptables --table nat --delete POSTROUTING \
+        --out-interface ${EXTERNAL} \
+        --jump MASQUERADE
+
+    iptables --table filter --delete FORWARD \
+        --in-interface ${EXTERNAL} --out-interface ${INTERNAL} \
+        --match state --state RELATED,ESTABLISHED \
+        --jump ACCEPT
+
+    iptables --table filter --delete FORWARD \
+        --in-interface ${INTERNAL} --out-interface ${EXTERNAL} \
+        --jump ACCEPT
+   else
+    echo "Specify either [-t|--takedown] or [-s|--setup] to either set up or take down connection"
+fi
+

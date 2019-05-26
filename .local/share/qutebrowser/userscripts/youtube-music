@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# youtube-urls
+#
+
+qute_message() {
+    echo "message-$1 \"$2\"" >> $QUTE_FIFO
+}
+
+[[ -z ${QUTE_MODE+x} ]] && { echo "Error: script designed to be ran by qutebrowser"; exit 1; }
+
+ID_REGEX="(https://)?(www.)?youtube.com/watch\?.*?\&?v=([A-Za-z0-9\_\-]{11})"
+
+if [[ "$QUTE_URL" =~ $ID_REGEX ]]; then
+	video_id="${BASH_REMATCH[3]}"
+    qute_message "info" "Downloading video ($video_id) as audiofile"
+
+    error=$(echo "$video_id" | yumusic 2>&1 >/dev/null)
+    if [[ $? == 0 ]]
+    then
+        qute_message "info" "Success downloading $video_id"
+    else
+        last_error=$(echo "$error" | tail -n 1)
+        qute_message "error" "Error downloading audio: $last_error"
+    fi
+else
+	qute_message "error" "Unable to find video-id in URL"
+fi

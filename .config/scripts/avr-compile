@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# avr-compile
+#
+
+RED="\e[0;31m"
+BOLD="\e[1m"
+NORMAL="\e[m"
+
+error() {
+  echo -e "${RED}ERROR: $@$NORMAL"
+}
+
+# Fail and stop on error
+set -e
+
+fullname=`basename "$1"`
+extension="${fullname##*.}"
+name="${fullname%.*}"
+
+# Check if input file exists
+if [[ ! -f "$fullname" ]]; then
+	error "File $BOLD$fullname$RED does not exist"
+  exit 1
+fi
+
+# Make tmp dir
+tmp_dir=`mktemp -d /tmp/avr-compile.XXXXXX`
+
+# Try to compile code
+avr-gcc \
+  -mmcu="atmega328" \
+  "$fullname" -o "$tmp_dir/$name.o"
+
+# We are done using .c file, hence move to tmp_dir for convenience
+cd "$tmp_dir"
+
+# Turn .o file into .hex file which can be uploaded to avr
+objcopy \
+  --only-section=.text \ # Copy the .text actual code section
+  --only-section=.data \ # Copy the .data constants etc section
+  --output-target=ihex \ # Make the output hex format
+  "$name.o" "$name.hex"
+
+# Upload .hex file to avr unit
+avrdude \
+  -p "m328p" \             # Partnumber of avr (use ? to list all)
+  -c "arduino" \           # Programmer id (use ? to list all)
+  -P "/dev/ttyACM0" \      # Port which avr is connected to
+  -e \                     # Preform a chiperase
+  -U "flash:w:$name.hex:i" # Write to the flash of the avr
+

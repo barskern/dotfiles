@@ -1,0 +1,51 @@
+[general]
+status_path = "~/.local/share/vdirsyncer/status/"
+
+[pair homie]
+a = "homie_local"
+b = "homie_remote"
+collections = ["from a", "from b"]
+metadata = ["displayname", "color"]
+
+[storage homie_local]
+type = "filesystem"
+path = "~/.local/share/calendars/homie/"
+fileext = ".ics"
+
+[storage homie_remote]
+type = "caldav"
+url = "http://calendar.servie.lan/"
+username = "olemruud"
+password.fetch = ["command", "pass", "servie/calendar/olemruud"]
+
+[pair addressbook]
+a = "addressbook_local"
+b = "addressbook_remote"
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
+[storage addressbook_local]
+type = "filesystem"
+path = "~/.local/share/addressbook/"
+fileext = ".vcf"
+
+[storage addressbook_remote]
+type = "carddav"
+url = "http://calendar.servie.lan/"
+username = "olemruud"
+password.fetch = ["command", "pass", "servie/calendar/olemruud"]
+
+[pair courses]
+a = "courses_local"
+b = "courses_remote"
+collections = null
+
+[storage courses_local]
+type = "filesystem"
+path = "~/.local/share/calendars/courses"
+fileext = ".ics"
+
+[storage courses_remote]
+type = "http"
+url = "https://tp.uio.no/ntnu/timeplan/ical.php?sem=20v&id%5B0%5D=BIDAT39%2C&id%5B1%5D=SMF2251%2C&id%5B2%5D=T%C3%98L1011%2C&type=course"
+verify_fingerprint = "13:96:FF:08:6B:33:2B:14:0D:66:14:BB:8D:D3:C9:BC:64:B6:61:34"

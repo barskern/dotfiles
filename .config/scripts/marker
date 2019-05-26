@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# marker
+#
+
+set -e
+
+src=$(basename -- "$1")
+ext="${src##*.}"
+name="${src%.*}"
+
+if [[ "$2" = "-o" ]]; then
+  dest=$(basename -- "$3")
+else
+  dest="$name.pdf"
+fi
+
+pandoc \
+  --toc \
+  --standalone \
+  --filter pandoc-xnos \
+  --filter pandoc-citeproc \
+  "$src" -o "$dest" "${@:4:}"

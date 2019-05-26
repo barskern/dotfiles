@@ -1,0 +1,60 @@
+[alias]
+  # basic {{{
+  st = status -s
+  cl = clone
+  co = checkout
+  br = branch
+  r = reset
+  cp = cherry-pick
+  gr = grep -Ii
+  mt = mergetool
+  df = diff
+  pf = push --force-with-lease
+  # }}}
+
+  # commit {{{
+  c = commit
+  ci = commit -v
+  cm = commit -m
+  cma = commit -a -m
+  acma = ! git add . && git commit -am
+  ca = commit -v --amend
+  can = commit --amend --no-edit
+  # }}}
+
+  # diff {{{
+  dfp = diff HEAD^ HEAD
+  dfc = diff --cached
+  # }}}
+
+  # log commands {{{
+  full-tree = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --abbrev-commit --graph --all --color --decorate --date=relative
+  tree = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --abbrev-commit --graph --color --decorate --date=relative
+  ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  lsa = log --all --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  # }}}
+
+  # stash {{{
+  sl = stash list
+  sa = stash apply
+  spu = stash push
+  spo = stash pop
+  # }}}
+
+  # remotes {{{
+  rahub = "!f() { git remote add $1 git@github.com:$2.git; git remote -v; }; f"
+  # }}}
+
+  # submodules {{{
+  subupgrade = submodule foreach git pull origin master
+  # }}}
+
+  # gitflow {{{
+  f = flow
+  ff = flow feature
+  fh = flow hotfix
+  fb = flow bugfix
+  fr = flow release
+  fs = flow support
+  # }}}

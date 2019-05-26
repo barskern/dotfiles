@@ -1,0 +1,31 @@
+theme = "gruvbox-dark"
+icons = "awesome"
+
+[[block]]
+block = "music"
+max_width = 40
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{barchart} {utilization}% {frequency}GHz"
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
+on_click = "alacritty --class floater -e ikhal"

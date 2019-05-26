@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# pdfprestomd
+#
+
+set -e
+
+filename=$(basename -- "$1")
+
+extension="${filename##*.}"
+name="${filename%.*}"
+
+tmp_dest=`mktemp /tmp/pdftomd.XXXXXXXX.txt`
+
+# Do actual transformation from pdf to text
+pdftotext -layout "$filename" "$tmp_dest"
+
+# Do transformation to make the file prettier
+sed -i '
+s//\n\n------\n\n# /
+s/^\(\s\+\)I\(\s\+\)/\1\- /
+' "$tmp_dest"
+
+# Move the tmp file to the current directory (if it doesnt exist)
+if [[ -f "./$name.md" ]]; then
+  echo -n "Would you like to overwrite $name.md? [Y/N] "
+  ans="N"
+  read ans
+  [[ "$ans" == "y" || "$ans" == "Y" ]] || exit 0
+fi
+
+echo "Created file: $name.md"
+cat --squeeze-blank "$tmp_dest" > "./$name.md"

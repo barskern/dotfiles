@@ -1,0 +1,9 @@
+# Change the directory to a subject folder
+subs() {
+    choice=$(\
+        fd '^\w{3}\d{4}$' --type d --max-depth 1 $HOME/Dokumenter/ntnu \
+        | xargs basename -a \
+        | fzf \
+    )
+    cd "$HOME/Dokumenter/ntnu/$choice"
+}

@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+set -e
+
+full_filename=$1
+filename=${full_filename%%.*}
+
+title=$(echo $filename | sed 's/^.*\-//' | awk '{$1=$1}1' | tr '_' ' ')
+artist=$(echo $filename | sed 's/\-.*$//' | awk '{$1=$1}1' | tr '_' ' ')
+
+echo "$filename -> $title - $artist"
+
+id3v2 --id3v2-only \
+	--song "$title" \
+	--artist "$artist" \
+	"$full_filename"

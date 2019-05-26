@@ -1,0 +1,9 @@
+[Unit]
+Description=Custom compositor for Xorg
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/compton
+
+[Install]
+WantedBy=graphical-session.target

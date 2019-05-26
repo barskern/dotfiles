@@ -1,0 +1,25 @@
+[user]
+	email = barskern@outlook.com
+	name = Ole Martin Ruud
+[include]
+	path = /home/oruud/.config/git/aliases
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[rebase]
+	autosquash = true
+[core]
+	editor = /usr/bin/nvim
+[merge]
+	tool = fugitive
+	ff = false
+[mergetool]
+	prompt = false
+    keepBackup = false
+[mergetool "fugitive"]
+    cmd = nvim -f -c \"Gvdiff!\" \"$MERGED\"
+[gitflow "feature.finish"]
+	no-ff = yes

@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# config-menu
+#
+
+exclude="keybase|trello|slack|gimp|gtk|postman|wireshark|configstore|discord|draw.io|exercism|pulse|devcert"
+
+choice=$(fd --type f --type l . "$XDG_CONFIG_HOME" | rg -iv "$exclude" | sed "s|$XDG_CONFIG_HOME/||g" | rofi -dmenu -no-custom -p "config")
+
+if [[ "$choice" != "" ]]; then
+  "$TERMINAL" -e "$EDITOR" -f "$XDG_CONFIG_HOME/$choice"
+fi

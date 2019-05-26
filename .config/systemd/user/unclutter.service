@@ -1,0 +1,10 @@
+
+[Unit]
+Description=hides non-moving mousecursor
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/unclutter
+
+[Install]
+WantedBy=graphical-session.target

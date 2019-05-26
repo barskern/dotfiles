@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# linkhandler
+#
+
+VIDSITES_REGEX='youtube.com'
+
+run_separate() {
+  setsid nohup $@ >/dev/null 2>&1 & disown
+}
+
+link="$1"
+ext="${link##*.}"
+
+# Check extensions of files we can view locally
+case "$ext" in
+  mkv|mp3|mp4|gif|webm)  run_separate mpv  -quiet "$link"; exit 0; ;;
+  png|jpg|jpeg|jpe)      run_separate feh  "$link"       ; exit 0; ;;
+  mp2|flac|opus|mp3|pdf) run_separate wget "$link"       ; exit 0; ;;
+  *) ;;
+esac
+
+# Check if link is a url
+if [[ "$link" =~ $VIDSITES_REGEX ]]; then
+  run_separate mpv -quiet "$link"
+  exit 0
+fi
+
+# Fallback is to open the link in the browser
+run_separate "$BROWSER" "$1"
+

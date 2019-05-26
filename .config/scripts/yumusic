@@ -1,0 +1,142 @@
+#!/bin/zsh
+#
+# yumusic
+#
+
+set -e
+
+BASE_URL=${BASE_URL:-"https://youtube.com/watch/?v="}
+ID_REGEX=${ID_REGEX:-"^[A-Za-z0-9\-\_]{11}$"}
+
+MUSIC_DIR=${MUSIC_DIR:-"$(xdg-user-dir MUSIC)"}
+AUDIO_FMT=${AUDIO_FMT:-"aac"}
+AUDIO_QUALITY=${AUDIO_QUALITY:-"0"}
+
+is_valid_id() {
+	id=$1
+	[[ $id =~ $ID_REGEX ]]
+	return 0
+}
+
+ids=()
+while read id; do
+	# Filter out invalid ids
+	if is_valid_id "$id"; then
+		ids+=("$id")
+	else
+		echo "invalid id: $id"
+	fi
+done < "${1:-/dev/stdin}"
+
+[[ "${#ids[@]}" = 0 ]] && { echo "Error: command must be run with input from stdin or a filename as first parameter"; exit 1; }
+
+tmp_dir="$(mktemp -p /tmp -d yumusic.XXXXXX)"
+
+# Send all valid ids to downloader
+echo "${ids[@]}" | tr ' ' '\n' | awk -v URL="$BASE_URL" '{print URL$1}' \
+	| youtube-dl \
+	--batch-file - \
+	--output "$tmp_dir/%(id)s.%(ext)s" \
+	--write-info-json \
+	--extract-audio \
+	--audio-format "$AUDIO_FMT" \
+	--audio-quality "$AUDIO_QUALITY" \
+	--prefer-ffmpeg --hls-prefer-ffmpeg
+
+# Verify titles and artists
+songs=()
+for id in "${ids[@]}"; do
+	IFS='&' read title uploader date \
+		<<< $(cat "$tmp_dir/$id.info.json" \
+		| jq -r '.title, .uploader, .upload_date' \
+		| perl -pe 'chomp if eof' \
+		| perl -pe 's/[^\w\n\s\-\|\_]//g' \
+		| tr '\n' '&')
+
+	ftitle=$(echo $title | sed 's/^.*\ \-\ //' | awk '{$1=$1}1')
+	fartist=$(echo $title | sed 's/\ \-\ .*$//' | awk '{$1=$1}1')
+    if [[ "$ftitle" == "$fartist" ]]
+    then
+        # Artist and title is equal, which means that there is no '-' in the
+        # title, hence fallback to specifying the uploader as the artist.
+        fartist="$uploader"
+    fi
+
+
+	fyear="${date:0:4}"
+	fuploader=$(echo $uploader | awk '{$1=$1}1')
+
+    # Only prompt if stdin is not coming from a pipe.
+    if [[ ! -p /dev/stdin ]]
+    then
+        edit=1
+        while [[ $edit == 1 ]]
+        do
+            echo "################################"
+            echo -e "title:\t\t$ftitle\nartist:\t\t$fartist\nyear:\t\t$fyear\nuploader:\t$fuploader"
+            echo "################################"
+
+            read ans"?Do you want to edit? [y/n] "
+            if [[ "$ans" = "y" ]]
+            then
+                read ftitle"?new title: "
+                read fartist"?new artist: "
+            else
+                edit=0
+            fi
+        done
+    fi
+	songs+=("$ftitle" "$fartist" "$fyear")
+done
+
+# Do the actual conversion
+successes=()
+errors=()
+mkdir -p "$MUSIC_DIR"
+i=0
+for id in "${ids[@]}"; do
+	ii=$((i * 3))
+	title=${songs[$(($ii + 1))]}
+	artist=${songs[$(($ii + 2))]}
+	year=${songs[$(($ii + 3))]}
+
+	filename="$(echo $artist | tr ' ' _)-$(echo $title | tr ' ' _)"
+    filepath="$MUSIC_DIR/$filename.$AUDIO_FMT"
+
+    if [[ -f $filepath ]]
+    then
+        # File already exists.
+        errors+=("$artist - $title")
+	else
+        cp "$tmp_dir/$id.$AUDIO_FMT" "$filepath"
+
+        id3v2 --id3v2-only \
+			--song "$title" \
+            --artist "$artist" \
+            --year "$year" \
+            --comment ":Downloaded from youtube.com at $(date -I) ($id):eng" \
+            "$filepath"
+
+		successes+=("$artist - $title")
+	fi
+
+	i=$(($i + 1))
+done
+
+# Print statuses after completion.
+echo "==============================="
+echo "Downloaded:"
+for suc in "${successes[@]}"
+do
+    echo "* $suc"
+done
+echo "==============================="
+
+echo "Failed (already exists):"
+for err in "${errors[@]}"
+do
+    echo "* $err"
+done
+echo "==============================="
+
+exit 0
