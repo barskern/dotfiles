@@ -63,11 +63,11 @@ $CMD switch --merge "$orig_branch"
 if [[ "$branch" == "$COMMON_BRANCH" ]]
 then
 	prompt "Rebase '$orig_branch' onto '$branch'" \
-		&& $CMD rebase -i "$branch" \
+		&& $CMD rebase -i "$branch" "$orig_branch" \
 		|| exit 0
 
 	$CMD status
 
-	prompt "Push updated branch '$orig_branch' to remote (using --force-with-lease)" \
+	prompt "Push rebased branch '$orig_branch' to remote (using --force-with-lease)" \
 		&& $CMD push --force-with-lease
 fi
