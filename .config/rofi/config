@@ -5,7 +5,7 @@ rofi.modi:            window,drun,run,ssh,
 rofi.terminal:        alacritty
 
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)"
-rofi.matching:        fuzzy
+rofi.matching:        normal
 
 ! "Set theme for rofi"
 rofi.theme:           ~/.config/rofi/srcery.rasi
