@@ -45,7 +45,7 @@ $CMD switch --merge "$branch"
 
 # a do-while loop in bash
 while
-	$CMD commit --interactive
+	$CMD commit --interactive --verbose
 
 	prompt "New commit"
 do
