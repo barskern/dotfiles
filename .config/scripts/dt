@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+#
+# dt - A script to manage a bare git repository for dotfiles
+#
+
+set -e
+
+# the bare git directory for the dotfiles
+DOTFILES_DIR="${XDG_CONFIG_HOME:-"$HOME/.config/"}/dotfiles"
+
+# the branch which has the "shared" configuration options
+# (only used to decided whether to prompt for a rebase)
+COMMON_BRANCH="master"
+
+CMD="/usr/bin/git --git-dir=$DOTFILES_DIR --work-tree=$HOME"
+
+if [[ "$1" == "-h" ]]
+then
+	cat <<EOF
+dt
+A script to manage a bare git repository for dotfiles
+
+USAGE:
+	dt [-h] <branch>
+
+The script will switch to the given branch and enter a loop asking for commits.
+When done it will offer to push the changes to the remote repository and rebase
+original branch onto the new master (if master was the given branch).
+EOF
+	exit 0
+fi
+
+prompt()
+{
+	echo -n "$1 [Y/n]: "; read -r answer
+	[[ -z "$answer" ]] \
+		|| [[ "$answer" == "Y" ]] \
+		|| [[ "$answer" == "y" ]]
+}
+
+branch="$1"
+orig_branch="$($CMD branch --show-current)"
+
+$CMD switch --merge "$branch"
+
+# a do-while loop in bash
+while
+	$CMD commit --interactive
+
+	prompt "New commit"
+do
+	:
+done
+
+$CMD status
+
+prompt "Push changes on '$branch' to remote" && $CMD push
+
+$CMD switch --merge "$orig_branch"
+
+# if common branch, then offer to rebase original branch onto it
+if [[ "$branch" == "$COMMON_BRANCH" ]]
+then
+	prompt "Rebase '$orig_branch' onto '$branch'" && $CMD rebase -i "$branch" || exit 0
+
+	$CMD status
+
+	prompt "Push updated branch '$orig_branch' to remote" && $CMD push
+fi
