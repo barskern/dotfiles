@@ -54,16 +54,20 @@ done
 
 $CMD status
 
-prompt "Push changes on '$branch' to remote" && $CMD push
+prompt "Push changes on '$branch' to remote" \
+	&& $CMD push
 
 $CMD switch --merge "$orig_branch"
 
 # if common branch, then offer to rebase original branch onto it
 if [[ "$branch" == "$COMMON_BRANCH" ]]
 then
-	prompt "Rebase '$orig_branch' onto '$branch'" && $CMD rebase -i "$branch" || exit 0
+	prompt "Rebase '$orig_branch' onto '$branch'" \
+		&& $CMD rebase -i "$branch" \
+		|| exit 0
 
 	$CMD status
 
-	prompt "Push updated branch '$orig_branch' to remote" && $CMD push
+	prompt "Push updated branch '$orig_branch' to remote (using --force-with-lease)" \
+		&& $CMD push --force-with-lease
 fi
