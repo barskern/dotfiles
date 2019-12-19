@@ -251,7 +251,7 @@ mode $sessionctl {
   bindsym $mod+Shift+Delete mode "default"
 }
 
-set $music "music |p|lay |p|ause |n|ext p|r|evious |s|top |u|pdate"
+set $music "music |p|lay |p|ause |n|ext p|r|evious |s|top |u|pdate |c|lerk"
 bindsym $mod+m mode $music
 mode $music {
 	bindsym p exec --no-startup-id music-controls toggle ; mode "default"
@@ -259,6 +259,7 @@ mode $music {
 	bindsym r exec --no-startup-id music-controls prev
 	bindsym s exec --no-startup-id music-controls stop ; mode "default"
 	bindsym u exec --no-startup-id mpc update --wait && mpc clear && mpc add /
+	bindsym c exec $term --title "clerk" --class "floater" -e clerk ; mode "default"
 
 	bindsym XF86AudioPlay        exec --no-startup-id music-controls toggle
 	bindsym XF86AudioNext        exec --no-startup-id music-controls next
