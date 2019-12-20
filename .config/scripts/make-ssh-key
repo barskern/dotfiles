@@ -22,7 +22,12 @@ if [ -z "$domain" ]; then
 fi
 
 comment="$local_username@$(hostname)"
-filename="$SSH_DIR/id_$(echo "$domain" | tr '.' '_')"
+sanitized_domain=$(\
+	echo "$domain" \
+		| sed 's/^[\*\.]*//;s/\.*$//' \
+		| tr '.' '_' \
+)
+filename="$SSH_DIR/id_$sanitized_domain"
 
 echo "Creating ssh key..."
 ssh-keygen -q \
