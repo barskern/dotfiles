@@ -622,6 +622,13 @@ if has('autocmd')
     autocmd FileType cpp set shiftwidth=2
   augroup END
 
+  augroup yaml
+    autocmd!
+    autocmd FileType yaml set tabstop=2
+    autocmd FileType yaml set softtabstop=2
+    autocmd FileType yaml set shiftwidth=2
+  augroup END
+
   augroup rust
     autocmd!
     autocmd FileType rust inoremap <F5> <Esc>:Cbuild<CR>
