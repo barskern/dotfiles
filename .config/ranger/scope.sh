@@ -40,6 +40,17 @@ try() { output=$(eval '"$@"'); }
 # writes the output of the previously used "try" command
 dump() { /bin/echo "$output"; }
 
+bat_preview() {
+	COLORTERM=8bit bat \
+        --paging never \
+        --color always \
+        --decorations always \
+        --wrap character \
+        --terminal-width "$width" \
+        --line-range "0:$maxln" \
+        "$@"
+}
+
 # a common post-processing function used after most commands
 trim() { head -n "$maxln"; }
 
@@ -77,7 +88,7 @@ case "$extension" in
         try 7z -p l "$path" && { dump | trim; exit 0; } || exit 1;;
     # PDF documents:
     pdf)
-	try pdftoppm -jpeg -singlefile "$path" "${cached//.jpg}" && exit 6 || exit 1;;
+        try pdftoppm -jpeg -singlefile "$path" "${cached//.jpg}" && exit 6 || exit 1;;
         #try pdftotext -l 10 -nopgbrk -q "$path" - && \
             #{ dump | trim | fmt -s -w $width; exit 0; } || exit 1;;
     # BitTorrent Files
@@ -88,25 +99,20 @@ case "$extension" in
         try odt2txt "$path" && { dump | trim; exit 5; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml)
-        try w3m    -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
-        try lynx   -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
-        try elinks -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
+        try w3m    -dump "$path" && { dump | trim | fmt -s -w "$width"; exit 4; }
+        try lynx   -dump "$path" && { dump | trim | fmt -s -w "$width"; exit 4; }
+        try elinks -dump "$path" && { dump | trim | fmt -s -w "$width"; exit 4; }
         ;; # fall back to highlight/cat if the text browsers fail
     # JSON data
     json)
-        try jq -C . "$path" && { dump | trim; exit 4; }
+        try jq . "$path" && { dump | bat_preview --language json; exit 4; }
         ;;
 esac
 
 case "$mimetype" in
     # Syntax highlight for text files:
     text/* | */xml)
-        if [ "$(tput colors)" -ge 256 ]; then
-            pygmentize_format=terminal256
-        else
-            pygmentize_format=terminal
-        fi
-        try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
+        bat_preview "$path" && { exit 4; }
         exit 2;;
     # Ascii-previews of images:
     image/*)
