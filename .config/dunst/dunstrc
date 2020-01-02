@@ -293,6 +293,10 @@
     appname = whats-app-nativefier-d52542
     format = "<big><b>%s</b></big>\n%b\n%p"
 
+[audio-controls]
+    appname = audio-controls
+    format = "<big>%b</big>"
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
