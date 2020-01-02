@@ -18,7 +18,6 @@ volume_notify(){
 
 	if [[ $(pamixer --get-mute) == "true" ]]; then
 		title="Volume muted"
-		content=""
 		icon="audio-volume-muted-blocking-symbolic"
 	elif ((volume == 0)); then
 		icon="audio-volume-muted-symbolic"
