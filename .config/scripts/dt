@@ -60,7 +60,7 @@ $CMD push
 $CMD switch --merge "$orig_branch"
 
 # if common branch, then rebase original branch onto it
-if [[ "$branch" == "$COMMON_BRANCH" ]]
+if [[ "$branch" == "$COMMON_BRANCH" && "$branch" != "$orig_branch" ]]
 then
 	echo "Rebasing '$orig_branch' onto '$branch'"
 	$CMD rebase --autostash "$branch" "$orig_branch"
