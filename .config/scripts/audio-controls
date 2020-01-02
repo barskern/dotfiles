@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# audio-controls
+#
+
+volume_notify(){
+	# Must be a multiple of 5
+	BAR_CHAR="─"
+	BAR_PAD=" "
+
+	volume=$(pamixer --get-volume)
+	padding=$(seq -s "$BAR_PAD" $(((100 - volume) / 5 + 1)) | sed 's/[0-9]//g')
+	bar=$(seq -s "$BAR_CHAR" $((volume / 5 + 1)) | sed 's/[0-9]//g')
+
+	# Default title and content
+	title="Volume changed"
+	content="|$bar$padding|"
+
+	if [[ $(pamixer --get-mute) == "true" ]]; then
+		title="Volume muted"
+		content=""
+		icon="audio-volume-muted-blocking-symbolic"
+	elif ((volume == 0)); then
+		icon="audio-volume-muted-symbolic"
+	elif ((volume <= 30)); then
+		icon="audio-volume-low-symbolic"
+	elif ((30 < volume && volume <= 60)); then
+		icon="audio-volume-medium-symbolic"
+	else
+		icon="audio-volume-high-symbolic"
+	fi
+
+	notify-send \
+		--app-name "audio-controls" \
+		--urgency low \
+		--hint string:x-canonical-private-synchronous:audio-controls \
+		--icon "$icon" \
+		"$title" \
+		"$content"
+}
+
+case "$1" in
+  # Volume controls
+  "up"       ) pamixer -i "$2"; volume_notify ;;
+  "down"     ) pamixer -d "$2"; volume_notify ;;
+  "mute"     ) pamixer -t     ; volume_notify ;;
+  "truemute" ) pamixer -m     ; volume_notify ;;
+
+  # Music controls
+  "toggle"   ) mpc toggle      ;;
+  "pause"    ) mpc pause       ;;
+  "stop"     ) mpc stop        ;;
+  "forward"  ) mpc seek +"$2"  ;;
+  "back"     ) mpc seek -"$2"  ;;
+  "next"     ) mpc next        ;;
+  "prev"     ) mpc prev        ;;
+  "replay"   ) mpc seek 0%     ;;
+esac
