@@ -165,7 +165,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Numix/32/status/:/usr/share/icons/Numix/32/devices/:/usr/share/icons/Numix/32/notifications/:/usr/share/icons/Numix/32/apps/:/usr/share/icons/Numix/32/actions/:/usr/share/icons/Numix/32/emblems/
+    icon_path = /usr/share/icons/Numix/scalable/status/:/usr/share/icons/Numix/scalable/devices/:/usr/share/icons/Numix/scalable/notifications/:/usr/share/icons/Numix/scalable/apps/:/usr/share/icons/Numix/scalable/actions/:/usr/share/icons/Numix/scalable/emblems/
 
     ### History ###
 
