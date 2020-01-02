@@ -65,8 +65,6 @@ then
 	echo "Rebasing '$orig_branch' onto '$branch'"
 	$CMD rebase --autostash "$branch" "$orig_branch"
 
-	$CMD status
-
 	echo "Pushing rebased branch '$orig_branch' to remote (using --force-with-lease)"
 	$CMD push --force-with-lease
 fi
