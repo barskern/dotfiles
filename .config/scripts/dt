@@ -54,7 +54,7 @@ done
 
 $CMD status
 
-echo "Pushing changes (if any) on '$branch' to remote"
+echo -e "\n#### Pushing changes (if any) on '$branch' to remote ####\n"
 $CMD push
 
 $CMD switch --merge "$orig_branch"
@@ -62,9 +62,9 @@ $CMD switch --merge "$orig_branch"
 # if common branch, then rebase original branch onto it
 if [[ "$branch" == "$COMMON_BRANCH" && "$branch" != "$orig_branch" ]]
 then
-	echo "Rebasing '$orig_branch' onto '$branch'"
+	echo -e "\n#### Rebasing '$orig_branch' onto '$branch' ####\n"
 	$CMD rebase --autostash "$branch" "$orig_branch"
 
-	echo "Pushing rebased branch '$orig_branch' to remote (using --force-with-lease)"
+	echo -e "\n#### Pushing rebased branch '$orig_branch' to remote (using --force-with-lease) ####\n"
 	$CMD push --force-with-lease
 fi
