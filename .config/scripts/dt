@@ -24,8 +24,8 @@ USAGE:
 	dt [-h] <branch>
 
 The script will switch to the given branch and enter a loop asking for commits.
-When done it will offer to push the changes to the remote repository and rebase
-original branch onto the new master (if master was the given branch).
+When done it will push the changes to the remote repository and rebase original
+branch onto the new $COMMON_BRANCH (if $COMMON_BRANCH was the given branch).
 EOF
 	exit 0
 fi
@@ -54,20 +54,19 @@ done
 
 $CMD status
 
-prompt "Push changes on '$branch' to remote" \
-	&& $CMD push
+echo "Pushing changes (if any) on '$branch' to remote"
+$CMD push
 
 $CMD switch --merge "$orig_branch"
 
-# if common branch, then offer to rebase original branch onto it
+# if common branch, then rebase original branch onto it
 if [[ "$branch" == "$COMMON_BRANCH" ]]
 then
-	prompt "Rebase '$orig_branch' onto '$branch'" \
-		&& $CMD rebase -i "$branch" "$orig_branch" \
-		|| exit 0
+	echo "Rebasing '$orig_branch' onto '$branch'"
+	$CMD rebase --autostash "$branch" "$orig_branch"
 
 	$CMD status
 
-	prompt "Push rebased branch '$orig_branch' to remote (using --force-with-lease)" \
-		&& $CMD push --force-with-lease
+	echo "Pushing rebased branch '$orig_branch' to remote (using --force-with-lease)"
+	$CMD push --force-with-lease
 fi
