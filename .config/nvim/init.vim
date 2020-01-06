@@ -8,7 +8,7 @@
 
 " Disable plugins in Vi-mode
 if v:progname ==# 'vi'
-  set noloadplugins
+	set noloadplugins
 endif
 
 " Compatibility is for losers!
@@ -106,38 +106,38 @@ set spelllang=nb
 set pastetoggle=<F2>
 
 if has('autocmd')
-  augroup nasmdetection
-    autocmd!
-    autocmd BufNewFile,BufRead *.nasm set filetype=nasm
-  augroup END
+	augroup nasmdetection
+		autocmd!
+		autocmd BufNewFile,BufRead *.nasm set filetype=nasm
+	augroup END
 
-  augroup togglerelnumbers
-    autocmd!
-    " Turn off relative numbers in insert mode
-    autocmd InsertEnter,BufLeave,WinLeave,FocusLost *
-          \ if &l:number && empty(&buftype) |
-          \ setlocal norelativenumber |
-          \ endif
-    " Turn on relative numbers in normal mode
-    autocmd InsertLeave,BufEnter,WinEnter,FocusGained *
-          \ if &l:number && empty(&buftype) |
-          \ setlocal relativenumber |
-          \ endif
-  augroup end
+	augroup togglerelnumbers
+		autocmd!
+		" Turn off relative numbers in insert mode
+		autocmd InsertEnter,BufLeave,WinLeave,FocusLost *
+					\ if &l:number && empty(&buftype) |
+					\ setlocal norelativenumber |
+					\ endif
+		" Turn on relative numbers in normal mode
+		autocmd InsertLeave,BufEnter,WinEnter,FocusGained *
+					\ if &l:number && empty(&buftype) |
+					\ setlocal relativenumber |
+					\ endif
+	augroup end
 
-  augroup autowriteread
-    autocmd!
-    " Save whenever switching windows or leaving vim. This is useful when running
-    " the tests inside vim without having to save all files first.
-    autocmd FocusLost,WinLeave * :silent! noautocmd wa
+	augroup autowriteread
+		autocmd!
+		" Save whenever switching windows or leaving vim. This is useful when running
+		" the tests inside vim without having to save all files first.
+		autocmd FocusLost,WinLeave * :silent! noautocmd wa
 
-    " Trigger autoread when changing buffers or coming back to vim.
-    autocmd FocusGained,BufEnter * :silent! !
-  augroup END
+		" Trigger autoread when changing buffers or coming back to vim.
+		autocmd FocusGained,BufEnter * :silent! !
+	augroup END
 
-  augroup deoplete_close_preview
-    autocmd!
-    autocmd CompleteDone * silent! pclose!
+	augroup deoplete_close_preview
+		autocmd!
+		autocmd CompleteDone * silent! pclose!
 endif
 
 " Use ripgrep as grep
@@ -209,7 +209,7 @@ set hidden
 
 " Conceal some items (e.g snippet markers)
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+	set conceallevel=2 concealcursor=niv
 endif
 
 " Customized version of folded text made by
@@ -217,46 +217,46 @@ endif
 " based on the idea by
 " http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
 fu! CustomFoldText(string)
-    " Get first non-blank line
-    let fs = v:foldstart
-    if getline(fs) =~ '^\s*$'
-      let fs = nextnonblank(fs + 1)
-    endif
-    if fs > v:foldend
-        let line = getline(v:foldstart)
-    else
-        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-    endif
-    let pat  = matchstr(&l:cms, '^\V\.\{-}\ze%s\m')
+	" Get first non-blank line
+	let fs = v:foldstart
+	if getline(fs) =~ '^\s*$'
+		let fs = nextnonblank(fs + 1)
+	endif
+	if fs > v:foldend
+		let line = getline(v:foldstart)
+	else
+		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+	endif
+	let pat  = matchstr(&l:cms, '^\V\.\{-}\ze%s\m')
 
-    " Remove leading comments from line
-    let line = substitute(line, '^\s*'.pat.'\s*', '', '')
+	" Remove leading comments from line
+	let line = substitute(line, '^\s*'.pat.'\s*', '', '')
 
-    " Remove foldmarker from line
-    let pat  = '\%('. pat. '\)\?\s*'. split(&l:fmr, ',')[0]. '\s*\d\+'
-    let line = substitute(line, pat, '', '')
+	" Remove foldmarker from line
+	let pat  = '\%('. pat. '\)\?\s*'. split(&l:fmr, ',')[0]. '\s*\d\+'
+	let line = substitute(line, pat, '', '')
 
-"   let line = substitute(line, matchstr(&l:cms,
-"	    \ '^.\{-}\ze%s').'\?\s*'. split(&l:fmr,',')[0].'\s*\d\+', '', '')
+	" let line = substitute(line, matchstr(&l:cms,
+	" \ '^.\{-}\ze%s').'\?\s*'. split(&l:fmr,',')[0].'\s*\d\+', '', '')
 
-    let w = get(g:, 'custom_foldtext_max_width', winwidth(0)) - &foldcolumn - (&number ? 8 : 0)
-    let foldSize = 1 + v:foldend - v:foldstart
-    let foldSizeStr = " " . foldSize . " lines "
-    let foldLevelStr = '+'. v:folddashes
-    let lineCount = line("$")
-    if has("float")
-	try
-	    let foldPercentage = printf("[%2.0f", (foldSize*1.0)/lineCount*100) . "%] "
-	catch /^Vim\%((\a\+)\)\=:E806/	" E806: Using Float as String
-	    let foldPercentage = printf("[of %d lines] ", lineCount)
-	endtry
-    endif
-    if exists("*strwdith")
-	let expansionString = repeat(a:string, w - 2 - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    else
-	let expansionString = repeat(a:string, w - 2 - strlen(substitute(foldSizeStr.line.foldLevelStr.foldPercentage, '.', 'x', 'g')))
-    endif
-    return '⟫ ' . line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+	let w = get(g:, 'custom_foldtext_max_width', winwidth(0)) - &foldcolumn - (&number ? 8 : 0)
+	let foldSize = 1 + v:foldend - v:foldstart
+	let foldSizeStr = " " . foldSize . " lines "
+	let foldLevelStr = '+'. v:folddashes
+	let lineCount = line("$")
+	if has("float")
+		try
+			let foldPercentage = printf("[%2.0f", (foldSize*1.0)/lineCount*100) . "%] "
+		catch /^Vim\%((\a\+)\)\=:E806/	" E806: Using Float as String
+			let foldPercentage = printf("[of %d lines] ", lineCount)
+		endtry
+	endif
+	if exists("*strwdith")
+		let expansionString = repeat(a:string, w - 2 - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+	else
+		let expansionString = repeat(a:string, w - 2 - strlen(substitute(foldSizeStr.line.foldLevelStr.foldPercentage, '.', 'x', 'g')))
+	endif
+	return '⟫ ' . line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
 set foldtext=CustomFoldText('.')
@@ -271,7 +271,7 @@ let g:rooter_patterns = ['.git', 'Cargo.toml']
 
 " Fetch a env variable using vim-dotenv if it exist
 function! s:env(var) abort
-  return exists('*DotenvGet') ? DotenvGet(a:var) : eval('$'.a:var)
+	return exists('*DotenvGet') ? DotenvGet(a:var) : eval('$'.a:var)
 endfunction
 
 " dadbod
@@ -298,11 +298,11 @@ let g:intero_backend = {
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#var('around', {
-\   'range_above': 15,
-\   'range_below': 15,
-\   'mark_above': '[↑]',
-\   'mark_below': '[↓]',
-\   'mark_changes': '[*]',
+\ 'range_above': 15,
+\ 'range_below': 15,
+\ 'mark_above': '[↑]',
+\ 'mark_below': '[↓]',
+\ 'mark_changes': '[*]',
 \})
 
 " neosnippet
@@ -319,12 +319,12 @@ let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_settingsPath = expand('~/.local/share/nvim/settings.json')
 
 let g:LanguageClient_serverCommands = {
-\  'rust': ['rls'],
-\  'c': ['ccls', '--log-file=/tmp/cc.log'],
-\  'cpp': ['ccls', '--log-file=/tmp/cc.log'],
-\  'cuda': ['ccls', '--log-file=/tmp/cc.log'],
-\  'objc': ['ccls', '--log-file=/tmp/cc.log'],
-\  'python' : ['pyls'],
+\ 'rust': ['rls'],
+\ 'c': ['ccls', '--log-file=/tmp/cc.log'],
+\ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+\ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
+\ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
+\ 'python' : ['pyls'],
 \}
 
 " ALE settings
@@ -351,11 +351,11 @@ let g:ale_sign_info = '⚐'
 " Rust settings for ale
 let g:ale_rust_ignore_secondary_spans = 1
 let g:ale_rust_rls_config = {
-  \ 'rust': {
-  \     'clippy_preference': 'on',
-  \     'build_on_save': v:true,
-  \ }
-  \ }
+\ 'rust': {
+\     'clippy_preference': 'on',
+\     'build_on_save': v:true,
+\ }
+\}
 
 " Settings for preview-window
 let g:ale_cursor_detail = 0
@@ -370,22 +370,22 @@ let g:ale_echo_msg_format = '%severity% %s% [%linter% %code%]'
 
 " ALE linters
 let g:ale_linters = {
-\  'rust': ['rls'],
-\  'haskell': ['hlint', 'stack_ghc'],
-\  'cpp' : ['clang'],
-\  'python' : ['pyls'],
+\ 'rust': ['rls'],
+\ 'haskell': ['hlint', 'stack_ghc'],
+\ 'cpp' : ['clang'],
+\ 'python' : ['pyls'],
 \}
 
 " ALE fixers
 let g:ale_fixers = {
-\  '*': ['remove_trailing_lines', 'trim_whitespace'],
-\  'rust': ['rustfmt'],
-\  'cpp' : ['clang-format'],
-\  'javascript': ['eslint'],
-\  'javascript.jsx': ['eslint'],
-\  'python' : ['black'],
-\  'haskell': ['brittany'],
-\  'php': ['php_cs_fixer'],
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'rust': ['rustfmt'],
+\ 'cpp' : ['clang-format'],
+\ 'javascript': ['eslint'],
+\ 'javascript.jsx': ['eslint'],
+\ 'python' : ['black'],
+\ 'haskell': ['brittany'],
+\ 'php': ['php_cs_fixer'],
 \}
 
 " rust.vim settings
@@ -404,32 +404,32 @@ let g:lightline#ale#indicator_errors = '✖ '
 let g:lightline#ale#indicator_ok = '✔ '
 
 let g:lightline.component_expand = {
-  \  'linter_checking': 'lightline#ale#checking',
-  \  'linter_warnings': 'lightline#ale#warnings',
-  \  'linter_errors': 'lightline#ale#errors',
-  \  'linter_ok': 'lightline#ale#ok',
-  \ }
+\ 'linter_checking': 'lightline#ale#checking',
+\ 'linter_warnings': 'lightline#ale#warnings',
+\ 'linter_errors': 'lightline#ale#errors',
+\ 'linter_ok': 'lightline#ale#ok',
+\}
 
 let g:lightline.component_type = {
-  \  'linter_checking': 'left',
-  \  'linter_warnings': 'warning',
-  \  'linter_errors': 'error',
-  \  'linter_ok': 'left',
-  \ }
+\ 'linter_checking': 'left',
+\ 'linter_warnings': 'warning',
+\ 'linter_errors': 'error',
+\ 'linter_ok': 'left',
+\}
 
 let g:lightline.component_function = {
-\   'gitbranch': 'fugitive#head'
-\ }
+\  'gitbranch': 'fugitive#head'
+\}
 
 let g:lightline.colorscheme = 'srcery'
 
 let g:lightline.active = {
-\   'left': [ [ 'mode', 'paste' ],
-\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-\   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-\              [ 'lineinfo', 'percent' ],
-\              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-\ }
+\ 'left': [ [ 'mode', 'paste' ],
+\           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+\ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+\            [ 'lineinfo', 'percent' ],
+\            [ 'fileformat', 'fileencoding', 'filetype' ] ],
+\}
 
 " pandoc-vim settings
 let g:pandoc#syntax#conceal#use=0
@@ -474,9 +474,9 @@ tnoremap <Esc> <C-\><C-n>
 
 " neosnippet keybinds
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " LSP/ale keybinds
 map <leader>lb :LanguageClientStart<CR>
@@ -570,112 +570,112 @@ map <leader><leader> <Esc>/<++><CR>"_c4l
 
 if has('autocmd')
 
-  augroup terminals
-    autocmd!
-    autocmd TermOpen * setlocal nonumber norelativenumber
-  augroup END
+	augroup terminals
+		autocmd!
+		autocmd TermOpen * setlocal nonumber norelativenumber
+	augroup END
 
-  augroup json
-    autocmd!
+	augroup json
+		autocmd!
 		autocmd FileType json set conceallevel=0
 	augroup END
 
-  augroup haskell
-    autocmd!
-    " Background process and window management
-    autocmd FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-    autocmd FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
+	augroup haskell
+		autocmd!
+		" Background process and window management
+		autocmd FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
+		autocmd FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
 
-    " Open intero/GHCi split horizontally
-    autocmd FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-    " Open intero/GHCi split vertically
-    autocmd FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-    autocmd FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
+		" Open intero/GHCi split horizontally
+		autocmd FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
+		" Open intero/GHCi split vertically
+		autocmd FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
+		autocmd FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
 
-    " Reloading (pick one)
-    " Automatically reload on save
-    autocmd BufWritePost *.hs InteroReload
+		" Reloading (pick one)
+		" Automatically reload on save
+		autocmd BufWritePost *.hs InteroReload
 
-    " Load individual modules
-    autocmd FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-    autocmd FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+		" Load individual modules
+		autocmd FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
+		autocmd FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
 
-    " Type-related information
-    " Heads up! These next two differ from the rest.
-    autocmd FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-    autocmd FileType haskell map <silent> <leader>T <Plug>InteroType
-    autocmd FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
+		" Type-related information
+		" Heads up! These next two differ from the rest.
+		autocmd FileType haskell map <silent> <leader>t <Plug>InteroGenericType
+		autocmd FileType haskell map <silent> <leader>T <Plug>InteroType
+		autocmd FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
 
-    " Navigation
-    autocmd FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
+		" Navigation
+		autocmd FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
 
-    " Managing targets
-    " Prompts you to enter targets (no silent):
-    autocmd FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
-  augroup end
+		" Managing targets
+		" Prompts you to enter targets (no silent):
+		autocmd FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
+	augroup end
 
-  augroup cpp
-    autocmd!
-    autocmd FileType cpp inoremap <F5> <Esc>:!g++ -g -o %< %<CR>
-    autocmd FileType cpp nnoremap <F5> :!g++ -g -o %< %<CR>
-    autocmd FileType cpp inoremap <F6> <Esc>:!g++ -g -o %< % && ./%<<CR>
-    autocmd FileType cpp nnoremap <F6> :!g++ -g -o %< % && ./%<<CR>
+	augroup cpp
+		autocmd!
+		autocmd FileType cpp inoremap <F5> <Esc>:!g++ -g -o %< %<CR>
+		autocmd FileType cpp nnoremap <F5> :!g++ -g -o %< %<CR>
+		autocmd FileType cpp inoremap <F6> <Esc>:!g++ -g -o %< % && ./%<<CR>
+		autocmd FileType cpp nnoremap <F6> :!g++ -g -o %< % && ./%<<CR>
 
-    autocmd FileType cpp set tabstop=2
-    autocmd FileType cpp set softtabstop=2
-    autocmd FileType cpp set shiftwidth=2
-  augroup END
+		autocmd FileType cpp set tabstop=2
+		autocmd FileType cpp set softtabstop=2
+		autocmd FileType cpp set shiftwidth=2
+	augroup END
 
-  augroup yaml
-    autocmd!
-    autocmd FileType yaml set tabstop=2
-    autocmd FileType yaml set softtabstop=2
-    autocmd FileType yaml set shiftwidth=2
-  augroup END
+	augroup yaml
+		autocmd!
+		autocmd FileType yaml set tabstop=2
+		autocmd FileType yaml set softtabstop=2
+		autocmd FileType yaml set shiftwidth=2
+	augroup END
 
-  augroup rust
-    autocmd!
-    autocmd FileType rust inoremap <F5> <Esc>:Cbuild<CR>
-    autocmd FileType rust nnoremap <F5> :Cbuild<CR>
-    autocmd FileType rust inoremap <F6> <Esc>:Crun<CR>
-    autocmd FileType rust nnoremap <F6> :Crun<CR>
-    " Run all tests
-    autocmd FileType rust inoremap <F7> <Esc>:Ctest<CR>
-    autocmd FileType rust nnoremap <F7> :Ctest<CR>
-    " Run single test
-    autocmd FileType rust inoremap <F8> <Esc>:RustTest<CR>
-    autocmd FileType rust nnoremap <F8> :RustTest<CR>
-  augroup END
+	augroup rust
+		autocmd!
+		autocmd FileType rust inoremap <F5> <Esc>:Cbuild<CR>
+		autocmd FileType rust nnoremap <F5> :Cbuild<CR>
+		autocmd FileType rust inoremap <F6> <Esc>:Crun<CR>
+		autocmd FileType rust nnoremap <F6> :Crun<CR>
+		" Run all tests
+		autocmd FileType rust inoremap <F7> <Esc>:Ctest<CR>
+		autocmd FileType rust nnoremap <F7> :Ctest<CR>
+		" Run single test
+		autocmd FileType rust inoremap <F8> <Esc>:RustTest<CR>
+		autocmd FileType rust nnoremap <F8> :RustTest<CR>
+	augroup END
 
-  augroup markdown
-    autocmd!
-    autocmd FileType markdown inoremap <F5> <Esc>:PandocCompile<CR>
-    autocmd FileType markdown nnoremap <F5> :PandocCompile<CR>
-    autocmd FileType markdown inoremap <F6> <Esc>:PandocPreview<CR>
-    autocmd FileType markdown nnoremap <F6> :PandocPreview<CR>
-  augroup END
+	augroup markdown
+		autocmd!
+		autocmd FileType markdown inoremap <F5> <Esc>:PandocCompile<CR>
+		autocmd FileType markdown nnoremap <F5> :PandocCompile<CR>
+		autocmd FileType markdown inoremap <F6> <Esc>:PandocPreview<CR>
+		autocmd FileType markdown nnoremap <F6> :PandocPreview<CR>
+	augroup END
 
-  augroup golang
-    autocmd!
-    autocmd FileType go inoremap <F5> <Esc>:GoBuild<CR>
-    autocmd FileType go nnoremap <F5> :GoBuild<CR>
-    autocmd FileType go inoremap <F6> <Esc>:GoRun<CR>
-    autocmd FileType go nnoremap <F6> :GoRun<CR>
-    autocmd FileType go inoremap <F7> <Esc>:GoTest<CR>
-    autocmd FileType go nnoremap <F7> :GoTest<CR>
-  augroup END
+	augroup golang
+		autocmd!
+		autocmd FileType go inoremap <F5> <Esc>:GoBuild<CR>
+		autocmd FileType go nnoremap <F5> :GoBuild<CR>
+		autocmd FileType go inoremap <F6> <Esc>:GoRun<CR>
+		autocmd FileType go nnoremap <F6> :GoRun<CR>
+		autocmd FileType go inoremap <F7> <Esc>:GoTest<CR>
+		autocmd FileType go nnoremap <F7> :GoTest<CR>
+	augroup END
 
-  augroup mail
-    autocmd!
-    autocmd FileType mail set wrap linebreak nolist tw=0
+	augroup mail
+		autocmd!
+		autocmd FileType mail set wrap linebreak nolist tw=0
 		" Workaround due to lightline not being enabled (https://github.com/junegunn/goyo.vim/issues/207)
 		autocmd FileType mail call lightline#init()
-    autocmd FileType mail :Goyo
+		autocmd FileType mail :Goyo
 
 		" Because we are inside of Goyo we need to quit/exit twice
 		autocmd FileType mail nnoremap <leader>q :q<CR>:q<CR>
 		autocmd FileType mail nnoremap <leader>x :xit<CR>:xit<CR>
-  augroup END
+	augroup END
 
 	augroup jinja
 		autocmd!
