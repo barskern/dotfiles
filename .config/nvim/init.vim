@@ -174,6 +174,7 @@ set tabstop=4
 set autoindent
 set smartindent
 " set cursorline
+set list
 
 " Command to convert spaces to tabs for a range
 " See https://vim.fandom.com/wiki/Super_retab
