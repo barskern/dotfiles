@@ -1,0 +1,73 @@
+
+IMAPStore hoved-remote
+Host imap-mail.outlook.com
+Port  993
+User olemartinruud@outlook.com
+PassCmd "pass mutt-wizard-hoved"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore hoved-local
+Subfolders Verbatim
+Path ~/.local/share/mail/hoved/
+Inbox ~/.local/share/mail/hoved/INBOX
+Flatten .
+
+Channel hoved
+Expunge Both
+Master :hoved-remote:
+Slave :hoved-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+# End profile
+
+IMAPStore dev-remote
+Host imap-mail.outlook.com
+Port  993
+User barskern@outlook.com
+PassCmd "pass mutt-wizard-dev"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore dev-local
+Subfolders Verbatim
+Path ~/.local/share/mail/dev/
+Inbox ~/.local/share/mail/dev/INBOX
+Flatten .
+
+Channel dev
+Expunge Both
+Master :dev-remote:
+Slave :dev-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+# End profile
+
+
+IMAPStore student-remote
+Host outlook.office365.com
+Port  993
+User omoruud@ntnu.no
+PassCmd "pass mutt-wizard-student"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore student-local
+Subfolders Verbatim
+Path ~/.local/share/mail/student/
+Inbox ~/.local/share/mail/student/INBOX
+Flatten .
+
+Channel student
+Expunge Both
+Master :student-remote:
+Slave :student-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+# End profile
