@@ -32,7 +32,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'Konfekt/FastFold'
 Plug 'lepture/vim-jinja'
@@ -265,6 +264,30 @@ set foldtext=CustomFoldText('.')
 
 " Plugin settings {{{
 
+" goyo.vim
+
+" taken from https://github.com/junegunn/goyo.vim/issues/16
+function! s:goyo_enter()
+	let b:quitting = 0
+	let b:quitting_bang = 0
+	autocmd QuitPre <buffer> let b:quitting = 1
+	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+	" Quit Vim if this is the only remaining buffer
+	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+		if b:quitting_bang
+			qa!
+		else
+			qa
+		endif
+	endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
+
 " vim-rooter
 
 let g:rooter_patterns = ['.git', 'Cargo.toml']
@@ -276,13 +299,6 @@ endfunction
 
 " dadbod
 let g:db = s:env('DATABASE_URL')
-
-" limelight
-augroup limelight
-	autocmd!
-	autocmd User GoyoEnter Limelight
-	autocmd User GoyoLeave Limelight!
-augroup END
 
 " intero-neovim
 let g:intero_prompt_regex = '[^-]> '
@@ -671,10 +687,6 @@ if has('autocmd')
 		" Workaround due to lightline not being enabled (https://github.com/junegunn/goyo.vim/issues/207)
 		autocmd FileType mail call lightline#init()
 		autocmd FileType mail :Goyo
-
-		" Because we are inside of Goyo we need to quit/exit twice
-		autocmd FileType mail nnoremap <leader>q :q<CR>:q<CR>
-		autocmd FileType mail nnoremap <leader>x :xit<CR>:xit<CR>
 	augroup END
 
 	augroup jinja
