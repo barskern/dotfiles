@@ -43,6 +43,11 @@ orig_branch="$($CMD branch --show-current)"
 
 $CMD switch --merge "$branch"
 
+# ensure branch is updated with latest remote changes
+# (this also makes updating easy as the user only needs to run `dt master` to
+# get the latest changes from the remote master branch)
+$CMD pull --autostash
+
 # a do-while loop in bash
 while
 	$CMD commit --interactive --verbose
