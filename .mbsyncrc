@@ -71,3 +71,30 @@ Create Both
 SyncState *
 MaxMessages 0
 # End profile
+
+
+IMAPStore post-remote
+Host imap.domeneshop.no
+Port  993
+User barskern1
+PassCmd "pass mutt-wizard-post"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore post-local
+Subfolders Verbatim
+Path ~/.local/share/mail/post/
+Inbox ~/.local/share/mail/post/INBOX
+Flatten .
+
+Channel post
+Expunge Both
+Master :post-remote:
+Slave :post-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
