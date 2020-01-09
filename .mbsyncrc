@@ -1,46 +1,46 @@
 
-IMAPStore hoved-remote
+IMAPStore hoved-old-remote
 Host imap-mail.outlook.com
 Port  993
 User olemartinruud@outlook.com
-PassCmd "pass mutt-wizard-hoved"
+PassCmd "pass mutt-wizard-hoved-old"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore hoved-local
+MaildirStore hoved-old-local
 Subfolders Verbatim
-Path ~/.local/share/mail/hoved/
-Inbox ~/.local/share/mail/hoved/INBOX
+Path ~/.local/share/mail/hoved-old/
+Inbox ~/.local/share/mail/hoved-old/INBOX
 Flatten .
 
-Channel hoved
+Channel hoved-old
 Expunge Both
-Master :hoved-remote:
-Slave :hoved-local:
+Master :hoved-old-remote:
+Slave :hoved-old-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
 MaxMessages 0
 # End profile
 
-IMAPStore dev-remote
+IMAPStore dev-old-remote
 Host imap-mail.outlook.com
 Port  993
 User barskern@outlook.com
-PassCmd "pass mutt-wizard-dev"
+PassCmd "pass mutt-wizard-dev-old"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore dev-local
+MaildirStore dev-old-local
 Subfolders Verbatim
-Path ~/.local/share/mail/dev/
-Inbox ~/.local/share/mail/dev/INBOX
+Path ~/.local/share/mail/dev-old/
+Inbox ~/.local/share/mail/dev-old/INBOX
 Flatten .
 
-Channel dev
+Channel dev-old
 Expunge Both
-Master :dev-remote:
-Slave :dev-local:
+Master :dev-old-remote:
+Slave :dev-old-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -48,24 +48,24 @@ MaxMessages 0
 # End profile
 
 
-IMAPStore student-remote
+IMAPStore student-old-remote
 Host outlook.office365.com
 Port  993
 User omoruud@ntnu.no
-PassCmd "pass mutt-wizard-student"
+PassCmd "pass mutt-wizard-student-old"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore student-local
+MaildirStore student-old-local
 Subfolders Verbatim
-Path ~/.local/share/mail/student/
-Inbox ~/.local/share/mail/student/INBOX
+Path ~/.local/share/mail/student-old/
+Inbox ~/.local/share/mail/student-old/INBOX
 Flatten .
 
-Channel student
+Channel student-old
 Expunge Both
-Master :student-remote:
-Slave :student-local:
+Master :student-old-remote:
+Slave :student-old-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
