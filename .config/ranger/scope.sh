@@ -45,6 +45,7 @@ bat_preview() {
         --paging never \
         --color always \
         --decorations always \
+        --style numbers,changes \
         --wrap character \
         --terminal-width "$width" \
         --line-range "0:$maxln" \
