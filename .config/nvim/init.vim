@@ -329,7 +329,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " LSP settings
 let g:LanguageClient_autoStart = 0
-let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_useVirtualText = "CodeLens"
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_settingsPath = expand('~/.local/share/nvim/settings.json')
 
