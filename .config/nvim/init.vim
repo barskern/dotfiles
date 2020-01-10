@@ -70,7 +70,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 
 call plug#end()
