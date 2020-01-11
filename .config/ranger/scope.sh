@@ -41,7 +41,7 @@ try() { output=$(eval '"$@"'); }
 dump() { /bin/echo "$output"; }
 
 bat_preview() {
-	COLORTERM=8bit bat \
+     COLORTERM=8bit bat \
         --paging never \
         --color always \
         --decorations always \
@@ -80,7 +80,7 @@ case "$extension" in
         try bsdtar -lf "$path" && { dump | trim; exit 0; }
         exit 1;;
     csv)
-	sed "s/\(.*\".*\),\(.*\".*\)/\1~\2/;s/,/\t/g;s/~/,/g;s/\t\"/\t/g;s/\"\t/\t/g" "$path" && { dump| trim; exit 0; } || exit 1;;
+        sed "s/\(.*\".*\),\(.*\".*\)/\1~\2/;s/,/\t/g;s/~/,/g;s/\t\"/\t/g;s/\"\t/\t/g" "$path" && { dump| trim; exit 0; } || exit 1;;
     rar)
         # avoid password prompt by providing empty password
         try unrar -p- lt "$path" && { dump | trim; exit 0; } || exit 1;;
