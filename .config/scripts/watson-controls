@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+watson report -G
+echo "---"
+watson status
+exec "$SHELL"
