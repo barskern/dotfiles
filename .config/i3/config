@@ -31,7 +31,7 @@ bar {
         focused_workspace #2c78bf #2c78bf #ffffff
         active_workspace #303030 #303030 #ffffff
         inactive_workspace #303030 #303030 #888888
-        urgent_workspace #fbb829 #fed06e #ffffff
+        urgent_workspace #fbb829 #fbb829 #1C1B19
     }
 }
 
@@ -48,7 +48,7 @@ bar {
         focused_workspace #2c78bf #2c78bf #ffffff
         active_workspace #303030 #303030 #ffffff
         inactive_workspace #303030 #303030 #888888
-        urgent_workspace #fbb829 #fed06e #ffffff
+        urgent_workspace #fbb829 #fbb829 #1C1B19
     }
 }
 
