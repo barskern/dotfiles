@@ -297,6 +297,7 @@
 [audio-controls]
     appname = audio-controls
     format = "<big>%b</big>"
+    history_ignore = yes
 
 [mail]
     appname = mutt-wizard
