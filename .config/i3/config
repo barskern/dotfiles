@@ -122,8 +122,8 @@ bindsym $mod+Ctrl+Return exec $term \
   --command tmux attach-session -d -t $USER
 
 # Shortcuts to programs
-bindsym $mod+r       exec $term --title "ranger" -e ranger `xcwd`
-bindsym $mod+Shift+r exec $term --title "ranger as root" -e sudo ranger `xcwd`
+bindsym $mod+r       exec $term --title "broot" -e broot `xcwd`
+bindsym $mod+Shift+r exec $term --title "broot as root" -e sudo broot `xcwd`
 
 bindsym $mod+b exec --no-startup-id $BROWSER
 
