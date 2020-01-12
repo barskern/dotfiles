@@ -10,3 +10,6 @@ set pgp_default_key=0x1A7F2DC6
 set pgp_sign_as=0x850EFDA2
 set crypt_use_gpgme=yes
 set crypt_autosign=no
+
+# Fix invalid urlview (we have to explicitly tell urlview we're reading from stdin)
+macro index,pager \Cb "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview -<enter><enter-command>set pipe_decode = no<enter>""view URLs"
