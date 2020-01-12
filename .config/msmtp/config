@@ -4,28 +4,6 @@ tls	on
 tls_trust_file	/etc/ssl/certs/ca-certificates.crt
 logfile	~/.config/msmtp/msmtp.log
 
-account hoved-old
-host smtp-mail.outlook.com
-port 587
-from olemartinruud@outlook.com
-user olemartinruud@outlook.com
-passwordeval "pass mutt-wizard-hoved-old"
-
-account dev-old
-host smtp-mail.outlook.com
-port 587
-from barskern@outlook.com
-user barskern@outlook.com
-passwordeval "pass mutt-wizard-dev-old"
-
-account student-old
-host smtp.office365.com
-port 587
-from omoruud@stud.ntnu.no
-user omoruud@ntnu.no
-passwordeval "pass mutt-wizard-student-old"
-
-
 account post
 host smtp.domeneshop.no
 port 587
@@ -34,3 +12,41 @@ user barskern1
 passwordeval "pass mutt-wizard-post"
 
 
+account nett
+host smtp.domeneshop.no
+port 587
+from nett@barskern.no
+user barskern3
+passwordeval "pass mutt-wizard-nett"
+
+
+account dev
+host smtp.domeneshop.no
+port 587
+from dev@barskern.no
+user barskern2
+passwordeval "pass mutt-wizard-dev"
+
+
+account student
+host smtp.office365.com
+port 587
+from omoruud@stud.ntnu.no
+user omoruud@ntnu.no
+passwordeval "pass mutt-wizard-student"
+
+
+account hoved-old
+host smtp-mail.outlook.com
+port 587
+from olemartinruud@outlook.com
+user olemartinruud@outlook.com
+passwordeval "pass mutt-wizard-hoved-old"
+
+
+account dev-old
+host smtp-mail.outlook.com
+port 587
+from barskern@outlook.com
+user barskern@outlook.com
+passwordeval "pass mutt-wizard-dev-old"

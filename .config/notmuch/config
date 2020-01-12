@@ -1,14 +1,20 @@
 [database]
 path=/home/oruud/.local/share/mail
+
 [user]
 name=Ole Martin Ruud
-primary_email=olemartinruud@outlook.com
+primary_email=post@barskern.no
+other_email=dev@barskern.no;nett@barskern.no;
+
 [new]
 tags=unread;inbox;
 ignore=
+
 [search]
 exclude_tags=deleted;spam;
+
 [maildir]
 synchronize_flags=true
+
 [crypto]
 gpg_path=gpg
