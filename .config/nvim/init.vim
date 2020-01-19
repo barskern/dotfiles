@@ -44,6 +44,7 @@ Plug 'mxw/vim-jsx'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'parsonsmatt/intero-neovim'
+Plug 'plasticboy/vim-markdown'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/vim-grammarous'
 Plug 'rodjek/vim-puppet'
@@ -68,8 +69,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'w0rp/ale'
 
 call plug#end()
@@ -447,8 +448,15 @@ let g:lightline.active = {
 \}
 
 " pandoc-vim settings
-let g:pandoc#syntax#conceal#use=0
-let g:pandoc#spell#enabled=0
+" let g:pandoc#syntax#conceal#use=0
+" let g:pandoc#spell#enabled=0
+
+" vim-markdown
+" let g:vim_markdown_conceal = 0
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
 
 " editorconfig-vim
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
