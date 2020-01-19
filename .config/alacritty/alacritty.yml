@@ -120,11 +120,11 @@ colors:
     blue:       '0x2C78BF'
     magenta:    '0xE02C6D'
     cyan:       '0x0AAEB3'
-    white:      '0x918175'
+    white:      '0xD0BFA1'
 
   # Bright colors
   bright:
-    black:      '0x2D2B28'
+    black:      '0x918175'
     red:        '0xF75341'
     green:      '0x98BC37'
     yellow:     '0xFED06E'
