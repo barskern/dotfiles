@@ -19,13 +19,10 @@ set nocompatible
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-rooter'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
 Plug 'barskern/neosnippet-snippets'
 Plug 'cespare/vim-toml'
-Plug 'deathlyfrantic/deoplete-spell'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ervandew/supertab'
 Plug 'hashivim/vim-terraform'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'itchyny/lightline.vim'
@@ -35,12 +32,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'Konfekt/FastFold'
 Plug 'lepture/vim-jinja'
+Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/webapi-vim'
-Plug 'maximbaz/lightline-ale'
 Plug 'mxw/vim-jsx'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovimhaskell/haskell-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'parsonsmatt/intero-neovim'
@@ -52,7 +50,6 @@ Plug 'ron-rs/ron.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'sakhnik/nvim-gdb', { 'do': './install.sh' }
 Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neosnippet.vim'
 Plug 'srcery-colors/srcery-vim'
@@ -71,7 +68,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -134,9 +130,6 @@ if has('autocmd')
 		autocmd FocusGained,BufEnter * :silent! !
 	augroup END
 
-	augroup deoplete_close_preview
-		autocmd!
-		autocmd CompleteDone * silent! pclose!
 endif
 
 " Use ripgrep as grep
@@ -190,7 +183,7 @@ set formatoptions=jcrql
 
 " Prevent ins-completion-menu popups
 set shortmess+=c
-set completeopt-=preview
+"set completeopt-=preview
 "set completeopt+=noinsert
 
 " Colorscheme
@@ -208,7 +201,7 @@ set hidden
 
 " Conceal some items (e.g snippet markers)
 if has('conceal')
-	set conceallevel=2 concealcursor=niv
+	set conceallevel=2 concealcursor=nc
 endif
 
 " Customized version of folded text made by
@@ -264,6 +257,13 @@ set foldtext=CustomFoldText('.')
 
 " Plugin settings {{{
 
+" coc.nvim
+
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
 " goyo.vim
 
 " taken from https://github.com/junegunn/goyo.vim/issues/16
@@ -310,99 +310,9 @@ let g:intero_backend = {
 \ 'cwd': expand('%:p:h'),
 \}
 
-" deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-
-call deoplete#custom#var('around', {
-\ 'range_above': 15,
-\ 'range_below': 15,
-\ 'mark_above': '[↑]',
-\ 'mark_below': '[↓]',
-\ 'mark_changes': '[*]',
-\})
-
 " neosnippet
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#snippets_directory = '~/.local/share/nvim/plugged/neosnippet-snippets/neosnippets'
-
-" supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" LSP settings
-let g:LanguageClient_autoStart = 0
-let g:LanguageClient_useVirtualText = "CodeLens"
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_settingsPath = expand('~/.local/share/nvim/settings.json')
-
-let g:LanguageClient_serverCommands = {
-\ 'rust': ['rls'],
-\ 'c': ['ccls', '--log-file=/tmp/cc.log'],
-\ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
-\ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
-\ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
-\ 'python' : ['pyls'],
-\}
-
-" ALE settings
-let g:ale_lint_delay = 200
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_fix_on_save = 0
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_set_highlights = 0
-
-" Settings to work with cmake project
-let g:ale_c_parse_compile_commands = 1
-let g:ale_c_build_dir = 'build'
-
-" Sign column settings
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-let g:ale_sign_info = '⚐'
-
-" Rust settings for ale
-let g:ale_rust_ignore_secondary_spans = 1
-let g:ale_rust_rls_config = {
-\ 'rust': {
-\     'clippy_preference': 'on',
-\     'build_on_save': v:true,
-\ }
-\}
-
-" Settings for preview-window
-let g:ale_cursor_detail = 0
-let g:ale_close_preview_on_insert = 0
-
-" Settings for echo message
-let g:ale_echo_cursor = 1 " 0 disabled, 1 enabled
-let g:ale_echo_msg_error_str = 'Error:'
-let g:ale_echo_msg_warning_str = 'Warn:'
-let g:ale_echo_msg_info_str = 'Info:'
-let g:ale_echo_msg_format = '%severity% %s% [%linter% %code%]'
-
-" ALE linters
-let g:ale_linters = {
-\ 'rust': ['rls'],
-\ 'haskell': ['hlint', 'stack_ghc'],
-\ 'cpp' : ['clang'],
-\ 'python' : ['pyls'],
-\}
-
-" ALE fixers
-let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'rust': ['rustfmt'],
-\ 'cpp' : ['clang-format'],
-\ 'javascript': ['eslint'],
-\ 'javascript.jsx': ['eslint'],
-\ 'python' : ['black'],
-\ 'haskell': ['brittany'],
-\ 'php': ['php_cs_fixer'],
-\}
 
 " rust.vim settings
 let g:rust_fold = 2
@@ -414,27 +324,9 @@ let g:go_list_type = "none"
 " lightline settings
 let g:lightline = {}
 
-let g:lightline#ale#indicator_checking = '⟳ '
-let g:lightline#ale#indicator_warnings = '⚠ '
-let g:lightline#ale#indicator_errors = '✖ '
-let g:lightline#ale#indicator_ok = '✔ '
-
-let g:lightline.component_expand = {
-\ 'linter_checking': 'lightline#ale#checking',
-\ 'linter_warnings': 'lightline#ale#warnings',
-\ 'linter_errors': 'lightline#ale#errors',
-\ 'linter_ok': 'lightline#ale#ok',
-\}
-
-let g:lightline.component_type = {
-\ 'linter_checking': 'left',
-\ 'linter_warnings': 'warning',
-\ 'linter_errors': 'error',
-\ 'linter_ok': 'left',
-\}
-
 let g:lightline.component_function = {
-\  'gitbranch': 'fugitive#head'
+\  'gitbranch': 'fugitive#head',
+\  'cocstatus': 'coc#status'
 \}
 
 let g:lightline.colorscheme = 'srcery'
@@ -442,10 +334,13 @@ let g:lightline.colorscheme = 'srcery'
 let g:lightline.active = {
 \ 'left': [ [ 'mode', 'paste' ],
 \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-\ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+\ 'right': [ [ 'cocstatus' ],
 \            [ 'lineinfo', 'percent' ],
 \            [ 'fileformat', 'fileencoding', 'filetype' ] ],
 \}
+
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " pandoc-vim settings
 " let g:pandoc#syntax#conceal#use=0
@@ -479,6 +374,62 @@ let g:user_emmet_leader_key = ',e'
 
 " Keybindings {{{
 
+" coc.nvim
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " fzf commands for
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>L :Lines<CR>
@@ -497,21 +448,8 @@ tnoremap <Esc> <C-\><C-n>
 
 " neosnippet keybinds
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" LSP/ale keybinds
-map <leader>lb :LanguageClientStart<CR>
-map <leader>lq :LanguageClientStop<CR>
-map <silent> <leader>lm :call LanguageClient_contextMenu()<CR>
-map <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
-map <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
-map <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
-map <silent> <leader>lf :ALEFix<CR>
-map <silent> <leader>le :call LanguageClient#textDocument_references()<CR>
-map <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
-map <silent> <leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+imap <C-k> <Plug>(neosnippet_jump)
+smap <C-k> <Plug>(neosnippet_jump)
 
 " vim-fugitive commands
 map <leader>gg :G<CR>
