@@ -13,3 +13,6 @@ set crypt_autosign=no
 
 # Fix invalid urlview (we have to explicitly tell urlview we're reading from stdin)
 macro index,pager \Cb "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview -<enter><enter-command>set pipe_decode = no<enter>""view URLs"
+
+# Override indicator due to brightblack being gray
+color indicator black white
