@@ -102,9 +102,6 @@ bindsym $mod+y layout toggle split
 # Toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-# Change focus between tiling / floating windows
-bindsym $mod+Shift+t focus mode_toggle
-
 # Change focus
 bindsym $mod+a focus parent
 bindsym $mod+d focus child
@@ -140,6 +137,9 @@ bindsym $mod+Ctrl+w exec $term --title "wpa_cli" --class "floater" -e wpa_cli
 
 # Run watson repl
 bindsym $mod+Shift+w exec $term_wd --title "watson" --class "floater" -e watson-controls
+
+# Run todoman repl
+bindsym $mod+Shift+t exec $term_wd --title "todoman" --class "floater" -e todo-controls
 
 # Run pavucontrol
 bindsym $mod+s exec pavucontrol
