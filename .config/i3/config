@@ -136,10 +136,10 @@ bindsym $mod+c       exec --no-startup-id cred-menu
 bindsym $mod+Shift+c exec --no-startup-id config-menu
 
 # Run wifi menu
-bindsym $mod+Shift+w exec $term --title "wpa_cli" --class "floater" -e wpa_cli
+bindsym $mod+Ctrl+w exec $term --title "wpa_cli" --class "floater" -e wpa_cli
 
-# Run watson menu
-bindsym $mod+w exec $term_wd --title "watson" --class "floater" -e watson-controls
+# Run watson repl
+bindsym $mod+Shift+w exec $term_wd --title "watson" --class "floater" -e watson-controls
 
 # Run pavucontrol
 bindsym $mod+s exec pavucontrol
