@@ -415,9 +415,14 @@ nmap <silent> gr <Plug>(coc-references)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+augroup formatting
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType rust setl formatexpr=CocAction('formatSelected')
+augroup end
 
 
 " Use K to show documentation in preview window
