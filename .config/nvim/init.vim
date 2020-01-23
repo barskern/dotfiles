@@ -33,6 +33,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Konfekt/FastFold'
 Plug 'lepture/vim-jinja'
 Plug 'lervag/vimtex'
+Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'markonm/traces.vim'
 Plug 'mattn/emmet-vim'
@@ -256,6 +257,9 @@ set foldtext=CustomFoldText('.')
 " }}}
 
 " Plugin settings {{{
+
+" vista
+let g:vista_sidebar_width = 50
 
 " coc.nvim
 
