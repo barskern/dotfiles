@@ -35,13 +35,6 @@
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   # }}}
 
-  # stash {{{
-  sl = stash list
-  sa = stash apply
-  spu = stash push
-  spo = stash pop
-  # }}}
-
   # remotes {{{
   rahub = "!f() { git remote add $1 git@github.com:$2.git; git remote -v; }; f"
   # }}}
@@ -50,11 +43,6 @@
   subupgrade = submodule foreach git pull origin master
   # }}}
 
-  # gitflow {{{
-  f = flow
-  ff = flow feature
-  fh = flow hotfix
-  fb = flow bugfix
-  fr = flow release
-  fs = flow support
+  # gitlab merge {{{
+  mwps = push -o merge_request.create -o merge_request.target=master -o merge_request.merge_when_pipeline_succeeds
   # }}}
