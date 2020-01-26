@@ -38,7 +38,9 @@ alias ipl6="ip --brief -6 addr"
 
 # {M,Unm}ount keyusb
 alias keyusb-mount="sudo cryptsetup open /dev/disk/by-partuuid/28e23ac4-b0e5-47c3-bc1d-11fbd3b4fbc3 keyusb && sudo mount /dev/mapper/keyusb /media/usb/keyusb"
-alias keyusb-umount="sudo umount /media/usb/keyusb || sudo cryptsetup close keyusb"
+alias keyusb-umount="sudo umount /media/usb/keyusb && sudo cryptsetup close keyusb"
+alias keyusb2-mount="sudo cryptsetup open /dev/disk/by-partuuid/29bde9fd-997d-46ec-83da-488f21672d37 keyusb2 && sudo mount /dev/mapper/keyusb2 /media/usb/keyusb2"
+alias keyusb2-umount="sudo umount /media/usb/keyusb2 && sudo cryptsetup close keyusb2"
 
 # Screencast
 alias screencast="ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i ${DISPLAY:-:0}.0 $(xdg-user-dir VIDEOS)/Skjermdump/$(date '+%F_%H-%M-%S').mkv"
