@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# add-ics-event
+#
+set -e
+
+choice=$(khal printcalendars | rofi -dmenu -p calendar -no-custom)
+khal import --include-calendar "$choice" --batch "$1"
