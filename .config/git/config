@@ -23,3 +23,8 @@
     cmd = nvim -f -c \"Gvdiff!\" \"$MERGED\"
 [gitflow "feature.finish"]
 	no-ff = yes
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
