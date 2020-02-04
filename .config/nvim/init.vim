@@ -412,6 +412,9 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Format using F
+nmap <leader>F :Format<CR>
+
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
