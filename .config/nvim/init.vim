@@ -545,7 +545,7 @@ if has('autocmd')
 
 	augroup terminals
 		autocmd!
-		autocmd TermOpen * setlocal nonumber norelativenumber
+		autocmd TermOpen * setlocal nonumber norelativenumber scrolloff=0
 	augroup END
 
 	augroup json
