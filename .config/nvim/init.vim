@@ -471,7 +471,7 @@ map <leader>gc :Gcommit -v<CR>
 map <leader>gs :Gstatus<CR>
 map <leader>gb :Gblame<CR>
 map <leader>gB :Gbrowse<CR>
-map <leader>gl :Glog<CR>
+map <leader>gl :0Glog<CR>
 map <leader>gp :Gpush<CR>
 map <leader>gP :Gpull<CR>
 
