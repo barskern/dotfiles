@@ -15,3 +15,7 @@ dateformat = %Y-%m-%d
 longdateformat = %Y-%m-%d
 datetimeformat = %Y-%m-%d %H:%M
 longdatetimeformat = %Y-%m-%d %H:%M
+
+[keybindings]
+external_edit = ctrl e
+save = w
