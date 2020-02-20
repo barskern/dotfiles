@@ -90,6 +90,7 @@ bindsym $mod+Ctrl+Shift+l move workspace to output right
 
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Ctrl+f focus mode_toggle
 
 # Make current container into a split container
 bindsym $mod+bar split horizontal
