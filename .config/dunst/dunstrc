@@ -291,7 +291,7 @@
     new_icon = "emblem-music-symbolic"
 
 [whatsapp]
-    appname = whats-app-nativefier-d52542
+    appname = whatsapp-nativefier-d52542
     format = "<big><b>%s</b></big>\n%b\n%p"
 
 [audio-controls]
