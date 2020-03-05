@@ -19,6 +19,7 @@ set nocompatible
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-rooter'
+Plug 'b4b4r07/vim-hcl'
 Plug 'barskern/neosnippet-snippets'
 Plug 'cespare/vim-toml'
 Plug 'dhruvasagar/vim-table-mode'
@@ -543,6 +544,16 @@ map <leader><leader> <Esc>/<++><CR>"_c4l
 " Filetype snippets and settings {{{
 
 if has('autocmd')
+
+	augroup hcl
+		autocmd!
+		autocmd FileType hcl set expandtab tabstop=2 softtabstop=2 shiftwidth=2
+	augroup END
+
+	augroup terraform
+		autocmd!
+		autocmd FileType terraform set expandtab tabstop=2 softtabstop=2 shiftwidth=2
+	augroup END
 
 	augroup terminals
 		autocmd!
