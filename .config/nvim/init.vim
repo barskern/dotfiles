@@ -20,7 +20,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-rooter'
 Plug 'b4b4r07/vim-hcl'
-Plug 'barskern/neosnippet-snippets'
 Plug 'cespare/vim-toml'
 Plug 'derekwyatt/vim-scala'
 Plug 'dhruvasagar/vim-table-mode'
@@ -54,7 +53,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'sakhnik/nvim-gdb', { 'do': './install.sh' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neosnippet.vim'
 Plug 'srcery-colors/srcery-vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'tikhomirov/vim-glsl'
@@ -320,10 +318,6 @@ let g:intero_backend = {
 \ 'cwd': expand('%:p:h'),
 \}
 
-" neosnippet
-let g:neosnippet#enable_completed_snippet = 1
-let g:neosnippet#snippets_directory = '~/.local/share/nvim/plugged/neosnippet-snippets/neosnippets'
-
 " rust.vim settings
 let g:rust_fold = 2
 let g:rust_clip_command = 'xclip -selection clipboard'
@@ -466,11 +460,6 @@ nnoremap <leader>dL :GdbStartLLDB lldb<Space>
 
 " Exit terminal mode with ESC
 tnoremap <Esc> <C-\><C-n>
-
-" neosnippet keybinds
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k> <Plug>(neosnippet_jump)
-smap <C-k> <Plug>(neosnippet_jump)
 
 " vim-fugitive commands
 map <leader>gg :G<CR>
