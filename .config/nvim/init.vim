@@ -261,6 +261,9 @@ set foldtext=CustomFoldText('.')
 
 " Plugin settings {{{
 
+" fzf.vim
+let g:fzf_tags_command = "ctags -R src"
+
 " vista
 let g:vista_sidebar_width = 50
 
