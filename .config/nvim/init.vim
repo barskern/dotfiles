@@ -417,8 +417,9 @@ nmap <silent> <leader>ld <Plug>(coc-definition)
 nmap <silent> <leader>ly <Plug>(coc-type-definition)
 nmap <silent> <leader>li <Plug>(coc-implementation)
 nmap <silent> <leader>lr <Plug>(coc-references)
-nmap <silent> <leader>la <Plug>(coc-codeaction)
 nmap <silent> <leader>lf <Plug>(coc-fix-current)
+nmap <silent> <leader>ll :CocList<CR>
+nmap <silent> <leader>lc :CocCommand<CR>
 
 " Format using F
 nmap <leader>F :Format<CR>
