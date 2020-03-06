@@ -413,10 +413,12 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>ld <Plug>(coc-definition)
+nmap <silent> <leader>ly <Plug>(coc-type-definition)
+nmap <silent> <leader>li <Plug>(coc-implementation)
+nmap <silent> <leader>lr <Plug>(coc-references)
+nmap <silent> <leader>la <Plug>(coc-codeaction)
+nmap <silent> <leader>lf <Plug>(coc-fix-current)
 
 " Format using F
 nmap <leader>F :Format<CR>
