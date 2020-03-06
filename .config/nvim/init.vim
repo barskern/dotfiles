@@ -449,13 +449,6 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
-augroup formatting
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType rust setl formatexpr=CocAction('formatSelected')
-augroup end
-
-
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
