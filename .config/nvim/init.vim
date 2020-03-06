@@ -273,7 +273,23 @@ set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 " Install coc extensions
-call coc#add_extension("coc-dictionary", "coc-json", "coc-metals", "coc-rust-analyzer", "coc-vimtex", "coc-snippets", "coc-css", "coc-html", "coc-yaml", "coc-emmet", "coc-tailwindcss")
+let g:coc_global_extensions = [
+	\ "coc-dictionary",
+	\ "coc-json",
+	\ "coc-metals",
+	\ "coc-rust-analyzer",
+	\ "coc-vimtex",
+	\ "coc-snippets",
+	\ "coc-css",
+	\ "coc-html",
+	\ "coc-yaml",
+	\ "coc-emmet",
+	\ "coc-tailwindcss",
+	\ "coc-highlight",
+	\ "coc-markdownlint",
+	\ "coc-actions",
+	\ "coc-pyright"
+	\ ]
 
 " goyo.vim
 
