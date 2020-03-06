@@ -1,0 +1,17 @@
+{
+  "languageserver": {
+    "puppet": {
+      "command": "ruby",
+      "args": ["/opt/puppet-editor-services/puppet-languageserver","--stdio"],
+      "cwd": "/opt/puppet-editor-services",
+      "filetypes": ["puppet"],
+      "rootPatterns": [".git/", "metadata.json"]
+    },
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "rootPatterns": [".git/", "main.tf"],
+      "initializationOptions": {}
+    }
+  }
+}
