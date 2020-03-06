@@ -18,6 +18,7 @@ set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'honza/vim-snippets'
 Plug 'airblade/vim-rooter'
 Plug 'b4b4r07/vim-hcl'
 Plug 'cespare/vim-toml'
@@ -414,6 +415,8 @@ nmap <silent> <leader>ly <Plug>(coc-type-definition)
 nmap <silent> <leader>li <Plug>(coc-implementation)
 nmap <silent> <leader>lr <Plug>(coc-references)
 nmap <silent> <leader>lf <Plug>(coc-fix-current)
+nmap <silent> <leader>l<CR> <Plug>(coc-codelens-action)
+nmap <silent> <leader>la :CocAction<CR>
 nmap <silent> <leader>ll :CocList<CR>
 nmap <silent> <leader>lc :CocCommand<CR>
 

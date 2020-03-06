@@ -1,17 +1,66 @@
 {
-  "languageserver": {
-    "puppet": {
-      "command": "ruby",
-      "args": ["/opt/puppet-editor-services/puppet-languageserver","--stdio"],
-      "cwd": "/opt/puppet-editor-services",
-      "filetypes": ["puppet"],
-      "rootPatterns": [".git/", "metadata.json"]
-    },
-    "terraform": {
-      "command": "terraform-lsp",
-      "filetypes": ["terraform"],
-      "rootPatterns": [".git/", "main.tf"],
-      "initializationOptions": {}
+    "tailwindCSS.headwind.runOnSave": false,
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.htmlLanguages": [
+        "blade",
+        "edge",
+        "eelixir",
+        "ejs",
+        "elixir",
+        "erb",
+        "eruby",
+        "haml",
+        "handlebars",
+        "html",
+        "HTML (EEx)",
+        "HTML (Eex)",
+        "html.twig",
+        "jade",
+        "leaf",
+        "markdown",
+        "njk",
+        "nunjucks",
+        "php",
+        "razor",
+        "slim",
+        "svelte",
+        "twig",
+        "vue",
+        "jinja"
+    ],
+    "html.filetypes": [
+        "html",
+        "handlebars",
+        "htmldjango",
+        "jinja"
+    ],
+    "codeLens.enable": true,
+    "languageserver": {
+        "puppet": {
+            "command": "ruby",
+            "args": [
+                "/opt/puppet-editor-services/puppet-languageserver",
+                "--stdio"
+            ],
+            "cwd": "/opt/puppet-editor-services",
+            "filetypes": [
+                "puppet"
+            ],
+            "rootPatterns": [
+                ".git/",
+                "metadata.json"
+            ]
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": [
+                "terraform"
+            ],
+            "rootPatterns": [
+                ".git/",
+                "main.tf"
+            ],
+            "initializationOptions": {}
+        }
     }
-  }
 }
