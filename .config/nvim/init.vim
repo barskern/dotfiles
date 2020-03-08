@@ -291,6 +291,14 @@ let g:coc_global_extensions = [
 	\ "coc-pyright"
 	\ ]
 
+augroup mygroup
+	autocmd!
+	" Setup formatexpr specified filetype(s).
+	autocmd FileType scala,rust,html,json,css,latex,md setl formatexpr=CocAction('formatSelected')
+	" Update signature help on jump placeholder
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 " goyo.vim
 
 " taken from https://github.com/junegunn/goyo.vim/issues/16
