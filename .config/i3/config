@@ -104,7 +104,7 @@ bindsym $mod+y layout toggle split
 bindsym $mod+Shift+f floating toggle
 
 # Toggle stickyness
-bindsym $mod+Shift+s sticky toggle
+bindsym $mod+Ctrl+s sticky toggle
 
 # Change focus
 bindsym $mod+a focus parent
@@ -147,6 +147,9 @@ bindsym $mod+Shift+t exec $term_wd --title "todoman" --class "floater" -e todo-r
 
 # Run pavucontrol
 bindsym $mod+s exec pavucontrol
+
+# Run pavucontrol
+bindsym $mod+Shift+s exec select-display
 
 # Run todoman in a floating window
 bindsym $mod+Ctrl+c exec $term --title "calendar" --class "floater" -e ikhal
