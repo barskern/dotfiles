@@ -9,7 +9,7 @@ BASE_URL=${BASE_URL:-"https://youtube.com/watch/?v="}
 ID_REGEX=${ID_REGEX:-"^[A-Za-z0-9\-\_]{11}$"}
 
 MUSIC_DIR=${MUSIC_DIR:-"$(xdg-user-dir MUSIC)"}
-AUDIO_FMT=${AUDIO_FMT:-"aac"}
+AUDIO_FMT=${AUDIO_FMT:-"mp3"}
 AUDIO_QUALITY=${AUDIO_QUALITY:-"0"}
 
 is_valid_id() {
@@ -55,37 +55,37 @@ for id in "${ids[@]}"; do
 
 	ftitle=$(echo $title | sed 's/^.*\ \-\ //' | awk '{$1=$1}1')
 	fartist=$(echo $title | sed 's/\ \-\ .*$//' | awk '{$1=$1}1')
-    if [[ "$ftitle" == "$fartist" ]]
-    then
-        # Artist and title is equal, which means that there is no '-' in the
-        # title, hence fallback to specifying the uploader as the artist.
-        fartist="$uploader"
-    fi
+	if [[ "$ftitle" == "$fartist" ]]
+	then
+		# Artist and title is equal, which means that there is no '-' in the
+		# title, hence fallback to specifying the uploader as the artist.
+		fartist="$uploader"
+	fi
 
 
 	fyear="${date:0:4}"
 	fuploader=$(echo $uploader | awk '{$1=$1}1')
 
-    # Only prompt if stdin is not coming from a pipe.
-    if [[ ! -p /dev/stdin ]]
-    then
-        edit=1
-        while [[ $edit == 1 ]]
-        do
-            echo "################################"
-            echo -e "title:\t\t$ftitle\nartist:\t\t$fartist\nyear:\t\t$fyear\nuploader:\t$fuploader"
-            echo "################################"
+	# Only prompt if stdin is not coming from a pipe.
+	if [[ ! -p /dev/stdin ]]
+	then
+		edit=1
+		while [[ $edit == 1 ]]
+		do
+			echo "################################"
+			echo -e "title:\t\t$ftitle\nartist:\t\t$fartist\nyear:\t\t$fyear\nuploader:\t$fuploader"
+			echo "################################"
 
-            read ans"?Do you want to edit? [y/n] "
-            if [[ "$ans" = "y" ]]
-            then
-                read ftitle"?new title: "
-                read fartist"?new artist: "
-            else
-                edit=0
-            fi
-        done
-    fi
+			read ans"?Do you want to edit? [y/n] "
+			if [[ "$ans" = "y" ]]
+			then
+				read ftitle"?new title: "
+				read fartist"?new artist: "
+			else
+				edit=0
+			fi
+		done
+	fi
 	songs+=("$ftitle" "$fartist" "$fyear")
 done
 
@@ -101,21 +101,21 @@ for id in "${ids[@]}"; do
 	year=${songs[$(($ii + 3))]}
 
 	filename="$(echo $artist | tr ' ' _)-$(echo $title | tr ' ' _)"
-    filepath="$MUSIC_DIR/$filename.$AUDIO_FMT"
+	filepath="$MUSIC_DIR/$filename.$AUDIO_FMT"
 
-    if [[ -f $filepath ]]
-    then
-        # File already exists.
-        errors+=("$artist - $title")
+	if [[ -f $filepath ]]
+	then
+		# File already exists.
+		errors+=("$artist - $title")
 	else
-        cp "$tmp_dir/$id.$AUDIO_FMT" "$filepath"
+		cp "$tmp_dir/$id.$AUDIO_FMT" "$filepath"
 
-        id3v2 --id3v2-only \
+		id3v2 --id3v2-only \
 			--song "$title" \
-            --artist "$artist" \
-            --year "$year" \
-            --comment ":Downloaded from youtube.com at $(date -I) ($id):eng" \
-            "$filepath"
+			--artist "$artist" \
+			--year "$year" \
+			--comment ":Downloaded from youtube.com at $(date -I) ($id):eng" \
+			"$filepath"
 
 		successes+=("$artist - $title")
 	fi
@@ -128,14 +128,14 @@ echo "==============================="
 echo "Downloaded:"
 for suc in "${successes[@]}"
 do
-    echo "* $suc"
+	echo "* $suc"
 done
 echo "==============================="
 
 echo "Failed (already exists):"
 for err in "${errors[@]}"
 do
-    echo "* $err"
+	echo "* $err"
 done
 echo "==============================="
 
