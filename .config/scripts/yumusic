@@ -35,6 +35,7 @@ tmp_dir="$(mktemp -p /tmp -d yumusic.XXXXXX)"
 # Send all valid ids to downloader
 echo "${ids[@]}" | tr ' ' '\n' | awk -v URL="$BASE_URL" '{print URL$1}' \
 	| youtube-dl \
+	--ignore-errors \
 	--batch-file - \
 	--output "$tmp_dir/%(id)s.%(ext)s" \
 	--write-info-json \
