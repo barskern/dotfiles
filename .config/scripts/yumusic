@@ -97,31 +97,33 @@ errors=()
 mkdir -p "$MUSIC_DIR"
 i=0
 for id in "${ids[@]}"; do
-	ii=$((i * 3))
-	title=${songs[$(($ii + 1))]}
-	artist=${songs[$(($ii + 2))]}
-	year=${songs[$(($ii + 3))]}
-
-	filename="$(echo $artist-$title | tr -cd 'a-zA-Z0-9_ -' | tr -s ' ' _)"
-	filepath="$MUSIC_DIR/$filename.$AUDIO_FMT"
-
-	if [[ -f $filepath ]] || [[ ! -f $CACHE_DIR/$id.$AUDIO_FMT ]]
+	if [[ -f $CACHE_DIR/$id.info.json ]]
 	then
-		# File already exists.
-		errors+=("$artist - $title")
-	else
-		cp "$CACHE_DIR/$id.$AUDIO_FMT" "$filepath"
+		ii=$((i * 3))
+		title=${songs[$(($ii + 1))]}
+		artist=${songs[$(($ii + 2))]}
+		year=${songs[$(($ii + 3))]}
 
-		id3v2 --id3v2-only \
-			--song "$title" \
-			--artist "$artist" \
-			--year "$year" \
-			--comment ":Downloaded from youtube.com at $(date -I) ($id):eng" \
-			"$filepath"
+		filename="$(echo $artist-$title | tr -cd 'a-zA-Z0-9_ -' | tr -s ' ' _)"
+		filepath="$MUSIC_DIR/$filename.$AUDIO_FMT"
 
-		successes+=("$artist - $title")
+		if [[ -f $filepath ]] || [[ ! -f $CACHE_DIR/$id.$AUDIO_FMT ]]
+		then
+			# File already exists.
+			errors+=("$artist - $title")
+		else
+			cp "$CACHE_DIR/$id.$AUDIO_FMT" "$filepath"
+
+			id3v2 --id3v2-only \
+				--song "$title" \
+				--artist "$artist" \
+				--year "$year" \
+				--comment ":Downloaded from youtube.com at $(date -I) ($id):eng" \
+				"$filepath"
+
+			successes+=("$artist - $title")
+		fi
 	fi
-
 	i=$(($i + 1))
 done
 
