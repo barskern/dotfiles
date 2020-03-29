@@ -12,6 +12,8 @@ MUSIC_DIR=${MUSIC_DIR:-"$(xdg-user-dir MUSIC)"}
 AUDIO_FMT=${AUDIO_FMT:-"mp3"}
 AUDIO_QUALITY=${AUDIO_QUALITY:-"0"}
 
+CACHE_DIR="${XDG_CACHE_HOME:-"$HOME/.cache"}/yumusic"
+
 is_valid_id() {
 	id=$1
 	[[ $id =~ $ID_REGEX ]]
@@ -30,64 +32,63 @@ done < "${1:-/dev/stdin}"
 
 [[ "${#ids[@]}" = 0 ]] && { echo "Error: command must be run with input from stdin or a filename as first parameter"; exit 1; }
 
-tmp_dir="$(mktemp -p /tmp -d yumusic.XXXXXX)"
-
 # Send all valid ids to downloader
 echo "${ids[@]}" | tr ' ' '\n' | awk -v URL="$BASE_URL" '{print URL$1}' \
 	| youtube-dl \
 	--ignore-errors \
 	--batch-file - \
-	--output "$tmp_dir/%(id)s.%(ext)s" \
+	--output "$CACHE_DIR/%(id)s.%(ext)s" \
 	--write-info-json \
 	--extract-audio \
 	--audio-format "$AUDIO_FMT" \
 	--audio-quality "$AUDIO_QUALITY" \
-	--prefer-ffmpeg --hls-prefer-ffmpeg
+	--prefer-ffmpeg --hls-prefer-ffmpeg || true
 
 # Verify titles and artists
 songs=()
 for id in "${ids[@]}"; do
-	IFS='&' read title uploader date \
-		<<< $(cat "$tmp_dir/$id.info.json" \
-		| jq -r '.title, .uploader, .upload_date' \
-		| perl -pe 'chomp if eof' \
-		| perl -pe 's/[^\w\n\s\-\|\_]//g' \
-		| tr '\n' '&')
-
-	ftitle=$(echo $title | sed 's/^.*\ \-\ //' | awk '{$1=$1}1')
-	fartist=$(echo $title | sed 's/\ \-\ .*$//' | awk '{$1=$1}1')
-	if [[ "$ftitle" == "$fartist" ]]
+	if [[ -f $CACHE_DIR/$id.info.json ]]
 	then
-		# Artist and title is equal, which means that there is no '-' in the
-		# title, hence fallback to specifying the uploader as the artist.
-		fartist="$uploader"
-	fi
+		title="$(jq -rj '.title' $CACHE_DIR/$id.info.json)"
+		uploader="$(jq -rj '.uploader' $CACHE_DIR/$id.info.json)"
+		date="$(jq -rj '.upload_date' $CACHE_DIR/$id.info.json)"
 
+		ftitle=$(echo $title | sed 's/^.*\ \-\ //' | awk '{$1=$1}1')
+		fartist=$(echo $title | sed 's/\ \-\ .*$//' | awk '{$1=$1}1')
+		if [[ "$ftitle" == "$fartist" ]]
+		then
+			# Artist and title is equal, which means that there is no '-' in the
+			# title, hence fallback to specifying the uploader as the artist.
+			fartist="$uploader"
+		fi
 
-	fyear="${date:0:4}"
-	fuploader=$(echo $uploader | awk '{$1=$1}1')
+		fyear="${date:0:4}"
+		fuploader=$(echo $uploader | awk '{$1=$1}1')
 
-	# Only prompt if stdin is not coming from a pipe.
-	if [[ ! -p /dev/stdin ]]
-	then
-		edit=1
-		while [[ $edit == 1 ]]
-		do
+		editfile="$CACHE_DIR/$id.info.edits.json"
+		if [[ -f $editfile ]]
+		then
+			ftitle="$(jq -rj '.title' $editfile)"
+			fartist="$(jq -rj '.artist' $editfile)"
+		fi
+
+		# Only prompt if stdin is not coming from a pipe.
+		if [[ ! -p /dev/stdin ]]
+		then
 			echo "################################"
 			echo -e "title:\t\t$ftitle\nartist:\t\t$fartist\nyear:\t\t$fyear\nuploader:\t$fuploader"
 			echo "################################"
-
 			read ans"?Do you want to edit? [y/n] "
 			if [[ "$ans" = "y" ]]
 			then
-				read ftitle"?new title: "
-				read fartist"?new artist: "
-			else
-				edit=0
+				echo "{\"title\":\"$ftitle\",\"artist\":\"$fartist\"}" | jq . > $editfile
+				$EDITOR $editfile
+				ftitle="$(jq -rj '.title' $editfile)"
+				fartist="$(jq -rj '.artist' $editfile)"
 			fi
-		done
+		fi
+		songs+=("$ftitle" "$fartist" "$fyear")
 	fi
-	songs+=("$ftitle" "$fartist" "$fyear")
 done
 
 # Do the actual conversion
@@ -101,15 +102,15 @@ for id in "${ids[@]}"; do
 	artist=${songs[$(($ii + 2))]}
 	year=${songs[$(($ii + 3))]}
 
-	filename="$(echo $artist | tr ' ' _)-$(echo $title | tr ' ' _)"
+	filename="$(echo $artist-$title | tr -cd 'a-zA-Z0-9_ -' | tr -s ' ' _)"
 	filepath="$MUSIC_DIR/$filename.$AUDIO_FMT"
 
-	if [[ -f $filepath ]]
+	if [[ -f $filepath ]] || [[ ! -f $CACHE_DIR/$id.$AUDIO_FMT ]]
 	then
 		# File already exists.
 		errors+=("$artist - $title")
 	else
-		cp "$tmp_dir/$id.$AUDIO_FMT" "$filepath"
+		cp "$CACHE_DIR/$id.$AUDIO_FMT" "$filepath"
 
 		id3v2 --id3v2-only \
 			--song "$title" \
