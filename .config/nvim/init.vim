@@ -78,6 +78,9 @@ call plug#end()
 
 " Generic settings {{{
 
+" Settings for diffmode
+set diffopt+=vertical
+
 filetype plugin on
 syntax on
 
