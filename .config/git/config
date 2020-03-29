@@ -20,7 +20,7 @@
 	prompt = false
     keepBackup = false
 [mergetool "fugitive"]
-    cmd = nvim -f -c \"Gvdiff!\" \"$MERGED\"
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [gitflow "feature.finish"]
 	no-ff = yes
 [filter "lfs"]
