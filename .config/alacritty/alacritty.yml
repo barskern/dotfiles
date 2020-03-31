@@ -28,9 +28,6 @@ window:
   # Setting this to false will result in window without borders and title bar.
   decorations: none
 
-# Display tabs using this many cells (changes require restart)
-tabspaces: 4
-
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
@@ -42,9 +39,6 @@ scrolling:
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   multiplier: 3
-
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
 
 # Font configuration (changes require restart)
 #
@@ -79,7 +73,7 @@ font:
     family: monospace
 
   # Point size of the font
-  size: 11.0
+  size: 10.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
