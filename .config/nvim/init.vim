@@ -280,6 +280,7 @@ let g:coc_global_extensions = [
 	\ "coc-dictionary",
 	\ "coc-json",
 	\ "coc-metals",
+	\ "coc-solargraph",
 	\ "coc-rust-analyzer",
 	\ "coc-vimtex",
 	\ "coc-snippets",
