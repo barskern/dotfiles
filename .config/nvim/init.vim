@@ -269,6 +269,10 @@ let g:fzf_tags_command = "ctags -R src"
 " vista
 let g:vista_sidebar_width = 50
 
+" vimtex
+let g:vimtex_compiler_progname = 'nvr'
+let g:tex_flavor = 'latex'
+
 " coc.nvim
 
 " Better display for messages
