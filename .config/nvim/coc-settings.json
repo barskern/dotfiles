@@ -1,4 +1,5 @@
 {
+    "solargraph.commandPath": "/usr/bin/solargraph",
     "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
     "tailwindCSS.headwind.runOnSave": false,
     "tailwindCSS.emmetCompletions": true,
