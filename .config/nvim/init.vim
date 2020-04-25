@@ -514,10 +514,6 @@ map <leader>cr :Crun<CR>
 map <leader>ct :Ctest <C-R>=expand('%:t:r')<CR><CR>
 map <leader>cT :Ctest<CR>
 
-" Jump to next/previous error
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
 nnoremap <C-l> :copen<cr>
 nnoremap <C-g> :cclose<cr>
 
