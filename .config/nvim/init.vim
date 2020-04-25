@@ -524,7 +524,7 @@ nmap <F8> :TagbarToggle<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Search results centered and unfolded please
+" Search results unfolded please
 nnoremap <silent> n nzv
 nnoremap <silent> N Nzv
 nnoremap <silent> g* g*zv
