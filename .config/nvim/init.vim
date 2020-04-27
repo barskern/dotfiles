@@ -294,7 +294,6 @@ let g:coc_global_extensions = [
 	\ "coc-emmet",
 	\ "coc-tailwindcss",
 	\ "coc-highlight",
-	\ "coc-markdownlint",
 	\ "coc-actions",
 	\ "coc-pyright"
 	\ ]
@@ -302,7 +301,7 @@ let g:coc_global_extensions = [
 augroup mygroup
 	autocmd!
 	" Setup formatexpr specified filetype(s).
-	autocmd FileType scala,rust,html,json,css,latex,md setl formatexpr=CocAction('formatSelected')
+	autocmd FileType scala,rust,html,json,css,latex setl formatexpr=CocAction('formatSelected')
 	" Update signature help on jump placeholder
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
