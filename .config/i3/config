@@ -11,7 +11,7 @@ set $term --no-startup-id $TERMINAL
 font pango:monospace 12
 focus_follows_mouse yes
 mouse_warping none
-smart_borders on
+#smart_borders on
 popup_during_fullscreen leave_fullscreen
 focus_on_window_activation focus
 workspace_auto_back_and_forth yes
@@ -312,11 +312,11 @@ mode $move_and_resize {
 # i3-gaps specific {{{
 
 # Default gaps
-gaps inner 0
-gaps outer 0
+gaps inner 10
+gaps outer 2
 
 # Disables gaps when only one window
-smart_gaps on
+#smart_gaps on
 
 set $mode_gaps       "gaps |o|uter |i|nner"
 set $mode_gaps_outer "outer gaps (+|-|0)"
