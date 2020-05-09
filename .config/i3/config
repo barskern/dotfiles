@@ -179,9 +179,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id audio-controls up   5
 bindsym XF86AudioMute        exec --no-startup-id audio-controls mute
 #XF86AudioMedia
 
-bindsym --release Print exec --no-startup-id i3scrot --select
-bindsym --release Shift+Print exec --no-startup-id i3scrot --window
-bindsym --release Ctrl+Shift+Print exec --no-startup-id i3scrot --fullscreen
+bindsym --release Print exec --no-startup-id flameshot gui -p ~/Bilder/Skjermdump/
+bindsym --release Shift+Print exec --no-startup-id flameshot screen -p ~/Bilder/Skjermdump/
+bindsym --release Ctrl+Shift+Print exec --no-startup-id flameshot full -p ~/Bilder/Skjermdump/
 
 bindsym XF86Search exec --no-startup-id rofi -show drun
 
