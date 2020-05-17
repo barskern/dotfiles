@@ -65,7 +65,7 @@ for_window [class="^.*"] border pixel 3
 for_window [instance="floater"] floating enable
 
 # Make volume controls floating and centered with a maximum size
-for_window [instance="pavucontrol"] floating enable, floating_maximum_size 100 x 100
+for_window [instance="pavucontrol"] floating enable, floating_maximum_size 200 x 400
 
 # }}}
 
