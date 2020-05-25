@@ -6,5 +6,5 @@
 choice=$(fd -t file '^id_[a-z_]+$' $HOME/.ssh/ -x echo {/} | sed 's/id_//g' | rofi -dmenu -no-custom -p "credentials")
 
 if [[ "$choice" != "" ]]; then
-    keychain --agents gpg,ssh "id_$choice" "barskern@outlook.com"
+    keychain --agents gpg,ssh "id_$choice" "dev@barskern.no"
 fi
