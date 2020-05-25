@@ -101,6 +101,10 @@ block = "nvidia_gpu"
 idle = 65
 
 [[block]]
+block = "battery"
+driver = "upower"
+
+[[block]]
 block = "time"
 interval = 60
 [block.format]
