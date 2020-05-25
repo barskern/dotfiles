@@ -64,45 +64,45 @@ workspace_auto_back_and_forth yes
 exec --no-startup-id wallpaper
 # Bar for primary
 bar {
-    font pango:monospace, FontAwesome 12
-    position bottom
-    output primary
-    status_command i3status-rs ~/.config/i3/status.toml
-    tray_output primary
+	font pango:monospace, FontAwesome 12
+	position bottom
+	output primary
+	status_command i3status-rs ~/.config/i3/status.toml
+	tray_output primary
 
-    colors {
-        background $black
-        statusline $white
-        separator  $white
+	colors {
+		background $black
+		statusline $white
+		separator  $white
 
-        # Colors           Border        Background   Text
-        focused_workspace  $brightblack  $xgrey3      $yellow
-        active_workspace   $xgrey3       $xgrey3      $brightblack
-        inactive_workspace $xgrey3       $xgrey1      $brightblack
-        urgent_workspace   $red          $red         $black
-        binding_mode       $magenta      $magenta     $brightwhite
-    }
+		# Colors           Border        Background   Text
+		focused_workspace  $brightblack  $xgrey3      $yellow
+		active_workspace   $xgrey3       $xgrey3      $brightblack
+		inactive_workspace $xgrey3       $xgrey1      $brightblack
+		urgent_workspace   $red          $red         $black
+		binding_mode       $magenta      $magenta     $brightwhite
+	}
 }
 
 # Bar for secondary monitor
 bar {
-    font pango:monospace, FontAwesome 12
-    position bottom
-    output HDMI-0
-    tray_output none
+	font pango:monospace, FontAwesome 12
+	position bottom
+	output HDMI-0
+	tray_output none
 
-    colors {
-        background $black
-        statusline $white
-        separator  $white
+	colors {
+		background $black
+		statusline $white
+		separator  $white
 
-        # Colors           Border        Background   Text
-        focused_workspace  $brightblack  $xgrey3      $yellow
-        active_workspace   $xgrey3       $xgrey3      $brightblack
-        inactive_workspace $xgrey3       $xgrey1      $brightblack
-        urgent_workspace   $red          $red         $black
-        binding_mode       $magenta      $magenta     $brightwhite
-    }
+		# Colors           Border        Background   Text
+		focused_workspace  $brightblack  $xgrey3      $yellow
+		active_workspace   $xgrey3       $xgrey3      $brightblack
+		inactive_workspace $xgrey3       $xgrey1      $brightblack
+		urgent_workspace   $red          $red         $black
+		binding_mode       $magenta      $magenta     $brightwhite
+	}
 }
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -171,9 +171,9 @@ bindsym $mod+d focus child
 bindsym $mod+Return exec $term_wd --title "shell"
 bindsym $mod+Shift+Return exec $term_wd --title "shell as root" -e sudo -i
 bindsym $mod+Ctrl+Return exec $term \
-  --title "tmux" \
-  --class "floater" \
-  --command tmux attach-session -d -t $USER
+	--title "tmux" \
+	--class "floater" \
+	--command tmux attach-session -d -t $USER
 
 # Shortcuts to programs
 bindsym $mod+r       exec $term --title "ranger" -e ranger `xcwd`
@@ -309,9 +309,9 @@ mode $sessionctl {
 	bindsym p mode "default" ; exec --no-startup-id systemctl suspend
 	bindsym h mode "default" ; exec --no-startup-id systemctl hibernate
 
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+Shift+Delete mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+Shift+Delete mode "default"
 }
 
 set $music "music |p|lay |p|ause |n|ext p|r|evious |s|top |u|pdate |c|lerk"
@@ -332,32 +332,32 @@ mode $music {
 	bindsym XF86AudioRaiseVolume exec --no-startup-id audio-controls up   5
 	bindsym XF86AudioMute        exec --no-startup-id audio-controls mute
 
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+m mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+m mode "default"
 }
 
 set $move_and_resize "move and resize"
 bindsym $mod+Ctrl+r mode $move_and_resize
 mode $move_and_resize {
-  bindsym l resize shrink width 5 px or 5 ppt
-  bindsym k resize grow height 5 px or 5 ppt
-  bindsym j resize shrink height 5 px or 5 ppt
-  bindsym h resize grow width 5 px or 5 ppt
+	bindsym l resize shrink width 5 px or 5 ppt
+	bindsym k resize grow height 5 px or 5 ppt
+	bindsym j resize shrink height 5 px or 5 ppt
+	bindsym h resize grow width 5 px or 5 ppt
 
-  bindsym Shift+l resize shrink width 10 px or 10 ppt
-  bindsym Shift+k resize grow height 10 px or 10 ppt
-  bindsym Shift+j resize shrink height 10 px or 10 ppt
-  bindsym Shift+h resize grow width 10 px or 10 ppt
+	bindsym Shift+l resize shrink width 10 px or 10 ppt
+	bindsym Shift+k resize grow height 10 px or 10 ppt
+	bindsym Shift+j resize shrink height 10 px or 10 ppt
+	bindsym Shift+h resize grow width 10 px or 10 ppt
 
-  bindsym Ctrl+h move container left
-  bindsym Ctrl+j move container down
-  bindsym Ctrl+k move container up
-  bindsym Ctrl+l move container right
+	bindsym Ctrl+h move container left
+	bindsym Ctrl+j move container down
+	bindsym Ctrl+k move container up
+	bindsym Ctrl+l move container right
 
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+Ctrl+r mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+Ctrl+r mode "default"
 }
 
 # }}}
@@ -377,40 +377,40 @@ set $mode_gaps_inner "inner gaps (+|-|0)"
 bindsym $mod+Shift+g mode $mode_gaps
 
 mode $mode_gaps {
-  bindsym o      mode $mode_gaps_outer
-  bindsym i      mode $mode_gaps_inner
+	bindsym o      mode $mode_gaps_outer
+	bindsym i      mode $mode_gaps_inner
 
-  bindsym Return       mode "default"
-  bindsym Escape       mode "default"
-  bindsym $mod+Shift+g mode "default"
+	bindsym Return       mode "default"
+	bindsym Escape       mode "default"
+	bindsym $mod+Shift+g mode "default"
 }
 
 mode $mode_gaps_inner {
-  bindsym plus  gaps inner current plus 5
-  bindsym minus gaps inner current minus 5
-  bindsym 0     gaps inner current set 0
+	bindsym plus  gaps inner current plus 5
+	bindsym minus gaps inner current minus 5
+	bindsym 0     gaps inner current set 0
 
-  bindsym Shift+plus  gaps inner all plus 5
-  bindsym Shift+minus gaps inner all minus 5
-  bindsym Shift+0     gaps inner all set 0
+	bindsym Shift+plus  gaps inner all plus 5
+	bindsym Shift+minus gaps inner all minus 5
+	bindsym Shift+0     gaps inner all set 0
 
-  bindsym Return       mode $mode_gaps
-  bindsym Escape       mode $mode_gaps
-  bindsym $mod+Shift+g mode $mode_gaps
+	bindsym Return       mode $mode_gaps
+	bindsym Escape       mode $mode_gaps
+	bindsym $mod+Shift+g mode $mode_gaps
 }
 
 mode $mode_gaps_outer {
-  bindsym plus  gaps outer current plus 5
-  bindsym minus gaps outer current minus 5
-  bindsym 0     gaps outer current set 0
+	bindsym plus  gaps outer current plus 5
+	bindsym minus gaps outer current minus 5
+	bindsym 0     gaps outer current set 0
 
-  bindsym Shift+plus  gaps outer all plus 5
-  bindsym Shift+minus gaps outer all minus 5
-  bindsym Shift+0     gaps outer all set 0
+	bindsym Shift+plus  gaps outer all plus 5
+	bindsym Shift+minus gaps outer all minus 5
+	bindsym Shift+0     gaps outer all set 0
 
-  bindsym Return       mode $mode_gaps
-  bindsym Escape       mode $mode_gaps
-  bindsym $mod+Shift+g mode $mode_gaps
+	bindsym Return       mode $mode_gaps
+	bindsym Escape       mode $mode_gaps
+	bindsym $mod+Shift+g mode $mode_gaps
 }
 
 # }}}
