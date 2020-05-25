@@ -8,5 +8,6 @@ exclude="UnityHub|unity3d|node_modules|whatsapp|whats-app|dotfiles|keybase|trell
 choice=$(fd --type f --type l . "$XDG_CONFIG_HOME" | rg -iv "$exclude" | sed "s|$XDG_CONFIG_HOME/||g" | rofi -dmenu -no-custom -p "config")
 
 if [[ "$choice" != "" ]]; then
-  "$TERMINAL" -e "$EDITOR" -f "$XDG_CONFIG_HOME/$choice"
+  filename="$XDG_CONFIG_HOME/$choice"
+  exec "$TERMINAL" --title "$(basename "$EDITOR") $filename" -e "$EDITOR" -f "$filename"
 fi
