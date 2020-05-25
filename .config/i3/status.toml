@@ -9,6 +9,11 @@ block = "music"
 max_width = 35
 
 [[block]]
+block = "bluetooth"
+mac = "2C:41:A1:83:12:64"
+label = " bosie"
+
+[[block]]
 block = "sound"
 
 [[block]]
