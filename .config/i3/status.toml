@@ -6,7 +6,7 @@ block = "watson"
 
 [[block]]
 block = "music"
-max_width = 40
+max_width = 35
 
 [[block]]
 block = "sound"
