@@ -9,7 +9,7 @@ SSH_DIR="$HOME/.ssh"
 SSH_CONFIG="$SSH_DIR/config"
 
 function error() {
-    echo -e "\u001b[31mError: $*\u001b[0m"
+	echo -e "\u001b[31mError: $*\u001b[0m"
 }
 
 echo -n "Username of local user ($(whoami)): "; read -r local_username
@@ -31,11 +31,11 @@ filename="$SSH_DIR/id_$sanitized_domain"
 
 echo "Creating ssh key..."
 ssh-keygen -q \
-           -t ed25519 \
-           -a 100 \
-           -f "$filename" \
-		   -N "" \
-		   -C "$comment"
+	-t ed25519 \
+	-a 100 \
+	-f "$filename" \
+	-N "" \
+	-C "$comment"
 
 echo "Created ssh key at $filename"
 
