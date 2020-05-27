@@ -205,11 +205,6 @@ set swapfile
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
-" Conceal some items (e.g snippet markers)
-if has('conceal')
-	set conceallevel=2 concealcursor=nc
-endif
-
 " Customized version of folded text made by
 " https://github.com/chrisbra/vim_dotfiles/blob/master/plugin/CustomFoldText.vim,
 " based on the idea by
