@@ -16,3 +16,7 @@ macro index,pager \Cb "<enter-command>set my_pipe_decode=\$pipe_decode pipe_deco
 
 # Override indicator due to brightblack being gray
 color indicator black white
+
+# Enable threading
+set sort = threads
+set sort_aux = reverse-last-date-received
