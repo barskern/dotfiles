@@ -17,7 +17,7 @@ bind index,pager g noop
 bind index,pager M noop
 bind index,pager C noop
 bind index gg first-entry
-macro index o "<shell-escape>mailsync -V dev-old<enter>" "run mbsync to sync dev-old"
+macro index o "<shell-escape>mailsync dev-old<enter>" "run mbsync to sync dev-old"
 unmailboxes *
 
 set spoolfile = "+Inbox"
