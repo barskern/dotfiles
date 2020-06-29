@@ -75,9 +75,6 @@ for_window [class="^.*"] border pixel 3
 # Set all windows with custom class to floating
 for_window [instance="floater"] floating enable
 
-# Make volume controls floating and centered with a maximum size
-for_window [instance="pavucontrol"] floating enable, floating_maximum_size 200 x 400
-
 # }}}
 
 # Bars {{{
@@ -206,10 +203,10 @@ bindsym $mod+Shift+w exec $term_wd --title "watson" --class "floater" -e watson-
 # Run todoman repl
 bindsym $mod+Shift+t exec $term_wd --title "todoman" --class "floater" -e todo-repl
 
-# Run pavucontrol
-bindsym $mod+s exec pavucontrol
+# Run audio controller interface
+bindsym $mod+s exec $term --title "pulsemixer" --class "floater" -e pulsemixer
 
-# Run pavucontrol
+# Run display selection
 bindsym $mod+Shift+s exec select-display
 
 # Run todoman in a floating window
