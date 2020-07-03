@@ -568,6 +568,11 @@ nnoremap <silent> <leader>m :call jobstart('make')<CR>
 
 if has('autocmd')
 
+	augroup unfold
+		autocmd!
+		autocmd BufRead * normal zR
+	augroup END
+
 	augroup hcl
 		autocmd!
 		autocmd FileType hcl set expandtab tabstop=2 softtabstop=2 shiftwidth=2
