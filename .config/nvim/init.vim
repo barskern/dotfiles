@@ -625,7 +625,7 @@ if has('autocmd')
 		" Managing targets
 		" Prompts you to enter targets (no silent):
 		autocmd FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
-	augroup end
+	augroup END
 
 	augroup cpp
 		autocmd!
