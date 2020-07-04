@@ -18,7 +18,6 @@ set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'honza/vim-snippets'
 Plug 'airblade/vim-rooter'
 Plug 'b4b4r07/vim-hcl'
 Plug 'cespare/vim-toml'
@@ -26,6 +25,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'hashivim/vim-terraform'
+Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'itchyny/lightline.vim'
 Plug 'juliosueiras/vim-terraform-completion'
@@ -68,6 +68,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
