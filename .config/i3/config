@@ -57,7 +57,7 @@ set $term_wd --no-startup-id $TERMINAL --working-directory `xcwd`
 set $term --no-startup-id $TERMINAL
 
 font pango:monospace 12
-focus_follows_mouse yes
+focus_follows_mouse no
 mouse_warping none
 #smart_borders on
 popup_during_fullscreen leave_fullscreen
