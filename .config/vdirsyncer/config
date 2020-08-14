@@ -47,5 +47,5 @@ fileext = ".ics"
 
 [storage courses_remote]
 type = "http"
-url = "https://tp.uio.no/ntnu/timeplan/ical.php?sem=20v&id%5B0%5D=BIDAT39%2C&id%5B1%5D=SMF2251%2C&id%5B2%5D=T%C3%98L1011%2C&type=course"
-verify_fingerprint = "13:96:FF:08:6B:33:2B:14:0D:66:14:BB:8D:D3:C9:BC:64:B6:61:34"
+url = "https://usn.instructure.com/feeds/calendars/user_VJmqo5l5cK53Rl0PlXivg5IVjN0lA1B1t1NjgFRM.ics"
+verify_fingerprint = "09:B0:F2:97:E6:CB:4B:94:EB:9A:DD:D6:25:75:33:70:20:78:19:E0"
