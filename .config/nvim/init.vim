@@ -271,6 +271,8 @@ let g:tex_flavor = 'latex'
 
 " coc.nvim
 
+" Disable coc on startup because simple file viewings don't need it!
+let g:coc_start_at_startup = 0
 " Better display for messages
 set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
