@@ -7,8 +7,8 @@ primary_email=post@barskern.no
 other_email=dev@barskern.no;nett@barskern.no;
 
 [new]
-tags=unread;inbox;
-ignore=
+tags=inbox;unread;
+ignore=.mbsyncstate;.uidvalidity;
 
 [search]
 exclude_tags=deleted;spam;
