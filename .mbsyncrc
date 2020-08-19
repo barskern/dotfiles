@@ -79,7 +79,7 @@ ExpireUnread no
 IMAPStore student-remote
 Host outlook.office365.com
 Port  993
-User omoruud@ntnu.no
+User 237334@usn.no
 PassCmd "pass mutt-wizard-student"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt

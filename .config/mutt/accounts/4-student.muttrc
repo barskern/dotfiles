@@ -1,9 +1,9 @@
 # vim: filetype=neomuttrc
 # muttrc file for account student
 set realname = "Ole Martin Ruud"
-set from = "omoruud@stud.ntnu.no"
+set from = "237334@student.usn.no"
 set sendmail = "msmtp -a student"
-alias me Ole Martin Ruud <omoruud@stud.ntnu.no>
+alias me Ole Martin Ruud <237334@student.usn.no>
 set folder = "/home/oruud/.local/share/mail/student"
 set header_cache = /home/oruud/.cache/mutt-wizard/student/headers
 set message_cachedir = /home/oruud/.cache/mutt-wizard/student/bodies
