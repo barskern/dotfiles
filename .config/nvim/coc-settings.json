@@ -38,6 +38,12 @@
     ],
     "codeLens.enable": true,
     "languageserver": {
+        "vhdl-tool": {
+            "command": "vhdl-tool",
+            "args": ["lsp"],
+            "rootPatterns": ["vhdltool-config.yaml", ".git/"],
+            "filetypes": ["vhdl"]
+        },
         "ccls": {
           "command": "ccls",
           "filetypes": ["c", "cpp", "objc", "objcpp"],
