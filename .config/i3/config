@@ -173,16 +173,16 @@ bindsym $mod+d focus child
 # Application keybindings {{{
 
 # Start a terminal
-bindsym $mod+Return exec $term_wd --title "shell"
-bindsym $mod+Shift+Return exec $term_wd --title "shell as root" -e sudo -i
+bindsym $mod+Return exec $term_wd
+bindsym $mod+Shift+Return exec $term_wd -e sudo -i
 bindsym $mod+Ctrl+Return exec $term \
 	--title "tmux" \
 	--class "floater" \
 	--command tmux attach-session -d -t $USER
 
 # Shortcuts to programs
-bindsym $mod+r       exec $term --title "ranger" -e ranger `xcwd`
-bindsym $mod+Shift+r exec $term --title "ranger as root" -e sudo ranger `xcwd`
+bindsym $mod+r       exec $term -e ranger `xcwd`
+bindsym $mod+Shift+r exec $term -e sudo ranger `xcwd`
 
 bindsym $mod+b exec --no-startup-id $BROWSER
 
