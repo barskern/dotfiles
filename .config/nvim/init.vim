@@ -79,6 +79,10 @@ call plug#end()
 
 " Generic settings {{{
 
+" Set dynamic title
+set title
+set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:h\")})%)%(\ %a%)
+
 " Settings for diffmode
 set diffopt+=vertical
 
