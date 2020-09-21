@@ -150,3 +150,27 @@ Create Both
 SyncState *
 MaxMessages 0
 # End profile
+
+IMAPStore work-remote
+Host imap-mail.outlook.com
+Port  993
+User ole.martin.ruud@argossolutions.no
+PassCmd "pass mutt-wizard-work"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore work-local
+Subfolders Verbatim
+Path ~/.local/share/mail/work/
+Inbox ~/.local/share/mail/work/INBOX
+Flatten .
+
+Channel work
+Expunge Both
+Master :work-remote:
+Slave :work-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+# End profile

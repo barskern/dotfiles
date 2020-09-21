@@ -50,3 +50,11 @@ port 587
 from barskern@outlook.com
 user barskern@outlook.com
 passwordeval "pass mutt-wizard-dev-old"
+
+
+account work
+host smtp-mail.outlook.com
+port 587
+from ole.martin.ruud@argossolutions.no
+user ole.martin.ruud@argossolutions.no
+passwordeval "pass mutt-wizard-work"
