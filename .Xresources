@@ -40,3 +40,5 @@
 ! white
 *.color7:       #d0bfa1
 *.color15:      #fce8c3
+
+xterm*font:     *-fixed-*-*-*-18-*
