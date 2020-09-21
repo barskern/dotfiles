@@ -1,4 +1,8 @@
 {
+	"coc.source.emoji.filetypes": [
+		"markdown",
+		"mail"
+	],
     "solargraph.commandPath": "/usr/bin/solargraph",
     "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
     "tailwindCSS.headwind.runOnSave": false,
