@@ -633,6 +633,14 @@ if has('autocmd')
 		autocmd FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
 	augroup END
 
+	augroup c
+		autocmd!
+		autocmd FileType c inoremap <F5> <Esc>:!gcc -g -o %< %<CR>
+		autocmd FileType c nnoremap <F5> :!gcc -g -o %< %<CR>
+		autocmd FileType c inoremap <F6> <Esc>:!gcc -g -o %< % && ./%<<CR>
+		autocmd FileType c nnoremap <F6> :!gcc -g -o %< % && ./%<<CR>
+	augroup END
+
 	augroup cpp
 		autocmd!
 		autocmd FileType cpp inoremap <F5> <Esc>:!g++ -g -o %< %<CR>
