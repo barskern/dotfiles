@@ -31,8 +31,8 @@ passwordeval "pass mutt-wizard-dev"
 account student
 host smtp.office365.com
 port 587
-from omoruud@stud.ntnu.no
-user omoruud@ntnu.no
+from 237334@usn.no
+user 237334@usn.no
 passwordeval "pass mutt-wizard-student"
 
 
