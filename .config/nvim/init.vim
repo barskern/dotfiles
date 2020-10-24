@@ -354,7 +354,7 @@ let g:intero_backend = {
 \}
 
 " rust.vim settings
-let g:rust_fold = 2
+let g:rust_fold = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 
 " vim-go settings
@@ -387,6 +387,7 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " vim-markdown
 " let g:vim_markdown_conceal = 0
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
 let g:tex_conceal = ""
@@ -573,11 +574,6 @@ nnoremap <silent> <leader>m :call jobstart('make')<CR>
 " Filetype snippets and settings {{{
 
 if has('autocmd')
-
-	augroup unfold
-		autocmd!
-		autocmd BufRead * normal zR
-	augroup END
 
 	augroup hcl
 		autocmd!
