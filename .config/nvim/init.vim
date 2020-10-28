@@ -296,7 +296,8 @@ let g:coc_global_extensions = [
 	\ "coc-tailwindcss",
 	\ "coc-highlight",
 	\ "coc-actions",
-	\ "coc-pyright"
+	\ "coc-pyright",
+	\ "coc-emoji"
 	\ ]
 
 augroup mygroup
