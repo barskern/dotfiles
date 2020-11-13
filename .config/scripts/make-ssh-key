@@ -7,6 +7,7 @@ exec 1>&2
 
 SSH_DIR="$HOME/.ssh"
 SSH_CONFIG="$SSH_DIR/config"
+DEFAULT_KEY_TYPE="ed25519"
 
 function error() {
 	echo -e "\u001b[31mError: $*\u001b[0m"
@@ -21,6 +22,9 @@ if [ -z "$domain" ]; then
 	exit 1
 fi
 
+echo -n "Type of key ($DEFAULT_KEY_TYPE): "; read -r key_type
+key_type="${key_type:-"$DEFAULT_KEY_TYPE"}"
+
 comment="$local_username@$(hostname)"
 sanitized_domain=$(\
 	echo "$domain" \
@@ -31,7 +35,7 @@ filename="$SSH_DIR/id_$sanitized_domain"
 
 echo "Creating ssh key..."
 ssh-keygen -q \
-	-t ed25519 \
+	-t "$key_type" \
 	-a 100 \
 	-f "$filename" \
 	-N "" \
