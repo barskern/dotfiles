@@ -288,7 +288,6 @@
 [mpd-notification]
     appname = mpd-notification
     format = "%b\n%p"
-    new_icon = "emblem-music-symbolic"
 
 [flameshot]
     appname = flameshot
