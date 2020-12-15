@@ -36,6 +36,10 @@ done < "${1:-/dev/stdin}"
 echo "${ids[@]}" | tr ' ' '\n' | awk -v URL="$BASE_URL" '{print URL$1}' \
 	| youtube-dl \
 	--ignore-errors \
+	--continue \
+	--no-overwrites \
+	--no-post-overwrites \
+	--embed-thumbnail \
 	--batch-file - \
 	--output "$CACHE_DIR/%(id)s.%(ext)s" \
 	--write-info-json \
@@ -53,8 +57,8 @@ for id in "${ids[@]}"; do
 		uploader="$(jq -rj '.uploader' $CACHE_DIR/$id.info.json)"
 		date="$(jq -rj '.upload_date' $CACHE_DIR/$id.info.json)"
 
-		ftitle=$(echo $title | sed 's/^.*\ \-\ //' | awk '{$1=$1}1')
-		fartist=$(echo $title | sed 's/\ \-\ .*$//' | awk '{$1=$1}1')
+		ftitle=$(echo $title | sed 's/^.*\ \-\ //' | awk '{$1=$1}1' | tr -d '"')
+		fartist=$(echo $title | sed 's/\ \-\ .*$//' | awk '{$1=$1}1' | tr -d '"')
 		if [[ "$ftitle" == "$fartist" ]]
 		then
 			# Artist and title is equal, which means that there is no '-' in the
