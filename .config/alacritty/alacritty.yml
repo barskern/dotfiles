@@ -280,16 +280,16 @@ live_config_reload: false
 # (e.g. "\x1b[5~") is? Open another terminal (like xterm) without tmux,
 # then run `showkey -a` to get the sequence associated to a key combination.
 key_bindings:
-  - { key: V,        mods: Control|Shift,    action: Paste               }
-  - { key: C,        mods: Control|Shift,    action: Copy                }
-  - { key: Paste,                   action: Paste                        }
-  - { key: Copy,                    action: Copy                         }
-  - { key: Q,        mods: Command, action: Quit                         }
-  - { key: W,        mods: Command, action: Quit                         }
-  - { key: Insert,   mods: Shift,   action: PasteSelection               }
-  - { key: Key0,     mods: Control, action: ResetFontSize                }
-  - { key: Add,      mods: Control, action: IncreaseFontSize             }
-  - { key: Subtract, mods: Control, action: DecreaseFontSize             }
+  - { key: V,        mods: Control|Shift, action: Paste                  }
+  - { key: C,        mods: Control|Shift, action: Copy                   }
+  - { key: Paste,                         action: Paste                  }
+  - { key: Copy,                          action: Copy                   }
+  - { key: Q,              mods: Command, action: Quit                   }
+  - { key: W,              mods: Command, action: Quit                   }
+  - { key: Insert,         mods: Shift,   action: PasteSelection         }
+  - { key: Key0,           mods: Control, action: ResetFontSize          }
+  - { key: NumpadAdd,      mods: Control, action: IncreaseFontSize       }
+  - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize       }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
