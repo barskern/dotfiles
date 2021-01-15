@@ -8,6 +8,7 @@ set folder = "/home/oruud/.local/share/mail/hoved-old"
 set header_cache = /home/oruud/.cache/mutt-wizard/hoved-old/headers
 set message_cachedir = /home/oruud/.cache/mutt-wizard/hoved-old/bodies
 set mbox_type = Maildir
+set signature = ~/.config/mutt/signature
 
 # Do not save sent emails locally because outlook does it
 set copy = no
