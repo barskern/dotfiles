@@ -420,4 +420,7 @@ mode $mode_gaps_outer {
 
 # }}}
 
+# Run dex (autostart desktop entries)
+exec dex -ae i3
+
 # vim:foldmethod=marker:ts=2:sw=2
