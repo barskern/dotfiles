@@ -9,6 +9,11 @@ path = ~/.local/share/calendars/courses/
 type = calendar
 readonly = True
 
+[[work_local]]
+path = ~/.local/share/calendars/work/
+type = calendar
+readonly = True
+
 [locale]
 timeformat = %H:%M
 dateformat = %Y-%m-%d

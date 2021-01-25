@@ -48,3 +48,17 @@ fileext = ".ics"
 [storage courses_remote]
 type = "http"
 url = "https://usn.instructure.com/feeds/calendars/user_VJmqo5l5cK53Rl0PlXivg5IVjN0lA1B1t1NjgFRM.ics"
+
+[pair work]
+a = "work_local"
+b = "work_remote"
+collections = null
+
+[storage work_local]
+type = "filesystem"
+path = "~/.local/share/calendars/work"
+fileext = ".ics"
+
+[storage work_remote]
+type = "http"
+url = "https://outlook.office365.com/owa/calendar/fd2625807fbf43f0b6c2ca22c7ed7fd0@argossolutions.no/c9a6cfc511f24a0c84e83e457cfb67e07424871533822752057/S-1-8-2846049147-3442061473-2434150115-2235870291/reachcalendar.ics"
