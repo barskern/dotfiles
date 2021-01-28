@@ -47,7 +47,14 @@ on_click = "alacritty --class floater -e ikhal"
 [[block]]
 block = "custom"
 json = true
-cycle = [
-	"""bluetoothctl power off >/dev/null; echo '{"icon":"bluetooth","state":"Critical","text":""}'""",
-	"""bluetoothctl power on >/dev/null; echo '{"icon":"bluetooth","state":"Good","text":""}'""",
-]
+interval = 1
+on_click = """
+[[ "$(bluetoothctl show | rg 'Powered:' | cut -d ' ' -f 2)" == "yes" ]] \
+	&& bluetoothctl power off \
+	|| bluetoothctl power on
+"""
+command = """
+[[ "$(bluetoothctl show | rg 'Powered:' | cut -d ' ' -f 2)" == "yes" ]] \
+	&& echo '{"icon":"bluetooth","state":"Good","text":""}' \
+	|| echo '{"icon":"bluetooth","state":"Critical","text":""}'
+"""
