@@ -449,6 +449,7 @@ xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@<CR>
 
 " Remap keys for gotos
+nmap <silent> <leader>ls :CocStart<CR>
 nmap <silent> <leader>ld <Plug>(coc-definition)
 nmap <silent> <leader>lt <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
