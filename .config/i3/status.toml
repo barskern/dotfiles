@@ -6,7 +6,7 @@ block = "watson"
 
 [[block]]
 block = "music"
-player = "mpd"
+player = "spotify"
 max_width = 35
 
 [[block]]
