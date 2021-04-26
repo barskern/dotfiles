@@ -289,6 +289,11 @@
     appname = mpd-notification
     format = "%b\n%p"
 
+[spotify]
+    appname = Spotify
+    format = "<big><b>%s</b></big>\n%b"
+    history_ignore = yes
+
 [flameshot]
     appname = flameshot
     format = "<big><b>%s</b></big>\n%b\n%p"
