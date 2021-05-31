@@ -19,5 +19,6 @@ pandoc \
   --toc \
   --standalone \
   --filter pandoc-xnos \
-  --filter pandoc-citeproc \
+  --citeproc \
+  -M colorlinks=true \
   "$src" -o "$dest" "${@:4:}"
