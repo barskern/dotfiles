@@ -46,12 +46,16 @@ case "$1" in
   "truemute" ) pamixer -m     ; volume_notify ;;
 
   # Music controls
-  "toggle"   ) mpc toggle      ;;
+  #"toggle"   ) mpc toggle      ;;
+  "toggle"   ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause ;;
   "pause"    ) mpc pause       ;;
-  "stop"     ) mpc stop        ;;
+  #"stop"     ) mpc stop        ;;
+  "stop"     ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop ;;
   "forward"  ) mpc seek +"$2"  ;;
   "back"     ) mpc seek -"$2"  ;;
-  "next"     ) mpc next        ;;
-  "prev"     ) mpc prev        ;;
+  #"next"     ) mpc next        ;;
+  "next"     ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next ;;
+  #"prev"     ) mpc prev        ;;
+  "prev"     ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous ;;
   "replay"   ) mpc seek 0%     ;;
 esac
