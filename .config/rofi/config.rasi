@@ -1,0 +1,6 @@
+configuration {
+	modi: "window,drun,run,ssh,";
+	terminal: "alacritty";
+	matching: "normal";
+	theme: "~/.config/rofi/srcery.rasi";
+}
