@@ -273,6 +273,7 @@ assign [instance="keybase"] $ws6
 assign [instance="whats-app*"] $ws6
 assign [instance="mail"] $ws7
 assign [class="mpv"] $ws10
+assign [class="*Teams*"] $ws6
 
 # Move to workspaces (absolute)
 bindsym $mod+1 workspace $ws1
