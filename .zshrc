@@ -25,6 +25,8 @@ antigen bundle sprunge
 antigen bundle stack
 antigen bundle sudo
 antigen bundle terraform
+antigen bundle virtualenvwrapper
+antigen bundle poetry
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
