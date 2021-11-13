@@ -69,6 +69,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'vim-python/python-syntax'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -262,6 +263,9 @@ set foldtext=CustomFoldText('.')
 " }}}
 
 " Plugin settings {{{
+
+" python-syntax
+let g:python_highlight_all = 1
 
 " fzf.vim
 let g:fzf_tags_command = "ctags -R src"
@@ -711,6 +715,16 @@ if has('autocmd')
 	augroup pythonn
 		autocmd!
 		autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
+		autocmd FileType python map <buffer> <F5> :w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
+		autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
+
+		" autocmd FileType python inoremap <F5> <Esc>:GoBuild<CR>
+		" autocmd FileType python nnoremap <F5> :GoBuild<CR>
+		" autocmd FileType python inoremap <F6> <Esc>:GoRun<CR>
+		" autocmd FileType python nnoremap <F6> :GoRun<CR>
+		" autocmd FileType python inoremap <F7> <Esc>:GoTest<CR>
+		" autocmd FileType python nnoremap <F7> :GoTest<CR>
 	augroup END
 
 endif
