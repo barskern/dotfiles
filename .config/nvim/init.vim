@@ -458,7 +458,7 @@ nmap <silent> <leader>ld <Plug>(coc-definition)
 nmap <silent> <leader>lt <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> <leader>lr <Plug>(coc-references)
-nmap <silent> <leader>f <Plug>(coc-fix-current)
+nmap <silent> <leader>lf <Plug>(coc-fix-current)
 nmap <silent> <leader>l<CR> <Plug>(coc-codelens-action)
 nmap <silent> <leader>ll :CocList<CR>
 nmap <silent> <leader>lc :CocCommand<CR>
