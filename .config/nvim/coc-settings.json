@@ -1,4 +1,5 @@
 {
+	"python.venvPath": "venv",
 	"coc.source.emoji.filetypes": [
 		"markdown",
 		"mail"
