@@ -707,6 +707,12 @@ if has('autocmd')
 		autocmd!
 		autocmd BufNewFile,BufRead *.css set expandtab
 	augroup END
+
+	augroup pythonn
+		autocmd!
+		autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+	augroup END
+
 endif
 
 " }}}
