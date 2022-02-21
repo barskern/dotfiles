@@ -10,6 +10,8 @@ env:
   WINIT_X11_SCALE_FACTOR: '1.0'
 
 window:
+  opacity: 1
+
   # Window dimensions in character columns and lines
   # Falls back to size specified by window manager if set to 0x0.
   # (changes require restart)
@@ -156,7 +158,8 @@ bell:
   duration: 1
 
 # Background opacity
-background_opacity: 1.0
+# DEPRECATED
+#background_opacity: 1.0
 
 # Mouse bindings
 #
