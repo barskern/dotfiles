@@ -81,6 +81,7 @@ Host outlook.office365.com
 Port  993
 User 237334@usn.no
 PassCmd "pass mutt-wizard-student"
+AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
@@ -95,6 +96,60 @@ Channel student
 Expunge Both
 Master :student-remote:
 Slave :student-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+# End profile
+
+
+IMAPStore student-polimi-remote
+Host outlook.office365.com
+Port  993
+User 10875441@polimi.it
+PassCmd "pass mutt-wizard-student-polimi"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+
+MaildirStore student-polimi-local
+Subfolders Verbatim
+Path ~/.local/share/mail/student-polimi/
+Inbox ~/.local/share/mail/student-polimi/INBOX
+Flatten .
+
+Channel student-polimi
+Expunge Both
+Master :student-polimi-remote:
+Slave :student-polimi-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+# End profile
+
+
+
+IMAPStore work-remote
+Host outlook.office365.com
+Port 993
+User ole.martin.ruud@argossolutions.no
+PassCmd "pass mutt-wizard-work"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore work-local
+Subfolders Verbatim
+Path ~/.local/share/mail/work/
+Inbox ~/.local/share/mail/work/INBOX
+Flatten .
+
+Channel work
+Expunge Both
+Master :work-remote:
+Slave :work-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -145,30 +200,6 @@ Channel dev-old
 Expunge Both
 Master :dev-old-remote:
 Slave :dev-old-local:
-Patterns * !"[Gmail]/All Mail"
-Create Both
-SyncState *
-MaxMessages 0
-# End profile
-
-IMAPStore work-remote
-Host imap-mail.outlook.com
-Port  993
-User ole.martin.ruud@argossolutions.no
-PassCmd "pass mutt-wizard-work"
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-MaildirStore work-local
-Subfolders Verbatim
-Path ~/.local/share/mail/work/
-Inbox ~/.local/share/mail/work/INBOX
-Flatten .
-
-Channel work
-Expunge Both
-Master :work-remote:
-Slave :work-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *

@@ -36,6 +36,14 @@ user 237334@usn.no
 passwordeval "pass mutt-wizard-student"
 
 
+account student-polimi
+host smtp.office365.com
+port 587
+from olemartin.ruud@mail.polimi.it
+user 10875441@polimi.it
+passwordeval "pass mutt-wizard-student-polimi"
+
+
 account hoved-old
 host smtp-mail.outlook.com
 port 587
