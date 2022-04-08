@@ -22,6 +22,7 @@ x-scheme-handler/vnc=org.remmina.Remmina.desktop
 x-scheme-handler/remmina=org.remmina.Remmina.desktop
 application/x-remmina=org.remmina.Remmina.desktop
 x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-DO7SJ1.desktop
 
 [Added Associations]
 x-scheme-handler/http=surf.desktop;firefox.desktop;
@@ -42,3 +43,4 @@ x-scheme-handler/vnc=org.remmina.Remmina.desktop;
 x-scheme-handler/remmina=org.remmina.Remmina.desktop;
 application/x-remmina=org.remmina.Remmina.desktop;
 image/png=feh.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-DO7SJ1.desktop;
