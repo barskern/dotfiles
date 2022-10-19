@@ -14,8 +14,8 @@ Flatten .
 
 Channel post
 Expunge Both
-Master :post-remote:
-Slave :post-local:
+Far :post-remote:
+Near :post-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -40,8 +40,8 @@ Flatten .
 
 Channel nett
 Expunge Both
-Master :nett-remote:
-Slave :nett-local:
+Far :nett-remote:
+Near :nett-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -66,8 +66,8 @@ Flatten .
 
 Channel dev
 Expunge Both
-Master :dev-remote:
-Slave :dev-local:
+Far :dev-remote:
+Near :dev-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -94,8 +94,8 @@ Flatten .
 
 Channel student
 Expunge Both
-Master :student-remote:
-Slave :student-local:
+Far :student-remote:
+Near :student-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -121,8 +121,8 @@ Flatten .
 
 Channel student-polimi
 Expunge Both
-Master :student-polimi-remote:
-Slave :student-polimi-local:
+Far :student-polimi-remote:
+Near :student-polimi-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -148,8 +148,8 @@ Flatten .
 
 Channel work
 Expunge Both
-Master :work-remote:
-Slave :work-local:
+Far :work-remote:
+Near :work-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -173,8 +173,8 @@ Flatten .
 
 Channel hoved-old
 Expunge Both
-Master :hoved-old-remote:
-Slave :hoved-old-local:
+Far :hoved-old-remote:
+Near :hoved-old-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -198,8 +198,8 @@ Flatten .
 
 Channel dev-old
 Expunge Both
-Master :dev-old-remote:
-Slave :dev-old-local:
+Far :dev-old-remote:
+Near :dev-old-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
