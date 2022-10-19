@@ -262,7 +262,7 @@ set $ws4 "4:web"
 set $ws5 "5:web"
 set $ws6 "6:social"
 set $ws7 "7:mail"
-set $ws8 "8"
+set $ws8 "8:spotify"
 set $ws9 "9"
 set $ws10 "10:video"
 
@@ -272,6 +272,7 @@ assign [instance="zulip"] $ws6
 assign [instance="keybase"] $ws6
 assign [instance="whats-app*"] $ws6
 assign [instance="mail"] $ws7
+for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws8
 assign [class="mpv"] $ws10
 assign [class="*Teams*"] $ws6
 
