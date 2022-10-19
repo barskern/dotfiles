@@ -158,7 +158,7 @@ MaxMessages 0
 
 
 IMAPStore hoved-old-remote
-Host imap-mail.outlook.com
+Host outlook.office365.com
 Port  993
 User olemartinruud@outlook.com
 PassCmd "pass mutt-wizard-hoved-old"
@@ -183,7 +183,7 @@ MaxMessages 0
 
 
 IMAPStore dev-old-remote
-Host imap-mail.outlook.com
+Host outlook.office365.com
 Port  993
 User barskern@outlook.com
 PassCmd "pass mutt-wizard-dev-old"
