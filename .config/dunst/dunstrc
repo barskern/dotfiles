@@ -298,6 +298,10 @@
     appname = flameshot
     format = "<big><b>%s</b></big>\n%b\n%p"
 
+[telegram]
+    appname = telegram-desktop
+    format = "<big><b>%s</b></big>\n%b\n%p"
+
 [whatsapp]
     appname = whatsapp-nativefier-d52542
     format = "<big><b>%s</b></big>\n%b\n%p"
