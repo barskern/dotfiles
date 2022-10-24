@@ -274,7 +274,7 @@ assign [instance="whats-app*"] $ws6
 assign [instance="mail"] $ws7
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws8
 assign [class="mpv"] $ws10
-assign [class="*Teams*"] $ws6
+for_window [class="Microsoft Teams - Preview"] move --no-auto-back-and-forth to workspace $ws6
 
 # Move to workspaces (absolute)
 bindsym $mod+1 workspace $ws1
