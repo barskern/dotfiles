@@ -20,7 +20,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-rooter'
 Plug 'b4b4r07/vim-hcl'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', {'branch': 'main'}
 Plug 'derekwyatt/vim-scala'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
