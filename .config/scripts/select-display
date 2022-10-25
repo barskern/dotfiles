@@ -17,10 +17,13 @@ case "$chosen" in
                --output "$external" --auto --primary \
                --output "$internal" --off ;;
 	dual)      xrandr \
-               --output "$internal" --auto \
+               --output "$internal" --auto --primary \
                --output "$external" --auto --right-of "$internal" ;;
 	duplicate) xrandr \
                --output "$internal" --auto --same-as "$external" \
                --output "$external" --auto ;;
 	manual)    arandr ;;
 esac
+
+# Refresh wallpapers no matter what happened
+wallpaper
