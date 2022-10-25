@@ -11,10 +11,10 @@ chosen=$(printf "%s\n" "${choices[@]}" | rofi -dmenu -no-custom -l "${#choices[@
 
 case "$chosen" in
 	internal)  xrandr \
-               --output "$internal" --auto \
+               --output "$internal" --auto --primary \
                --output "$external" --off ;;
 	external)  xrandr \
-               --output "$external" --auto \
+               --output "$external" --auto --primary \
                --output "$internal" --off ;;
 	dual)      xrandr \
                --output "$internal" --auto \
