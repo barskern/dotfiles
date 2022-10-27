@@ -7,10 +7,10 @@ set query_command = "khard email --parsable %s"
 macro index,pager a "|khard add-email\n" 'add sender to khard addressbook'
 
 # Setup gpg signing by default
-set pgp_default_key=0x1A7F2DC6
-set pgp_sign_as=0x850EFDA2
-set crypt_use_gpgme=yes
-set crypt_autosign=no
+set pgp_default_key = D4A4ECC4A926C10DC4776DF8483D039B1A7F2DC6
+set pgp_self_encrypt = yes
+set crypt_use_gpgme = yes
+set crypt_autosign = no
 
 # Fix invalid urlview (we have to explicitly tell urlview we're reading from stdin)
 macro index,pager \Cb "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<return><pipe-message>urlview -<enter><enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<return>" "view URLs in message"
@@ -24,3 +24,13 @@ set sort_aux = reverse-last-date-received
 
 # Syncronize all mail using mailsync script
 macro index O "<shell-escape>mailsync<enter>" "run mailsync to sync all mail"
+
+# Ask if the user wishes to abort sending if $abort_noattach_regex is found in the
+# body, but no attachments have been added
+# It can be set to:
+#    "yes"     : always abort
+#    "ask-yes" : ask whether to abort
+#    "no"      : send the mail
+set abort_noattach = ask-yes
+# Search for the following regular expression in the body of the email
+set abort_noattach_regex = "\\<attach(|ed|ments?)|vedlegg|(legger|la(gt)?)\\sved\\>"
