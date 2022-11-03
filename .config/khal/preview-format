@@ -1,0 +1,12 @@
+
+{red-bold}{cancelled}{reset}
+{bold}{title} - [{repeat-symbol}{alarm-symbol} ]{reset}
+
+{start-date:>10} - {end-date:10}
+{start-time:>10} - {end-time:10}
+
+Fra  : {organizer}
+Sted : {location}
+URL  : {url}
+
+{description}
