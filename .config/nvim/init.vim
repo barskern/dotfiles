@@ -749,7 +749,7 @@ if has('autocmd')
 		autocmd!
 		autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 
-		autocmd FileType python map <buffer> <F5> :w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
+		autocmd FileType python nmap <buffer> <F5> :w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
 		autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
 
 		" autocmd FileType python inoremap <F5> <Esc>:GoBuild<CR>
