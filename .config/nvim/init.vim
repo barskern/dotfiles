@@ -737,7 +737,7 @@ if has('autocmd')
 
 	augroup jinja
 		autocmd!
-		autocmd BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.tera set ft=jinja expandtab
+		autocmd BufNewFile,BufRead *.tera set ft=jinja expandtab
 	augroup END
 
 	augroup css
