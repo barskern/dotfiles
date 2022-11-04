@@ -8,7 +8,7 @@ set folder = "/home/oruud/.local/share/mail/nett"
 set header_cache = /home/oruud/.cache/mutt-wizard/nett/headers
 set message_cachedir = /home/oruud/.cache/mutt-wizard/nett/bodies
 set mbox_type = Maildir
-set signature = ~/.config/mutt/signature
+set signature = ~/.config/mutt/signature.nb
 
 bind index,pager gg noop
 bind index,pager g noop

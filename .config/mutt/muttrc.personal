@@ -1,6 +1,6 @@
 set date_format="%d/%m/%y %H:%M"
 set index_format="%2C %Z %?X?A& ? %D %-20.20F %s"
-set signature = ~/.config/mutt/signature
+set signature = ~/.config/mutt/signature.nb
 set mailcap_path = ~/.config/mutt/mailcap
 
 # automatically show ics (mailcap uses khal)

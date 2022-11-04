@@ -29,6 +29,7 @@ Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'itchyny/lightline.vim'
 Plug 'juliosueiras/vim-terraform-completion'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
@@ -417,6 +418,30 @@ let g:user_emmet_leader_key = ',e'
 
 " }}}
 
+" Custom commands {{{
+
+" choose from signatures and apply to current buffer
+function! s:read_signature_into_buffer(signature)
+	" has to be a function to avoid the extra space fzf#run insers otherwise
+	let save_pos = getpos(".")
+
+	" delete old signature
+	execute '/^--\s\?$/;.1,$ d'
+
+	" add selected signature at end
+	execute '$r ~/.config/mutt/'.a:signature
+
+	" jump back to where we started
+	call setpos(".", save_pos)
+endfunction
+
+command! -bang -nargs=* ChangeSignature call fzf#run(fzf#wrap({
+			\   'source': map(split(globpath('~/.config/mutt', 'signature.*')), 'fnamemodify(v:val, ":t")'),
+			\   'sink': function('<sid>read_signature_into_buffer')
+			\ }))
+
+" }}}
+
 " Keybindings {{{
 
 " coc.nvim
@@ -703,6 +728,10 @@ if has('autocmd')
 		" Workaround due to lightline not being enabled (https://github.com/junegunn/goyo.vim/issues/207)
 		autocmd FileType mail call lightline#init()
 		autocmd FileType mail :Goyo
+
+		" Delete to signature
+		autocmd FileType mail nmap <buffer> <leader>md d/^--$<CR>
+		autocmd FileType mail nmap <buffer> <leader>ms :ChangeSignature<CR>
 	augroup END
 
 	augroup jinja
