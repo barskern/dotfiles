@@ -1,11 +1,8 @@
 {
-	"python.venvPath": "venv",
 	"coc.source.emoji.filetypes": [
 		"markdown",
 		"mail"
 	],
-    "solargraph.commandPath": "/usr/bin/solargraph",
-    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
     "tailwindCSS.headwind.runOnSave": false,
     "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.htmlLanguages": [
