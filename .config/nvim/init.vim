@@ -302,7 +302,8 @@ let g:coc_global_extensions = [
 	\ "coc-highlight",
 	\ "coc-actions",
 	\ "coc-pyright",
-	\ "coc-emoji"
+	\ "coc-emoji",
+	\ "coc-git"
 	\ ]
 
 augroup mygroup
@@ -368,9 +369,9 @@ let g:go_list_type = "none"
 
 " lightline settings
 let g:lightline = {}
-
+" 
 let g:lightline.component_function = {
-\  'gitbranch': 'fugitive#head',
+\  'gitbranch': 'FugitiveHead',
 \  'cocstatus': 'coc#status'
 \}
 
@@ -379,9 +380,9 @@ let g:lightline.colorscheme = 'srcery'
 let g:lightline.active = {
 \ 'left': [ [ 'mode', 'paste' ],
 \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-\ 'right': [ [ 'cocstatus' ],
-\            [ 'lineinfo', 'percent' ],
-\            [ 'fileformat', 'fileencoding', 'filetype' ] ],
+\ 'right': [ [ 'lineinfo', 'percent' ],
+\            [ 'fileformat', 'fileencoding', 'filetype' ],
+\            [ 'cocstatus' ] ],
 \}
 
 " Use auocmd to force lightline update.

@@ -82,5 +82,6 @@
             ],
             "initializationOptions": {}
         }
-    }
+    },
+    "git.enableGutters": true
 }
