@@ -731,7 +731,7 @@ if has('autocmd')
 		autocmd FileType mail :Goyo
 
 		" Delete to signature
-		autocmd FileType mail nmap <buffer> <leader>md d/^--$<CR>
+		autocmd FileType mail nmap <buffer> <leader>md d/^--\s\?$<CR>
 		autocmd FileType mail nmap <buffer> <leader>ms :ChangeSignature<CR>
 	augroup END
 
