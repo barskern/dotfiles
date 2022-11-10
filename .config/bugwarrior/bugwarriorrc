@@ -1,0 +1,91 @@
+
+[general]
+# Here you define a comma separated list of targets.  Each of them must have a
+# section below determining their properties, how to query them, etc.  The name
+# is just a symbol, and doesn't have any functional importance.
+targets = argossolutions_jira, github_pull_requests_review, github_assigned
+
+# Setting this to True will include a link to the ticket in the description
+inline_links = False
+
+# Setting this to True will include a link to the ticket as an annotation
+annotation_links = True
+
+# Setting this to True will include issue comments and author name in task
+# annotations
+annotation_comments = True
+
+# Setting this to False will strip newlines from comment annotations
+annotation_newlines = False
+
+# log.level specifies the verbosity.  The default is DEBUG.
+# log.level can be one of DEBUG, INFO, WARNING, ERROR, CRITICAL, DISABLED
+#log.level = DEBUG
+
+# If log.file is specified, output will be redirected there.  If it remains
+# unspecified, output is sent to sys.stderr
+#log.file = /var/log/bugwarrior.log
+
+# Configure the default description or annotation length.
+#annotation_length = 45
+
+# Use hooks to run commands prior to importing from `bugwarrior pull`.
+# `bugwarrior pull` will run the commands in the order that they are specified
+# below.
+#
+# pre_import: The pre_import hook is invoked after all issues have been pulled
+# from remote sources, but before they are synced to the TW db. If your
+# pre_import script has a non-zero exit code, the `bugwarrior pull` command will
+# exit early.
+#[hooks]
+#pre_import = /home/someuser/backup.sh, /home/someuser/sometask.sh
+
+# This section is for configuring notifications when `bugwarrior pull` runs,
+# and when issues are created, updated, or deleted by `bugwarrior pull`.
+# Three backends are currently supported:
+#
+#  - applescript        macOS      no external dependencies
+#  - gobject            Linux      python gobject must be installed
+#
+[notifications]
+ notifications = True
+ backend = gobject
+ only_on_new_tasks = False
+
+[github_assigned]
+service = github
+
+github.login = barskern
+github.token = @oracle:eval:pass bugwarrior/github
+
+github.include_user_issues = False
+github.include_user_repos = False
+github.query = is:open assigned:barskern
+
+github.description_template = {{githubrepo}}#{{githubnumber}}: {{githubtitle}}
+github.add_tags = assigned,open_source,github
+github.project_template = github
+
+[github_pull_requests_review]
+service = github
+
+github.login = barskern
+github.token = @oracle:eval:pass bugwarrior/github
+
+github.include_user_issues = False
+github.include_user_repos = False
+github.query = is:open is:pr review-requested:barskern
+
+github.description_template = {{githubrepo}}#{{githubnumber}}: {{githubtitle}}
+github.add_tags = review-request,pr,open_source,github
+github.project_template = github
+
+[argossolutions_jira]
+service = jira
+jira.base_uri = https://argossolutions.atlassian.net
+jira.username = ole.martin.ruud@argossolutions.no
+jira.password = @oracle:eval:pass bugwarrior/argossolutions_jira
+
+jira.description_template = {{jiraid}}: {{jirasummary}}
+jira.add_tags = argos,work
+jira.project_template = argos
