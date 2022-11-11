@@ -46,7 +46,9 @@ $CMD switch --merge "$branch"
 # ensure branch is updated with latest remote changes
 # (this also makes updating easy as the user only needs to run `dt master` to
 # get the latest changes from the remote master branch)
-$CMD pull --autostash
+$CMD fetch --prune --prune-tags --tags origin "$branch" \
+	|| echo "Unable to fetch but rebasing with local.."
+$CMD rebase --autostash
 
 # a do-while loop in bash
 while
@@ -60,7 +62,8 @@ done
 $CMD status
 
 echo -e "\n#### Pushing changes (if any) on '$branch' to remote ####\n"
-$CMD push
+$CMD push --tags origin "$branch" \
+	|| echo "Unable to push updates, make sure it's done when internet is back!"
 
 $CMD switch --merge "$orig_branch"
 
@@ -71,5 +74,5 @@ then
 	$CMD rebase --autostash "$branch" "$orig_branch"
 
 	echo -e "\n#### Pushing rebased branch '$orig_branch' to remote (using --force-with-lease) ####\n"
-	$CMD push --force-with-lease
+	$CMD push --tags --force-with-lease origin "$orig_branch" || exit 0
 fi
