@@ -369,7 +369,7 @@ let g:go_list_type = "none"
 
 " lightline settings
 let g:lightline = {}
-" 
+"
 let g:lightline.component_function = {
 \  'gitbranch': 'FugitiveHead',
 \  'cocstatus': 'coc#status'
@@ -525,16 +525,16 @@ nnoremap <leader>dL :GdbStartLLDB lldb<Space>
 tnoremap <Esc> <C-\><C-n>
 
 " vim-fugitive commands
-map <leader>gg :G<CR>
+map <leader>gg :Git<CR>
 map <leader>gw :Gwrite<CR>
 map <leader>gW :Gwrite!<CR>
-map <leader>gc :Gcommit -v<CR>
-map <leader>gs :Gstatus<CR>
-map <leader>gb :Gblame<CR>
-map <leader>gB :Gbrowse<CR>
-map <leader>gl :0Glog<CR>
-map <leader>gp :Gpush<CR>
-map <leader>gP :Gpull<CR>
+map <leader>gc :Git commit -v<CR>
+map <leader>gb :Git_blame<CR>
+map <leader>gm :Git_mergetool<CR>
+map <leader>gB :GBrowse<CR>
+map <leader>gl :0Gclog<CR>
+map <leader>gp :Git push<CR>
+map <leader>gP :Git pull<CR>
 
 " cargo commands
 map <leader>cc :Cbuild<CR>
