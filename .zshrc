@@ -24,6 +24,7 @@ antigen bundle pip
 antigen bundle sprunge
 antigen bundle stack
 antigen bundle sudo
+antigen bundle taskwarrior
 antigen bundle terraform
 antigen bundle virtualenvwrapper
 antigen bundle poetry
