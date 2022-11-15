@@ -3,7 +3,7 @@ Description=Custom compositor for Xorg
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/compton
+ExecStart=/usr/bin/picom
 
 [Install]
 WantedBy=graphical-session.target
