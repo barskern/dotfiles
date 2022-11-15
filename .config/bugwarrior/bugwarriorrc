@@ -50,7 +50,7 @@ annotation_newlines = False
 [notifications]
  notifications = True
  backend = gobject
- only_on_new_tasks = False
+ only_on_new_tasks = True
 
 [github_assigned]
 service = github
