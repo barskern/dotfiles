@@ -1,0 +1,9 @@
+[Unit]
+Description=Run bugwarrior-pull to fetch tasks
+
+[Service]
+ExecStart=/usr/bin/bugwarrior pull
+Type=oneshot
+
+[Install]
+WantedBy=default.target
