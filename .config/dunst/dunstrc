@@ -316,6 +316,10 @@
     format = "<big><b>%s</b></big>\n%b"
     new_icon = "mail-unread-symbolic"
 
+[mail]
+    appname = bugwarrior
+    format = "<big><b>%s</b></big>\n%b"
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
