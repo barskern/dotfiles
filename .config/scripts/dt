@@ -46,7 +46,7 @@ $CMD switch --merge "$branch"
 # ensure branch is updated with latest remote changes
 # (this also makes updating easy as the user only needs to run `dt master` to
 # get the latest changes from the remote master branch)
-$CMD fetch --prune --prune-tags --tags origin "$branch" \
+$CMD fetch --prune --prune-tags --tags origin \
 	|| echo "Unable to fetch but rebasing with local.."
 $CMD rebase --autostash
 
