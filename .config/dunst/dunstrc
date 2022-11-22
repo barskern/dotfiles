@@ -316,7 +316,7 @@
     format = "<big><b>%s</b></big>\n%b"
     new_icon = "mail-unread-symbolic"
 
-[mail]
+[bugwarrior]
     appname = bugwarrior
     format = "<big><b>%s</b></big>\n%b"
 
