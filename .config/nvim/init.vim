@@ -51,6 +51,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/vim-grammarous'
 Plug 'rodjek/vim-puppet'
 Plug 'ron-rs/ron.vim'
+Plug 'ron89/thesaurus_query.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'sakhnik/nvim-gdb', { 'do': './install.sh' }
 Plug 'Shougo/context_filetype.vim'
@@ -108,7 +109,7 @@ set number
 set relativenumber
 
 " Set language settings
-set spelllang=nb
+set spelllang=en
 
 " Paste mode (disables autoindent etc)
 set pastetoggle=<F2>
@@ -264,6 +265,10 @@ set foldtext=CustomFoldText('.')
 " }}}
 
 " Plugin settings {{{
+
+" thesaurus_query
+let g:tq_enabled_backends=["datamuse_com", "mthesaur_txt"]
+let g:tq_mthesaur_file="~/.config/nvim/thesaurus/mthesaur.txt"
 
 " python-syntax
 let g:python_highlight_all = 1
