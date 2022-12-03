@@ -312,10 +312,10 @@ let g:coc_global_extensions = [
 	\ "coc-spell-checker"
 	\ ]
 
-augroup mygroup
+augroup coc_autocmds
 	autocmd!
 	" Setup formatexpr specified filetype(s).
-	autocmd FileType scala,rust,html,json,css,latex setl formatexpr=CocAction('formatSelected')
+	autocmd FileType yaml,css,scala,rust,html,json,css,latex setl formatexpr=CocAction('formatSelected')
 	" Update signature help on jump placeholder
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -453,7 +453,10 @@ command! -bang -nargs=* ChangeSignature call fzf#run(fzf#wrap({
 
 " coc.nvim
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
 
 " remap for complete to use tab and <cr>
@@ -473,12 +476,20 @@ inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@<CR>
+" Applying code actions to the selected code block.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for apply code actions at the cursor position.
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer.
+nmap <leader>as  <Plug>(coc-codeaction-source)
+
+" Remap keys for apply refactor code actions.
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Remap keys for gotos
 nmap <silent> <leader>ls :CocStart<CR>
@@ -487,9 +498,7 @@ nmap <silent> <leader>lt <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> <leader>lr <Plug>(coc-references)
 nmap <silent> <leader>lf <Plug>(coc-fix-current)
-nmap <silent> <leader>l<CR> <Plug>(coc-codelens-action)
-nmap <silent> <leader>ll :CocList<CR>
-nmap <silent> <leader>lc :CocCommand<CR>
+nmap <silent> <leader>lc <Plug>(coc-codelens-action)
 
 " Format using F
 nmap <leader>F :Format<CR>
@@ -498,16 +507,16 @@ nmap <leader>F :Format<CR>
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
