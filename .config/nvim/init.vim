@@ -308,7 +308,8 @@ let g:coc_global_extensions = [
 	\ "coc-actions",
 	\ "coc-pyright",
 	\ "coc-emoji",
-	\ "coc-git"
+	\ "coc-git",
+	\ "coc-spell-checker"
 	\ ]
 
 augroup mygroup
