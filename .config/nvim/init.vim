@@ -19,6 +19,7 @@ set nocompatible
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-rooter'
+Plug 'aklt/plantuml-syntax'
 Plug 'b4b4r07/vim-hcl'
 Plug 'cespare/vim-toml', {'branch': 'main'}
 Plug 'derekwyatt/vim-scala'
