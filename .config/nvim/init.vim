@@ -273,7 +273,7 @@ let g:netrw_winsize = 70
 " Plugin settings {{{
 
 " thesaurus_query
-let g:tq_enabled_backends=["datamuse_com", "mthesaur_txt"]
+let g:tq_enabled_backends=["datamuse_com"]
 let g:tq_mthesaur_file="~/.config/nvim/thesaurus/mthesaur.txt"
 
 " python-syntax
