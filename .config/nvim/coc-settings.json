@@ -4,85 +4,154 @@
 		"markdown",
 		"mail"
 	],
-    "tailwindCSS.headwind.runOnSave": false,
-    "tailwindCSS.emmetCompletions": true,
-    "tailwindCSS.htmlLanguages": [
-        "blade",
-        "edge",
-        "eelixir",
-        "ejs",
-        "elixir",
-        "erb",
-        "eruby",
-        "haml",
-        "handlebars",
-        "html",
-        "HTML (EEx)",
-        "HTML (Eex)",
-        "html.twig",
-        "jade",
-        "leaf",
-        "markdown",
-        "njk",
-        "nunjucks",
-        "php",
-        "razor",
-        "slim",
-        "svelte",
-        "twig",
-        "vue",
-        "jinja"
-    ],
-    "html.filetypes": [
-        "html",
-        "handlebars",
-        "htmldjango",
-        "jinja"
-    ],
-    "codeLens.enable": true,
-    "languageserver": {
-        "vhdl-tool": {
-            "command": "vhdl-tool",
-            "args": ["lsp"],
-            "rootPatterns": ["vhdltool-config.yaml", ".git/"],
-            "filetypes": ["vhdl"]
-        },
-        "ccls": {
-          "command": "ccls",
-          "filetypes": ["c", "cpp", "objc", "objcpp", "cuda"],
-          "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-          "initializationOptions": {
-             "cache": {
-               "directory": "/tmp/ccls"
-             }
-           }
-        },
-        "puppet": {
-            "command": "ruby",
-            "args": [
-                "/opt/puppet-editor-services/puppet-languageserver",
-                "--stdio"
-            ],
-            "cwd": "/opt/puppet-editor-services",
-            "filetypes": [
-                "puppet"
-            ],
-            "rootPatterns": [
-                ".git/",
-                "metadata.json"
-            ]
-        },
-        "terraform": {
-            "command": "terraform-lsp",
-            "filetypes": [
-                "terraform"
-            ],
-            "rootPatterns": [
-                ".git/",
-                "main.tf"
-            ],
-            "initializationOptions": {}
-        }
-    },
-    "git.enableGutters": true
+	"tailwindCSS.headwind.runOnSave": false,
+	"tailwindCSS.emmetCompletions": true,
+	"tailwindCSS.htmlLanguages": [
+		"blade",
+		"edge",
+		"eelixir",
+		"ejs",
+		"elixir",
+		"erb",
+		"eruby",
+		"haml",
+		"handlebars",
+		"html",
+		"HTML (EEx)",
+		"HTML (Eex)",
+		"html.twig",
+		"jade",
+		"leaf",
+		"markdown",
+		"njk",
+		"nunjucks",
+		"php",
+		"razor",
+		"slim",
+		"svelte",
+		"twig",
+		"vue",
+		"jinja"
+	],
+	"html.filetypes": [
+		"html",
+		"handlebars",
+		"htmldjango",
+		"jinja"
+	],
+	"codeLens.enable": true,
+	"languageserver": {
+		"vhdl-tool": {
+			"command": "vhdl-tool",
+			"args": [
+				"lsp"
+			],
+			"rootPatterns": [
+				"vhdltool-config.yaml",
+				".git/"
+			],
+			"filetypes": [
+				"vhdl"
+			]
+		},
+		"ccls": {
+			"command": "ccls",
+			"filetypes": [
+				"c",
+				"cpp",
+				"objc",
+				"objcpp",
+				"cuda"
+			],
+			"rootPatterns": [
+				".ccls",
+				"compile_commands.json",
+				".vim/",
+				".git/",
+				".hg/"
+			],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
+				}
+			}
+		},
+		"puppet": {
+			"command": "ruby",
+			"args": [
+				"/opt/puppet-editor-services/puppet-languageserver",
+				"--stdio"
+			],
+			"cwd": "/opt/puppet-editor-services",
+			"filetypes": [
+				"puppet"
+			],
+			"rootPatterns": [
+				".git/",
+				"metadata.json"
+			]
+		},
+		"terraform": {
+			"command": "terraform-lsp",
+			"filetypes": [
+				"terraform"
+			],
+			"rootPatterns": [
+				".git/",
+				"main.tf"
+			],
+			"initializationOptions": {}
+		},
+		"dls": {
+			"command": "diagnostic-languageserver",
+			"args": [
+				"--stdio",
+				"--log-level",
+				"2"
+			],
+			"filetypes": [
+				"sh",
+				"email",
+				"text",
+				"tex",
+				"latex"
+			],
+			"initializationOptions": {
+				"linters": {
+					"proselint": {
+						"command": "proselint",
+						"isStdout": true,
+						"isStderr": false,
+						"debounce": 100,
+						"args": [
+							"-"
+						],
+						"offsetLine": 0,
+						"offsetColumn": 0,
+						"sourceName": "proselint",
+						"formatLines": 1,
+						"formatPattern": [
+							"^[^:]+:(\\d+):(\\d+):(\\s)(.*)$",
+							{
+								"line": 1,
+								"column": 2,
+								"security": 3,
+								"message": 4
+							}
+						],
+						"securities": {
+							" ": "info"
+						}
+					}
+				},
+				"filetypes": {
+					"latex": ["proselint"],
+					"text": ["proselint"],
+					"tex": ["proselint"]
+				}
+			}
+		}
+	},
+	"git.enableGutters": true,
+	"snippets.ultisnips.pythonPrompt": false
 }

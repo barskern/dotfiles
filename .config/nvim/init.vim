@@ -315,7 +315,7 @@ let g:coc_global_extensions = [
 	\ "coc-pyright",
 	\ "coc-emoji",
 	\ "coc-git",
-	\ "coc-spell-checker"
+	\ "coc-diagnostic"
 	\ ]
 
 augroup coc_autocmds
