@@ -552,13 +552,6 @@ map <leader>gl :0Gclog<CR>
 map <leader>gp :Git push<CR>
 map <leader>gP :Git pull<CR>
 
-" cargo commands
-map <leader>cc :Cbuild<CR>
-map <leader>cb :Cbench<CR>
-map <leader>cr :Crun<CR>
-map <leader>ct :Ctest <C-R>=expand('%:t:r')<CR><CR>
-map <leader>cT :Ctest<CR>
-
 nnoremap <C-l> :copen<cr>
 nnoremap <C-g> :cclose<cr>
 
@@ -713,9 +706,11 @@ if has('autocmd')
 		autocmd FileType rust nnoremap <F5> :Cbuild<CR>
 		autocmd FileType rust inoremap <F6> <Esc>:Crun<CR>
 		autocmd FileType rust nnoremap <F6> :Crun<CR>
+
 		" Run all tests
 		autocmd FileType rust inoremap <F7> <Esc>:Ctest<CR>
 		autocmd FileType rust nnoremap <F7> :Ctest<CR>
+
 		" Run single test
 		autocmd FileType rust inoremap <F8> <Esc>:RustTest<CR>
 		autocmd FileType rust nnoremap <F8> :RustTest<CR>
@@ -767,13 +762,6 @@ if has('autocmd')
 
 		autocmd FileType python nmap <buffer> <F5> :w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
 		autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!poetry run python' shellescape(@%, 1)<CR>
-
-		" autocmd FileType python inoremap <F5> <Esc>:GoBuild<CR>
-		" autocmd FileType python nnoremap <F5> :GoBuild<CR>
-		" autocmd FileType python inoremap <F6> <Esc>:GoRun<CR>
-		" autocmd FileType python nnoremap <F6> :GoRun<CR>
-		" autocmd FileType python inoremap <F7> <Esc>:GoTest<CR>
-		" autocmd FileType python nnoremap <F7> :GoTest<CR>
 	augroup END
 
 endif
