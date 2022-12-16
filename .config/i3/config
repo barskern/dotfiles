@@ -105,7 +105,7 @@ bar {
 bar {
 	font pango:monospace, FontAwesome 12
 	position bottom
-	output HDMI-0
+	output DVI-D-0
 	tray_output none
 
 	colors {
