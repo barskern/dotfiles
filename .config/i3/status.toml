@@ -1,5 +1,7 @@
-theme = "srcery"
-icons = "awesome"
+[theme]
+theme = "/home/oruud/.config/i3/srcery.toml"
+[icons]
+icons = "/home/oruud/.config/i3/awesome.toml"
 
 [[block]]
 block = "watson"
@@ -7,54 +9,74 @@ block = "watson"
 [[block]]
 block = "music"
 player = "spotify"
-max_width = 35
+format = " $icon {$combo.str(max_w:20,rot_interval:0.5)|} "
+
+[[block]]
+block = "bluetooth"
+mac = "60:AB:D2:65:5F:7A"
+format = " $icon swimr "
+disconnected_format = ""
 
 [[block]]
 block = "bluetooth"
 mac = "2C:41:A1:83:12:64"
-label = " bosie"
+format = " $icon bosie "
+disconnected_format = ""
 
 [[block]]
 block = "bluetooth"
 mac = "74:5C:4B:6C:49:0B"
-label = " jabbie"
+format = " $icon jabbie "
+disconnected_format = ""
 
 [[block]]
 block = "sound"
 
 [[block]]
-block = "memory"
-display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+block = "net"
+interval = 5
+format = " $icon{ $ip| No IP-address} via {'$ssid'|wire} "
+missing_format = " $icon no internet "
 
 [[block]]
-block = "cpu"
-interval = 1
-format = "{barchart} {utilization}% {frequency}GHz"
+block = "memory"
+format = " $icon $mem_used.eng(w:1,prefix:M)/$mem_total.eng(w:1,prefix:M) ($mem_used_percents.eng(w:2)) "
 
 [[block]]
 block = "load"
-interval = 1
-format = "{1m}"
+
+[[block]]
+block = "cpu"
+format = " $icon  $barchart $utilization.eng(w:2) "
+format_alt = " $icon $frequency.eng(){ $boost.str()|} "
+
+[[block]]
+block = "nvidia_gpu"
+idle = 65
 
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d/%m %R"
-on_click = "alacritty --class floater -e ikhal"
+[block.format]
+full = " $icon $timestamp.datetime(f:'%a %Y-%m-%d %R', l:nb_NO) "
+short = " $icon $timestamp.datetime(f:%R) "
+[[block.click]]
+button = "left"
+cmd = "alacritty --class floater -e ikhal"
 
 [[block]]
 block = "custom"
 json = true
 interval = 1
-on_click = """
-[[ "$(bluetoothctl show | rg 'Powered:' | cut -d ' ' -f 2)" == "yes" ]] \
-	&& bluetoothctl power off \
-	|| bluetoothctl power on
-"""
 command = """
 [[ "$(bluetoothctl show | rg 'Powered:' | cut -d ' ' -f 2)" == "yes" ]] \
 	&& echo '{"icon":"bluetooth","state":"Good","text":""}' \
 	|| echo '{"icon":"bluetooth","state":"Critical","text":""}'
+"""
+[[block.click]]
+button = "left"
+cmd = """
+[[ "$(bluetoothctl show | rg 'Powered:' | cut -d ' ' -f 2)" == "yes" ]] \
+	&& bluetoothctl power off \
+	|| bluetoothctl power on
 """
