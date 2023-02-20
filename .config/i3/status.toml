@@ -36,7 +36,7 @@ block = "sound"
 block = "net"
 interval = 5
 format = " $icon{ $ip| No IP-address} via {'$ssid'|wire} "
-missing_format = " $icon no internet "
+missing_format = " ^icon_net no network "
 
 [[block]]
 block = "memory"
