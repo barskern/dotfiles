@@ -113,10 +113,6 @@ interval = 10
 chip = "*-isa-*"
 
 [[block]]
-block = "nvidia_gpu"
-idle = 65
-
-[[block]]
 block = "battery"
 driver = "upower"
 
