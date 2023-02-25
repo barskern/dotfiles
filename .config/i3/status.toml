@@ -51,10 +51,6 @@ format = " $icon  $barchart $utilization.eng(w:2) "
 format_alt = " $icon $frequency.eng(){ $boost.str()|} "
 
 [[block]]
-block = "nvidia_gpu"
-idle = 65
-
-[[block]]
 block = "battery"
 driver = "upower"
 
