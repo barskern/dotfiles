@@ -97,10 +97,6 @@ format = " $icon $utilization"
 format_alt = " $icon $frequency.eng(){ $boost.str()|}"
 
 [[block]]
-block = "nvidia_gpu"
-idle = 65
-
-[[block]]
 block = "battery"
 driver = "upower"
 
