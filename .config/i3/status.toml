@@ -13,6 +13,12 @@ format = " $icon {$combo.str(max_w:20,rot_interval:0.5)|} "
 
 [[block]]
 block = "bluetooth"
+mac = "98:52:3D:50:66:31"
+format = " $icon SRS-XB33 "
+disconnected_format = ""
+
+[[block]]
+block = "bluetooth"
 mac = "60:AB:D2:65:5F:7A"
 format = " $icon swimr "
 disconnected_format = ""
