@@ -52,19 +52,20 @@ client.background       $black
 set $mod Mod4
 
 # Run terminal with working directory
-set $term_wd --no-startup-id $TERMINAL --working-directory `xcwd`
+set $term_ alacritty
+set $term_wd --no-startup-id $term_ --working-directory "$(/home/oruud/.config/scripts/swaycwd)"
+
 # Normal term
-set $term --no-startup-id $TERMINAL
+set $term --no-startup-id $term_
+
+set $menu --no-startup-id $term_ --class launcher --title launcher -e /usr/bin/sway-launcher-desktop
 
 font pango:monospace 12
 focus_follows_mouse no
 mouse_warping none
-#smart_borders on
 popup_during_fullscreen leave_fullscreen
 focus_on_window_activation focus
 workspace_auto_back_and_forth yes
-
-exec --no-startup-id wallpaper
 
 # Set default layout to tabbed
 workspace_layout tabbed
@@ -73,10 +74,10 @@ workspace_layout tabbed
 for_window [class="^.*"] border pixel 3
 
 # Set all windows with custom class to floating
-for_window [instance="floater"] floating enable
+for_window [app_id="floater"] floating enable
+for_window [app_id="^launcher$"] floating enable, sticky enable
 
 # }}}
-
 
 # i3-specific keybindings {{{
 
@@ -84,13 +85,13 @@ for_window [instance="floater"] floating enable
 floating_modifier $mod
 
 # Restart i3 inplace
-bindsym $mod+Shift+Ctrl+r restart
+bindsym $mod+Shift+Ctrl+r reload
 
 # Move focus and containers (vim-like or arrow keys)
-bindsym --release $mod+h focus left
-bindsym --release $mod+j focus down
-bindsym --release $mod+k focus up
-bindsym --release $mod+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -99,6 +100,8 @@ bindsym $mod+Shift+l move right
 
 bindsym $mod+Ctrl+Shift+h move workspace to output left
 bindsym $mod+Ctrl+Shift+l move workspace to output right
+bindsym $mod+Ctrl+Shift+k move workspace to output up
+bindsym $mod+Ctrl+Shift+j move workspace to output down
 
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle; opacity 1;
@@ -128,6 +131,12 @@ bindsym $mod+Ctrl+s \
 bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+equal move scratchpad
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+equal scratchpad show
+
 # }}}
 
 # Application keybindings {{{
@@ -135,19 +144,18 @@ bindsym $mod+d focus child
 # Start a terminal
 bindsym $mod+Return exec $term_wd
 bindsym $mod+Shift+Return exec $term_wd -e sudo -i
-bindsym $mod+Ctrl+Return exec $term \
-	--title "tmux" \
-	--class "floater" \
-	--command tmux attach-session -d -t $USER
+# bindsym $mod+Ctrl+Return exec $term \
+# 	--title "tmux" \
+# 	--class "floater" \
+# 	--command tmux attach-session -d -t $USER
 
 # Shortcuts to programs
-bindsym $mod+r       exec $term -e ranger `xcwd`
-bindsym $mod+Shift+r exec $term -e sudo ranger `xcwd`
+bindsym $mod+r       exec $term -e ranger "$(/home/oruud/.config/scripts/swaycwd)"
+bindsym $mod+Shift+r exec $term -e sudo ranger "$(/home/oruud/.config/scripts/swaycwd)"
 
 bindsym $mod+b exec --no-startup-id $BROWSER
 
 bindsym $mod+n exec $term --title "neomutt" --class "mail" -e neomutt
-bindsym $mod+v exec $term --title "newsboat" --class "rss" -e newsboat
 
 bindsym $mod+Shift+m exec $term --title "ghci" --class "floater" -e stack ghci
 
@@ -184,9 +192,7 @@ bindsym $mod+Shift+v exec mpv-from-clipboard
 bindsym $mod+Shift+q kill
 
 # Run a menu which could be dmenu or rofi etc
-bindsym --release $mod+space       exec --no-startup-id rofi -show drun
-bindsym --release $mod+Shift+space exec --no-startup-id rofi -show window
-bindsym --release $mod+Ctrl+space  exec --no-startup-id rofi -show run
+bindsym $mod+space exec $menu
 
 # }}}
 
@@ -202,17 +208,17 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id audio-controls up   5
 bindsym XF86AudioMute        exec --no-startup-id audio-controls mute
 #XF86AudioMedia
 
-bindsym --release Print exec --no-startup-id flameshot gui -p ~/Bilder/Skjermdump/
-bindsym --release Shift+Print exec --no-startup-id flameshot screen -p ~/Bilder/Skjermdump/
-bindsym --release Ctrl+Shift+Print exec --no-startup-id flameshot full -p ~/Bilder/Skjermdump/
+bindsym Print exec --no-startup-id grimshot --notify save output
+bindsym Shift+Print exec --no-startup-id grimshot --notify save area
+bindsym Ctrl+Shift+Print exec --no-startup-id grimshot --notify save window
 
-bindsym XF86Search exec --no-startup-id rofi -show drun
+bindsym XF86Search exec --no-startup-id $menu
 
 # Adjust brightness with keybindings
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl --exponent set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --exponent set 10%-
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl --exponent set +5%
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl --exponent set 5%-
 
 # }}}
 
@@ -319,9 +325,9 @@ mode $music {
 	bindsym $mod+m mode "default"
 }
 
-set $move_and_resize "move and resize"
-bindsym $mod+Ctrl+r mode $move_and_resize
-mode $move_and_resize {
+set $resize "resize"
+bindsym $mod+Ctrl+r mode $resize
+mode $resize {
 	bindsym l resize shrink width 5 px or 5 ppt
 	bindsym k resize grow height 5 px or 5 ppt
 	bindsym j resize shrink height 5 px or 5 ppt
@@ -331,11 +337,6 @@ mode $move_and_resize {
 	bindsym Shift+k resize grow height 10 px or 10 ppt
 	bindsym Shift+j resize shrink height 10 px or 10 ppt
 	bindsym Shift+h resize grow width 10 px or 10 ppt
-
-	bindsym Ctrl+h move container left
-	bindsym Ctrl+j move container down
-	bindsym Ctrl+k move container up
-	bindsym Ctrl+l move container right
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -397,15 +398,71 @@ mode $mode_gaps_outer {
 
 # }}}
 
+# Sway specific {{{
+
+# Displays
+set $laptop eDP-1
+#set $hub_1 DP-6
+set $hub_1 "Dell Inc. DELL P2720D JV69F01F0TGS"
+#set $hub_2 DP-5
+set $hub_2 "Dell Inc. DELL P2720D JV69F01F0P1S"
+
+#set $hdmi HDMI-A-1
+set $hdmi "Samsung Electric Company S27D590 0x00003734"
+
+# Set display config when connected to work hub
+output $hdmi pos 0 0 res 1920x1080
+output $laptop pos 0 1080 res 1920x1080
+output $hub_1 pos 1920 1080 res 2560x1440
+output $hub_2 pos 4480 1080 res 2560x1440
+
+# Disable laptop display when lid is closed
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+exec_always /home/oruud/.config/scripts/reload-lid
+
+# Set background
+output * background /home/oruud/.config/wall.png center #000000
+
+# Set keyboard input to us with altgr international keys and caps as escape
+input type:keyboard {
+	xkb_layout "us"
+	xkb_variant "altgr-intl"
+	xkb_options "caps:escape"
+}
+
+# Set touchpad to enable tapping and clicking
+input type:touchpad {
+	tap "enabled"
+	drag "enabled"
+	tap_button_map "lrm"
+}
+
+# Set mouse to fix scrolling
+input type:mouse {
+	scroll_factor 4.0
+	pointer_accel 0.5
+}
+
+# Stop hiding cursor as it prevents hovering over graphs etc.
+# seat * {
+# 	hide_cursor 10000
+# }
+
+exec_always systemctl --user start sway-session.target
+
+include /etc/sway/config.d/*
+
+# }}}
+
 # Bars {{{
 
 # Bar for primary
 bar {
-	font pango:monospace, FontAwesome 12
+	font pango:monospace 12
 	position bottom
-	output primary
-	status_command i3status-rs ~/.config/i3/status.toml
-	tray_output primary
+	status_command i3status-rs ~/.config/sway/status.toml
 
 	colors {
 		background $black
@@ -422,29 +479,29 @@ bar {
 }
 
 # Bar for secondary monitor
-bar {
-	font pango:monospace, FontAwesome 12
-	position bottom
-	output HDMI-0
-	tray_output none
-
-	colors {
-		background $black
-		statusline $white
-		separator  $white
-
-		# Colors           border        background   text
-		focused_workspace  $bright_black $xgray3      $yellow
-		active_workspace   $xgray3       $xgray3      $bright_black
-		inactive_workspace $xgray3       $xgray1      $bright_black
-		urgent_workspace   $red          $red         $black
-		binding_mode       $magenta      $magenta     $bright_white
-	}
-}
+# bar {
+# 	font pango:monospace, FontAwesome 12
+# 	position bottom
+# 	output HDMI-0
+# 	tray_output none
+# 
+# 	colors {
+# 		background $black
+# 		statusline $white
+# 		separator  $white
+# 
+# 		# Colors           border        background   text
+# 		focused_workspace  $bright_black $xgray3      $yellow
+# 		active_workspace   $xgray3       $xgray3      $bright_black
+# 		inactive_workspace $xgray3       $xgray1      $bright_black
+# 		urgent_workspace   $red          $red         $black
+# 		binding_mode       $magenta      $magenta     $bright_white
+# 	}
+# }
 
 # }}}
 
 # Run dex (autostart desktop entries)
-exec dex -ae i3
+#exec dex -ae i3
 
 # vim:foldmethod=marker:ts=2:sw=2
