@@ -1,0 +1,12 @@
+[Unit]
+Description=persistent gpg and ssh keychain
+After=gpg-agent.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=/usr/bin/keychain --systemd --agents gpg,ssh
+
+[Install]
+WantedBy=default.target
