@@ -34,7 +34,7 @@ done < "${1:-/dev/stdin}"
 
 # Send all valid ids to downloader
 echo "${ids[@]}" | tr ' ' '\n' | awk -v URL="$BASE_URL" '{print URL$1}' \
-	| youtube-dl \
+	| yt-dlp \
 	--ignore-errors \
 	--continue \
 	--no-overwrites \
