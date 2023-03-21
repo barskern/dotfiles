@@ -69,5 +69,3 @@ fi
 source /home/oruud/.config/shortcuts
 
 eval "$(starship init zsh)"
-
-source /home/oruud/.config/broot/launcher/bash/br
