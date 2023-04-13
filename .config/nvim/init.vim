@@ -94,8 +94,8 @@ filetype plugin on
 syntax on
 
 " Settings for `hardcopy`
-set printoptions=number:y,left:5pc,right:5pc,top:5pc,bottom:5pc
-set printheader=%<%f%h%=Ole\ Martin\ Ruud%=Side\ %N
+"set printoptions=number:y,left:5pc,right:5pc,top:5pc,bottom:5pc
+"set printheader=%<%f%h%=Ole\ Martin\ Ruud%=Side\ %N
 
 " Set encoding
 set encoding=utf-8
