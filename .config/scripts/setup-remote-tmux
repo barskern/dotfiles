@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#
+# Setup a simple tmux config on a remote host
+#
+
+set -e
+
+REMOTE_HOST="$1"
+
+if [[ -z "$REMOTE_HOST" ]]; then
+	echo "ERROR! First argument should be remote host"
+	exit 1
+fi
+
+if ! ssh -qT "$REMOTE_HOST" 'type tmux > /dev/null'; then
+	echo "ERROR! Tmux not installed on remote target, please install and re-run script"
+	exit 1
+fi
+
+copy_dir_to_remote() {
+	src="$1"
+	dst="$2"
+	ssh -qT "$REMOTE_HOST" "mkdir -p $dst"
+	rsync \
+		--recursive \
+		"$src" \
+		"$REMOTE_HOST:$dst"
+}
+
+echo "Copy over tmux config..."
+copy_dir_to_remote ~/.config/tmux/ '~/.config/tmux'
+
+echo "Copy over tpm (tmux plugin manager)"
+tmp_dir=$(mktemp -d)
+git clone https://github.com/tmux-plugins/tpm "$tmp_dir"
+copy_dir_to_remote "$tmp_dir/" '~/.tmux/plugins/tpm'
+
+echo "Update all tmux sessions with new config..."
+ssh -qT "$REMOTE_HOST" 'tmux source-file ~/.config/tmux/tmux.conf'
+
+echo "Successfully installed tmux on '$REMOTE_HOST'"
