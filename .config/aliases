@@ -4,6 +4,7 @@
 
 # Basic cmds
 alias e="$EDITOR"
+alias esec="$EDITOR -N -n -i NONE -u ~/.config/nvim/init-secure.vim"
 alias se="sudoedit"
 alias yay="yay --color=always"
 
