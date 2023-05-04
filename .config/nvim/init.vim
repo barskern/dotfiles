@@ -166,23 +166,24 @@ set cmdheight=2
 set updatetime=300
 " Install coc extensions
 let g:coc_global_extensions = [
-	\ "coc-dictionary",
-	\ "coc-json",
-	\ "coc-solargraph",
-	\ "coc-rust-analyzer",
-	\ "coc-vimtex",
-	\ "coc-snippets",
-	\ "coc-css",
-	\ "coc-html",
-	\ "coc-yaml",
-	\ "coc-emmet",
-	\ "coc-tailwindcss",
-	\ "coc-highlight",
 	\ "coc-actions",
-	\ "coc-pyright",
+	\ "coc-css",
+	\ "coc-diagnostic",
+	\ "coc-dictionary",
+	\ "coc-emmet",
 	\ "coc-emoji",
 	\ "coc-git",
-	\ "coc-diagnostic"
+	\ "coc-highlight",
+	\ "coc-html",
+	\ "coc-json",
+	\ "coc-ltex",
+	\ "coc-pyright",
+	\ "coc-rust-analyzer",
+	\ "coc-snippets",
+	\ "coc-solargraph",
+	\ "coc-tailwindcss",
+	\ "coc-vimtex",
+	\ "coc-yaml"
 	\ ]
 
 augroup coc_autocmds
