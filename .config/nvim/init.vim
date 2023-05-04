@@ -104,7 +104,7 @@ endif
 
 " Use ripgrep as grep
 if executable('rg')
-	set grepprg=rg\ --no-heading\ --vimgrep
+	set grepprg=rg\ --vimgrep
 	set grepformat=%f:%l:%c:%m
 endif
 
