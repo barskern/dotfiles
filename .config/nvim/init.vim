@@ -404,7 +404,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>L :Lines<CR>
 nnoremap <leader>t :Tags<CR>
-nnoremap <leader>r :Rg<CR>
+nnoremap <leader>rr :Rg<CR>
 nnoremap <leader>bb :Buffers<CR>
 
 " Starting nvim-gdb
