@@ -153,8 +153,10 @@ let g:fzf_tags_command = "ctags -R src"
 let g:vista_sidebar_width = 50
 
 " vimtex
-let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_method = 'tectonic'
 let g:tex_flavor = 'latex'
+let g:vimtex_format_enabled = 1
+let g:vimtex_view_method = 'zathura'
 
 " coc.nvim
 
@@ -189,7 +191,7 @@ let g:coc_global_extensions = [
 augroup coc_autocmds
 	autocmd!
 	" Setup formatexpr specified filetype(s).
-	autocmd FileType yaml,css,scala,rust,html,json,css,latex setl formatexpr=CocAction('formatSelected')
+	autocmd FileType yaml,css,scala,rust,html,json,css setl formatexpr=CocAction('formatSelected')
 	" Update signature help on jump placeholder
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -367,6 +369,7 @@ nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Remap keys for gotos
 nmap <silent> <leader>ls :CocStart<CR>
+nmap <leader>lD :CocDiagnostics<CR>
 nmap <silent> <leader>ld <Plug>(coc-definition)
 nmap <silent> <leader>lt <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
