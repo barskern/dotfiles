@@ -158,9 +158,13 @@ set foldtext=CustomFoldText('.')
 " Exit terminal mode with ESC
 tnoremap <Esc> <C-\><C-n>
 
-" Open and close quickfix
-nnoremap <C-l> :copen<cr>
-nnoremap <C-g> :cclose<cr>
+" Open and close location list
+nnoremap <C-l> :lopen<CR>
+nnoremap <C-h> :lclose<CR>
+
+" Open and close quickfix list
+nnoremap <C-k> :copen<CR>
+nnoremap <C-j> :cclose<CR>
 
 " Search results unfolded please
 nnoremap <silent> n nzv
@@ -199,6 +203,10 @@ map <C-p> "*p
 inoremap <leader><leader> <Esc>/<++><CR>"_c4l
 vnoremap <leader><leader> <Esc>/<++><CR>"_c4l
 map <leader><leader> <Esc>/<++><CR>"_c4l
+
+" Grep for word under cursor
+command! -nargs=+ NewGrep execute 'silent grep! <args>' | copen
+nnoremap <C-g> :NewGrep <cword> . <CR>
 
 " }}}
 
