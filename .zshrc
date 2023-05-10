@@ -5,6 +5,9 @@
 # Ensure zprofile is sourced
 source /etc/zsh/zprofile
 
+# setup pyenv environment
+eval "$(pyenv init -)"
+
 # Antigen settings {{{
 
 source "$HOME/.config/antigen.zsh"
@@ -21,6 +24,7 @@ antigen bundle fancy-ctrl-z
 antigen bundle fzf
 antigen bundle git-extras
 antigen bundle pip
+antigen bundle pyenv
 antigen bundle sprunge
 antigen bundle stack
 antigen bundle sudo
