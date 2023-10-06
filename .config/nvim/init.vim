@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-rooter'
 Plug 'aklt/plantuml-syntax'
+Plug 'axvr/zepl.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'cespare/vim-toml', {'branch': 'main'}
 Plug 'derekwyatt/vim-scala'
@@ -449,6 +450,11 @@ if has('autocmd')
 		autocmd BufNewFile,BufRead *.mod  set ft=ampl
 		autocmd BufNewFile,BufRead *.dat  set ft=ampl
 		autocmd BufNewFile,BufRead *.ampl set ft=ampl
+	augroup END
+
+	augroup scheme
+		autocmd!
+		autocmd FileType scheme set tabstop=2 softtabstop=2 shiftwidth=2
 	augroup END
 
 	augroup hcl
