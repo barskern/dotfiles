@@ -195,6 +195,7 @@ bindsym $mod+Shift+r exec $term -e sudo ranger "$(/home/oruud/.config/scripts/sw
 bindsym $mod+b exec --no-startup-id $BROWSER
 
 bindsym $mod+n exec $term --title "neomutt" --class "mail" -e neomutt
+bindsym $mod+v exec $term --title "newsboat" --class "rss" -e newsboat
 
 bindsym $mod+Shift+m exec $term --title "ghci" --class "floater" -e stack ghci
 
@@ -278,6 +279,7 @@ assign [app_id="zulip"] $ws6
 assign [app_id="keybase"] $ws6
 assign [app_id="whats-app*"] $ws6
 assign [app_id="mail"] $ws7
+for_window [app_id="rss"] move --no-auto-back-and-forth to workspace $ws7, focus
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws8
 assign [class="mpv"] $ws10
 for_window [class="Microsoft Teams - Preview"] move --no-auto-back-and-forth to workspace $ws6
