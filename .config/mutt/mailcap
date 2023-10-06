@@ -2,7 +2,7 @@ text/plain; $EDITOR %s ;
 text/html; firefox %s ;
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 text/calendar; khal printics --format "$(cat ~/.config/khal/preview-format)" %s ; copiousoutput;
-image/*; muttimage %s ; copiousoutput;
+image/*; imv %s ; copiousoutput;
 video/*; setsid mpv --quiet %s &; copiousoutput;
 application/pdf; zathura %s ;
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
