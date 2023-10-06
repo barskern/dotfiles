@@ -156,6 +156,7 @@ bindsym $mod+Shift+r exec $term -e sudo ranger "$(/home/oruud/.config/scripts/sw
 bindsym $mod+b exec --no-startup-id $BROWSER
 
 bindsym $mod+n exec $term --title "neomutt" --class "mail" -e neomutt
+bindsym $mod+v exec $term --title "newsboat" --class "rss" -e newsboat
 
 bindsym $mod+Shift+m exec $term --title "ghci" --class "floater" -e stack ghci
 
