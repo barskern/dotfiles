@@ -37,6 +37,9 @@ alias ipl="ip --brief addr"
 alias ipl4="ip --brief -4 addr"
 alias ipl6="ip --brief -6 addr"
 
+## Get local MACs
+alias macl="ip --brief link"
+
 # {M,Unm}ount keyusb
 alias keyusb-mount="sudo cryptsetup open /dev/disk/by-partuuid/28e23ac4-b0e5-47c3-bc1d-11fbd3b4fbc3 keyusb && sudo mount /dev/mapper/keyusb /media/usb/keyusb"
 alias keyusb-umount="sudo umount /media/usb/keyusb && sudo cryptsetup close keyusb"
