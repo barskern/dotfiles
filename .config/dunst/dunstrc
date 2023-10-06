@@ -418,4 +418,8 @@
     appname = bugwarrior
     format = "<big><b>%s</b></big>\n%b"
 
+[teams]
+    appname = teams-for-linux
+    format = "<big><b>%s</b></big>\n%b"
+
 # vim: ft=cfg
