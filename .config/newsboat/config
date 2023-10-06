@@ -20,6 +20,7 @@ macro m set browser "mpv %u >/dev/null 2>/dev/null &"; open-in-browser ; set bro
 # }}}
 # Interface Settings {{{
 
+datetime-format          "%H:%M %A %Y-%m-%d"
 feedlist-title-format    "%N - (%u unread, %t total)%?T? - tag `%T'&?"
 feedlist-format          "%4i %n %t %> %u"
 articlelist-format       "%4i %f %?T?|%-17T|  ?%t %> %L  %D "
