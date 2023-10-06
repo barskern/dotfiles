@@ -1,0 +1,6 @@
+[Unit]
+Description=Newsboat syncronization service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/scripts/newsboatsync

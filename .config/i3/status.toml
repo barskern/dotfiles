@@ -7,6 +7,16 @@ icons = "/home/oruud/.config/i3/awesome.toml"
 block = "watson"
 
 [[block]]
+block = "custom"
+json = true
+signal = 12
+command = """
+[[ -e "/tmp/newsboatsyncicon_oruud" ]] \
+	&& echo '{"state":"Info","text":"' $(cat /tmp/newsboatsyncicon_$USER) '"}' \
+	|| echo '{}'
+"""
+
+[[block]]
 block = "music"
 player = "spotify"
 format = " $icon {$combo.str(max_w:20,rot_interval:0.5)|} "

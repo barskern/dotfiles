@@ -1,0 +1,85 @@
+# System Setting {{{
+
+# Keep the cache small as possible.
+max-items 100
+history-limit 0
+
+# }}}
+# Browser Settings {{{
+
+#external-url-viewer     "kitty +kitten hints"
+
+browser                 "w3m %u"
+player "mpv"
+
+# macro , open-in-browser
+macro b set browser "$BROWSER %u"; open-in-browser ; set browser "w3m %u"
+macro m set browser "mpv %u >/dev/null 2>/dev/null &"; open-in-browser ; set browser "w3m %u"
+#macro m set browser "$TERMCMD -e mpv -- %u &"; open-in-browser; set browser "w3m %u"
+
+# }}}
+# Interface Settings {{{
+
+feedlist-title-format    "%N - (%u unread, %t total)%?T? - tag `%T'&?"
+feedlist-format          "%4i %n %t %> %u"
+articlelist-format       "%4i %f %?T?|%-17T|  ?%t %> %L  %D "
+articlelist-title-format "%T - %U - (%u unread, %t total)"
+# articlelist-title-format "%N %V - Articles in feed '%T' (%u unread, %t total) - %U"
+
+prepopulate-query-feeds yes
+auto-reload yes
+cleanup-on-quit yes
+reload-threads 20
+text-width 100
+
+# }}}
+# Interface Colors {{{
+
+color info              color15 color235 bold
+color listfocus         color10 color237
+color listfocus_unread  color9  color237
+color listnormal        color7  default
+color listnormal_unread color15 default
+
+# }}}
+# Keymap Bindings {{{
+
+# unbind-key j
+# unbind-key k
+# unbind-key q
+# unbind-key g
+# unbind-key G
+# unbind-key N
+# unbind-key n
+# unbind-key a
+# unbind-key h
+# unbind-key l
+# unbind-key u
+# unbind-key d
+# unbind-key g
+# unbind-key f
+
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+
+# bind-key D pb-download
+# bind-key U show-urls
+# bind-key x pb-delete
+
+# f to follow links (like qutebrowser)
+bind-key f goto-url
+
+# }}}
