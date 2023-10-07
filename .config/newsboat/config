@@ -4,6 +4,15 @@
 max-items 100
 history-limit 0
 
+download-path "~/Downloads/%n"
+save-path "~/Downloads"
+
+prepopulate-query-feeds yes
+auto-reload yes
+cleanup-on-quit yes
+reload-threads 20
+text-width 100
+
 # }}}
 # Browser Settings {{{
 
@@ -26,12 +35,6 @@ feedlist-format          "%4i %n %t %> %u"
 articlelist-format       "%4i %f %?T?|%-17T|  ?%t %> %L  %D "
 articlelist-title-format "%T - %U - (%u unread, %t total)"
 # articlelist-title-format "%N %V - Articles in feed '%T' (%u unread, %t total) - %U"
-
-prepopulate-query-feeds yes
-auto-reload yes
-cleanup-on-quit yes
-reload-threads 20
-text-width 100
 
 # }}}
 # Interface Colors {{{
