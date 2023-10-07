@@ -576,8 +576,8 @@ if has('autocmd')
 		autocmd!
 		autocmd FileType mail set wrap linebreak nolist tw=0
 		" Workaround due to lightline not being enabled (https://github.com/junegunn/goyo.vim/issues/207)
-		autocmd FileType mail call lightline#init()
-		autocmd FileType mail :Goyo
+		"autocmd FileType mail call lightline#init()
+		"autocmd FileType mail :Goyo
 
 		" Delete to signature
 		autocmd FileType mail nmap <buffer> <leader>md d/^--\s\?$<CR>
