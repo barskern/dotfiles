@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# Sync articles in newsboat and give a notification if there are more unread articles (or just i3status symbol)
+#
+
+#rss_icon=""
+refresh_icon=""
+#rss_icon=""
+rss_icon="󰑬"
+
+# Run only if user logged in (prevent cron errors)
+pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
+# Run only if not already running in other instance
+pgrep -x newsboat >/dev/null && { echo "newsboat is already running." ; exit ;}
+
+# Checks for internet connection and set notification script.
+ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; exit ;}
+command -v notify-send >/dev/null || echo "Note that \`libnotify\` or \`libnotify-send\` should be installed for pop-up mail notifications with this script."
+
+# Required to display notifications if run as a cronjob:
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+export DISPLAY=:0.0
+
+# Settings are different for MacOS (Darwin) systems.
+if [ "$(uname)" = "Darwin" ]; then
+	notify() { osascript -e "display notification \"Unread RSS article(s)\" with title \"$rss_icon $unread new RSS article(s)\"" && sleep 2 ;}
+else
+	notify() { notify-send --app-name="newsboatsync" "newsboatsync" "$rss_icon $unread new RSS article(s)" ;}
+fi
+
+tmp_newsboat_old_count="/tmp/newsboatsync-old-count"
+tmp_newsboat_icon="/tmp/newsboatsyncicon_$USER"
+
+echo " $rss_icon $refresh_icon " > "$tmp_newsboat_icon"
+( pkill -SIGRTMIN+12 "${STATUSBAR:-i3status-rs}" >/dev/null 2>&1 ) 2>/dev/null
+
+newsboat -x reload || echo "Unable to run 'newsboat -x reload'"
+
+newcount=$(newsboat -x print-unread | cut -f 1 -d ' ')
+oldcount=$(cat "$tmp_newsboat_old_count" 2>/dev/null || echo "0")
+echo "Old count was $oldcount and new were $newcount"
+# if [ ! -z "$oldcount" ] && [ "$newcount" -gt "$oldcount" ]; then
+# 	$unread="$newcount"
+# 	notify
+# fi
+echo "$newcount" > "$tmp_newsboat_old_count"
+
+echo " $rss_icon $newcount" > "$tmp_newsboat_icon"
+
+( pkill -SIGRTMIN+12 "${STATUSBAR:-i3status-rs}" >/dev/null 2>&1 ) 2>/dev/null
