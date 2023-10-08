@@ -18,13 +18,17 @@ text-width 100
 
 #external-url-viewer     "kitty +kitten hints"
 
-browser                 "w3m %u"
+browser "$BROWSER %u"
 player "mpv"
 
-# macro , open-in-browser
-macro b set browser "$BROWSER %u"; open-in-browser ; set browser "w3m %u"
-macro m set browser "mpv %u >/dev/null 2>/dev/null &"; open-in-browser ; set browser "w3m %u"
+macro r set browser "firefox \"about:reader?url=%u\""; open-in-browser ; set browser "$BROWSER %u"
+macro m set browser "mpv %u >/dev/null 2>/dev/null &"; open-in-browser ; set browser "$BROWSER %u"
 #macro m set browser "$TERMCMD -e mpv -- %u &"; open-in-browser; set browser "w3m %u"
+
+# Handy flags
+#
+# Flag to watch later, used for YouTube videos
+macro w edit-flags w
 
 # }}}
 # Interface Settings {{{
