@@ -37,7 +37,7 @@ macro w edit-flags w
 datetime-format          "%H:%M %A %Y-%m-%d"
 feedlist-title-format    "%N - (%u unread, %t total)%?T? - tag `%T'&?"
 feedlist-format          "%4i %n %t %> %u"
-articlelist-format       "%4i %f %?T?|%-17T|  ?%t %> %L  %D "
+articlelist-format       "%4i %f %?T?|%-30T|  ?%t %> %L  %D "
 articlelist-title-format "%T - %U - (%u unread, %t total)"
 # articlelist-title-format "%N %V - Articles in feed '%T' (%u unread, %t total) - %U"
 
