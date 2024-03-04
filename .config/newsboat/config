@@ -106,3 +106,10 @@ bind-key U show-urls
 bind-key f goto-url
 
 # }}}
+
+# Killfiles {{{
+
+# Patch notes are too noisy!
+ignore-article "https://steamcommunity.com/games/1366540/rss/" "title =~ \".*Patch Notes.*\""
+
+# }}}
