@@ -2,7 +2,7 @@ defaults
 auth	on
 tls	on
 tls_trust_file	/etc/ssl/certs/ca-certificates.crt
-logfile	~/.config/msmtp/msmtp.log
+#logfile	~/.config/msmtp/msmtp.log
 
 account post
 host smtp.domeneshop.no
@@ -27,42 +27,42 @@ from dev@barskern.no
 user barskern2
 passwordeval "pass mutt-wizard-dev"
 
+# Expired!
+#account student
+#host smtp.office365.com
+#port 587
+#from 237334@usn.no
+#user 237334@usn.no
+#passwordeval "pass mutt-wizard-student"
 
-account student
-host smtp.office365.com
-port 587
-from 237334@usn.no
-user 237334@usn.no
-passwordeval "pass mutt-wizard-student"
+# Expired!
+#account student-polimi
+#host smtp.office365.com
+#port 587
+#from olemartin.ruud@mail.polimi.it
+#user 10875441@polimi.it
+#passwordeval "pass mutt-wizard-student-polimi"
 
+# Unnused...
+#account hoved-old
+#host smtp-mail.outlook.com
+#port 587
+#from olemartinruud@outlook.com
+#user olemartinruud@outlook.com
+#passwordeval "pass mutt-wizard-hoved-old"
 
-account student-polimi
-host smtp.office365.com
-port 587
-from olemartin.ruud@mail.polimi.it
-user 10875441@polimi.it
-passwordeval "pass mutt-wizard-student-polimi"
+# Unnused...
+#account dev-old
+#host smtp-mail.outlook.com
+#port 587
+#from barskern@outlook.com
+#user barskern@outlook.com
+#passwordeval "pass mutt-wizard-dev-old"
 
-
-account hoved-old
-host smtp-mail.outlook.com
-port 587
-from olemartinruud@outlook.com
-user olemartinruud@outlook.com
-passwordeval "pass mutt-wizard-hoved-old"
-
-
-account dev-old
-host smtp-mail.outlook.com
-port 587
-from barskern@outlook.com
-user barskern@outlook.com
-passwordeval "pass mutt-wizard-dev-old"
-
-
-account work
-host smtp-mail.outlook.com
-port 587
-from ole.martin.ruud@argossolutions.no
-user ole.martin.ruud@argossolutions.no
-passwordeval "pass mutt-wizard-work"
+# Not working anymore...
+#account work
+#host smtp-mail.outlook.com
+#port 587
+#from ole.martin.ruud@argossolutions.no
+#user ole.martin.ruud@argossolutions.no
+#passwordeval "pass mutt-wizard-work"
