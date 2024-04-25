@@ -1,0 +1,50 @@
+# vim: filetype=neomuttrc
+# muttrc file for combined notmuch tab
+set realname = "Ole Martin Ruud"
+set from = "post@barskern.no"
+# TODO figure out this, how to send from here!
+set sendmail = "msmtp -a post"
+alias me Ole Martin Ruud <post@barskern.no>
+set folder = "/home/oruud/.local/share/mail/combined"
+set header_cache = /home/oruud/.cache/mutt-wizard/combined/headers
+set message_cachedir = /home/oruud/.cache/mutt-wizard/combined/bodies
+set mbox_type = Maildir
+set signature = ~/.config/mutt/signature.nb
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index,pager M noop
+bind index,pager C noop
+bind index gg first-entry
+macro index o "<shell-escape>mailsync<enter>" "run mbsync to sync all mail"
+unmailboxes *
+unvirtual-mailboxes *
+
+set virtual_spoolfile = yes
+virtual-mailboxes \
+        "Unread"    "notmuch://?query=tag:unread"\
+        "Inbox"     "notmuch://?query=tag:inbox and NOT tag:archive"\
+        "Drafts"    "notmuch://?query=tag:drafts"\
+        "Sent"      "notmuch://?query=tag:sent"\
+        "Archive"   "notmuch://?query=tag:archive"\
+        "Spam"      "notmuch://?query=tag:spam"\
+        "Deleted"   "notmuch://?query=tag:deleted"
+
+macro index,pager gi "<change-vfolder>Inbox<enter>" "go to inbox"
+macro index,pager Mi "<modify-labels-then-hide>+inbox -archive -deleted -draft -spam<enter>" "mark as inbox"
+macro index,pager Ci noop
+macro index,pager gs "<change-vfolder>Sent<enter>" "go to sent"
+macro index,pager Ms "<modify-labels-then-hide>+sent -unread -inbox<enter>" "mark as sent"
+macro index,pager Cs noop
+macro index,pager gd "<change-vfolder>Drafts<enter>" "go to drafts"
+macro index,pager Md noop
+macro index,pager Cd noop
+macro index,pager gt "<change-vfolder>Deleted<enter>" "go to deleted"
+macro index,pager Mt "<modify-labels-then-hide>+deleted -unread -inbox<enter>" "mark as deleted"
+macro index,pager Ct noop
+macro index,pager gS "<change-vfolder>Spam<enter>" "go to spam"
+macro index,pager MS "<modify-labels-then-hide>+spam -unread -inbox<enter>" "mark as spam"
+macro index,pager CS noop
+macro index,pager ga "<change-vfolder>Archive<enter>" "go to archive"
+macro index,pager Ma "<modify-labels-then-hide>+archive -unread -inbox<enter>" "mark as archived"
+macro index,pager Ca noop

@@ -16,6 +16,8 @@ bind index,pager M noop
 bind index,pager C noop
 bind index gg first-entry
 macro index o "<shell-escape>mailsync post<enter>" "run mbsync to sync post"
+set virtual_spoolfile = no
+unvirtual-mailboxes *
 unmailboxes *
 
 set spoolfile = "+INBOX"

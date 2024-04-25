@@ -1,3 +1,4 @@
+# Common formats etc
 set date_format="%d/%m/%y %H:%M"
 set index_format="%2C %Z %?X?A& ? %D %-20.20F %s"
 set signature = ~/.config/mutt/signature.nb
@@ -46,3 +47,29 @@ macro attach K "<enter-command>unset wait_key<enter><shell-escape>rm -f /tmp/eve
 
 # Display filter to show messages with local timestamp
 set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %a, %d %b %Y %H:%M:%S %z' -d '\\1'/e\""
+
+# Notmuch config
+set nm_default_url = "notmuch:///home/oruud/.local/share/mail"
+set nm_db_limit = 5000
+set nm_query_type = messages
+set nm_record = yes
+set nm_record_tags = "-inbox,archive"
+#set nm_query_window_enable = yes
+#set nm_query_window_duration = 2
+#set nm_query_window_timebase = "week"
+
+# open a different virtual folder
+bind index,pager X change-vfolder
+# read entire thread of the current message
+bind index,pager + entire-thread
+# generate virtual folder from query
+macro index \\\\ "<vfolder-from-query>"
+# generate virtual folder from query with time window
+bind index < vfolder-window-backward
+bind index > vfolder-window-forward
+
+#macro index A "<modify-labels>+archive -unread -inbox<enter>"        # tag as Archived
+#macro index I "<modify-labels>-inbox -unread<enter>"                 # removed from inbox
+#macro index S "<modify-labels-then-hide>-inbox -unread +junk<enter>" # tag as Junk mail
+#macro index + "<modify-labels>+*<enter><sync-mailbox>"               # tag as starred
+#macro index - "<modify-labels>-*<enter><sync-mailbox>"               # tag as unstarred
