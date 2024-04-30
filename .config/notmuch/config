@@ -7,7 +7,7 @@ primary_email=post@barskern.no
 other_email=dev@barskern.no;nett@barskern.no;ole.martin.ruud@argossolutions.no;237334@usn.no
 
 [new]
-tags=inbox;unread;
+tags=new
 ignore=.mbsyncstate;.uidvalidity;
 
 [search]

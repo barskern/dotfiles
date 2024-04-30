@@ -57,6 +57,11 @@ fi
 echo " 🔃" > /tmp/imapsyncicon_"$USER"
 ( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
 
+# Run a pre-sync notmuch script
+NOTMUCH_SYNC_SCRIPT="$HOME/.local/share/mail/.notmuch/hooks/pre-sync.sh"
+type &>/dev/null "$NOTMUCH_SYNC_SCRIPT" && \
+	"$NOTMUCH_SYNC_SCRIPT"
+
 for account in $accounts
 do
     syncandnotify
@@ -68,7 +73,8 @@ rm -f /tmp/imapsyncicon_"$USER"
 
 echo "Updating notmuch database and tags"
 notmuch new
-notmuch tag --batch --input ~/.config/notmuch/tag-rules
+# Run through notmuch hooks instead
+#notmuch tag --batch --input ~/.config/notmuch/tag-rules
 
 #Create a touch file that indicates the time of the last run of mailsync
 touch "$HOME/.config/mutt/.mailsynclastrun"
