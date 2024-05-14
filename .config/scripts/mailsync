@@ -58,7 +58,7 @@ echo " 🔃" > /tmp/imapsyncicon_"$USER"
 ( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
 
 # Run a pre-sync notmuch script
-NOTMUCH_SYNC_SCRIPT="$HOME/.local/share/mail/.notmuch/hooks/pre-sync.sh"
+NOTMUCH_SYNC_SCRIPT="$HOME/.local/share/mail/.notmuch/hooks/pre-sync"
 type &>/dev/null "$NOTMUCH_SYNC_SCRIPT" && \
 	"$NOTMUCH_SYNC_SCRIPT"
 
