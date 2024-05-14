@@ -10,6 +10,10 @@ set message_cachedir = /home/oruud/.cache/mutt-wizard/dev/bodies
 set mbox_type = Maildir
 set signature = ~/.config/mutt/signature.en
 
+# We have to reset the default behaviour here (other in virtual mailbox)
+bind index D delete-message
+bind index U undelete-message
+
 bind index,pager gg noop
 bind index,pager g noop
 bind index,pager M noop

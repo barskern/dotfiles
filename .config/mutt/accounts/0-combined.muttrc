@@ -2,7 +2,7 @@
 # muttrc file for combined notmuch tab
 set realname = "Ole Martin Ruud"
 set from = "post@barskern.no"
-# TODO figure out this, how to send from here!
+# TODO figure out this, how to send from here from possibly multiple accounts!
 set sendmail = "msmtp -a post"
 alias me Ole Martin Ruud <post@barskern.no>
 set folder = "/home/oruud/.local/share/mail/combined"
@@ -10,6 +10,10 @@ set header_cache = /home/oruud/.cache/mutt-wizard/combined/headers
 set message_cachedir = /home/oruud/.cache/mutt-wizard/combined/bodies
 set mbox_type = Maildir
 set signature = ~/.config/mutt/signature.nb
+
+# We need these custom binds here to prevent hard-deleting with D
+macro index D "<modify-labels-then-hide>+deleted -unread -inbox<enter>" "delete message"
+macro index U "<modify-labels-then-hide>-deleted +inbox<enter>" "undelete message"
 
 bind index,pager gg noop
 bind index,pager g noop

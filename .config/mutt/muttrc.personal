@@ -4,6 +4,9 @@ set index_format="%2C %Z %?X?A& ? %D %-20.20F %s"
 set signature = ~/.config/mutt/signature.nb
 set mailcap_path = ~/.config/mutt/mailcap
 
+# Use the trash folder instead of deleting
+set maildir_trash = yes
+
 # automatically show ics (mailcap uses khal)
 auto_view text/calendar
 unalternative_order *
@@ -53,7 +56,7 @@ set nm_default_url = "notmuch:///home/oruud/.local/share/mail"
 set nm_db_limit = 5000
 set nm_query_type = messages
 set nm_record = yes
-set nm_record_tags = "-inbox,archive"
+set nm_record_tags = "-inbox,sent,me,read"
 #set nm_query_window_enable = yes
 #set nm_query_window_duration = 2
 #set nm_query_window_timebase = "week"
