@@ -12,6 +12,8 @@ set mbox_type = Maildir
 set signature = ~/.config/mutt/signature.nb
 
 # We need these custom binds here to prevent hard-deleting with D
+unbind index D
+unbind index U
 macro index D "<modify-labels-then-hide>+deleted -unread -inbox<enter>" "delete message"
 macro index U "<modify-labels-then-hide>-deleted +inbox<enter>" "undelete message"
 

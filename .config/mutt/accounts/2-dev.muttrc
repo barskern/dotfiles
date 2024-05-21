@@ -11,6 +11,8 @@ set mbox_type = Maildir
 set signature = ~/.config/mutt/signature.en
 
 # We have to reset the default behaviour here (other in virtual mailbox)
+unmacro index D
+unmacro index U
 bind index D delete-message
 bind index U undelete-message
 
