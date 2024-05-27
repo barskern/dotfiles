@@ -7,19 +7,37 @@ icons = "/home/oruud/.config/i3/awesome.toml"
 block = "watson"
 
 [[block]]
+block = "packages"
+package_manager = ["pacman", "aur"]
+interval = 6000
+error_interval = 500
+# aur_command should output available updates to stdout (ie behave as echo -ne "update\n")
+aur_command = "yay -Qua"
+signal = 13
+
+[[block]]
 block = "custom"
 json = true
 signal = 12
 command = """
 [[ -e "/tmp/newsboatsyncicon_oruud" ]] \
-	&& echo '{"state":"Info","text":"' $(cat /tmp/newsboatsyncicon_$USER) '"}' \
+	&& echo '{"state":"Info","text":"'$(cat /tmp/newsboatsyncicon_$USER)'"}' \
 	|| echo '{}'
 """
 
 [[block]]
-block = "music"
-player = "spotify"
-format = " $icon {$combo.str(max_w:20,rot_interval:0.5)|} "
+block = "notmuch"
+query = "tag:unread and tag:inbox"
+maildir = "~/.local/share/mail"
+threshold_info = 3
+threshold_warning = 10
+threshold_critical = 20
+signal = 14
+
+#[[block]]
+#block = "music"
+#player = "spotify"
+#format = "$icon {$combo.str(max_w:20,rot_interval:0.5)|} "
 
 [[block]]
 block = "bluetooth"
@@ -30,19 +48,19 @@ disconnected_format = ""
 [[block]]
 block = "bluetooth"
 mac = "60:AB:D2:65:5F:7A"
-format = " $icon swimr "
+format = "$icon swimr"
 disconnected_format = ""
 
 [[block]]
 block = "bluetooth"
 mac = "2C:41:A1:83:12:64"
-format = " $icon bosie "
+format = "$icon bosie"
 disconnected_format = ""
 
 [[block]]
 block = "bluetooth"
 mac = "74:5C:4B:6C:49:0B"
-format = " $icon jabbie "
+format = "$icon jabbie"
 disconnected_format = ""
 
 [[block]]
@@ -51,20 +69,22 @@ block = "sound"
 [[block]]
 block = "net"
 interval = 5
-format = " $icon{ $ip| No IP-address} via {'$ssid'|wire} "
+format = "$icon {$ip|No IP-address} via {'$ssid'|wire}"
 missing_format = " ^icon_net no network "
 
 [[block]]
 block = "memory"
-format = " $icon $mem_used.eng(w:1,prefix:M)/$mem_total.eng(w:1,prefix:M) ($mem_used_percents.eng(w:2)) "
+#format = " $icon $mem_used.eng(w:1,prefix:M)/$mem_total.eng(w:1,prefix:M) ($mem_used_percents.eng(w:2))"
+format = " $icon $mem_used.eng(w:1,prefix:M)/$mem_total.eng(w:1,prefix:M)"
 
 [[block]]
 block = "load"
+format = " $icon $1m.eng(w:3)"
 
 [[block]]
 block = "cpu"
-format = " $icon  $barchart $utilization.eng(w:2) "
-format_alt = " $icon $frequency.eng(){ $boost.str()|} "
+format = " $icon $utilization"
+format_alt = " $icon $frequency.eng(){ $boost.str()|}"
 
 [[block]]
 block = "nvidia_gpu"
@@ -79,6 +99,13 @@ short = " $icon $timestamp.datetime(f:%R) "
 [[block.click]]
 button = "left"
 cmd = "alacritty --class floater -e ikhal"
+
+[[block]]
+block = "privacy"
+[[block.driver]]
+name = "v4l"
+[[block.driver]]
+name = "pipewire"
 
 [[block]]
 block = "custom"
