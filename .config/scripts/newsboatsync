@@ -7,6 +7,8 @@
 refresh_icon=""
 #rss_icon=""
 rss_icon="󰑬"
+status_bar="${STATUSBAR:-i3status-rs}"
+signal=12
 
 # Run only if user logged in (prevent cron errors)
 pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
@@ -31,8 +33,8 @@ fi
 tmp_newsboat_old_count="/tmp/newsboatsync-old-count"
 tmp_newsboat_icon="/tmp/newsboatsyncicon_$USER"
 
-echo " $rss_icon $refresh_icon " > "$tmp_newsboat_icon"
-( pkill -SIGRTMIN+12 "${STATUSBAR:-i3status-rs}" >/dev/null 2>&1 ) 2>/dev/null
+echo "$rss_icon $refresh_icon" > "$tmp_newsboat_icon"
+( pkill -SIGRTMIN+$signal "$status_bar" >/dev/null 2>&1 ) 2>/dev/null
 
 newsboat -x reload || echo "Unable to run 'newsboat -x reload'"
 
@@ -45,6 +47,6 @@ echo "Old count was $oldcount and new were $newcount"
 # fi
 echo "$newcount" > "$tmp_newsboat_old_count"
 
-echo " $rss_icon $newcount" > "$tmp_newsboat_icon"
+echo "$rss_icon $newcount" > "$tmp_newsboat_icon"
 
-( pkill -SIGRTMIN+12 "${STATUSBAR:-i3status-rs}" >/dev/null 2>&1 ) 2>/dev/null
+( pkill -SIGRTMIN+$signal "$status_bar" >/dev/null 2>&1 ) 2>/dev/null
