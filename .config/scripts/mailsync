@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Sync mail and give notification if there is new mail.
-mail_dir="$mail_dir"
+mail_dir="/home/oruud/.local/share/mail"
 status_bar="${STATUSBAR:-i3status-rs}"
 signal=14
 
