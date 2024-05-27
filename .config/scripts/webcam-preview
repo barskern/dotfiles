@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Microphone
+afmt=pulse
+asrc=default
+
+if [[ "$1" = 'ir' ]]; then
+	# IR Camera
+	ifmt=gray
+	pxfmt=yuyv422
+	vsrc=/dev/video2
+	fps=15
+	res=640x480
+else
+	# Normal
+	ifmt=mjpeg
+	pxfmt=yuyv422
+	vsrc=/dev/video0
+	fps=30
+	res=1280x720
+	#res=640x480
+fi
+
+ffmpeg \
+	-hide_banner \
+	-loglevel error \
+	-f $afmt \
+	-ac 2 \
+	-i $asrc \
+	-f v4l2 \
+	-pixel_format $pxfmt \
+	-video_size $res \
+	-framerate $fps \
+	-input_format $ifmt \
+	-i $vsrc \
+	-c:v libx264 \
+	-preset ultrafast \
+	-pix_fmt yuv420p \
+	-c:a aac \
+	-b:a 160k \
+	-ar 44100 \
+	-threads 0 \
+	-f flv \
+	- \
+| ffplay \
+	-hide_banner \
+	-loglevel error \
+	-sync ext \
+	-
