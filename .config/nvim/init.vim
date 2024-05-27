@@ -71,6 +71,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-python/python-syntax'
 Plug 'vim-ruby/vim-ruby'
+Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
 
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -161,6 +162,10 @@ let g:vimtex_view_method = 'zathura'
 
 " coc.nvim
 
+" Set custom filetypes for coc
+let g:coc_filetype_map = {
+  \ 'yaml.ansible': 'ansible',
+  \ }
 " Disable coc on startup because simple file viewings don't need it!
 let g:coc_start_at_startup = 0
 " Better display for messages
