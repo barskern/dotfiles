@@ -1,0 +1,36 @@
+#!/bin/bash
+
+dest_dir=~/Pictures/webcam
+
+if [[ "$1" = 'ir' ]]; then
+	# IR Camera
+	ifmt=gray
+	pxfmt=yuyv422
+	vsrc=/dev/video2
+	fps=15
+	res=640x480
+	ss=0
+else
+	# Normal
+	ifmt=mjpeg
+	pxfmt=yuyv422
+	vsrc=/dev/video0
+	fps=30
+	res=1280x720
+	#res=640x480
+	ss=0.5
+fi
+
+mkdir -p $dest_dir
+ffmpeg \
+	-hide_banner \
+	-loglevel error \
+	-f v4l2 \
+	-pixel_format $pxfmt \
+	-video_size $res \
+	-framerate $fps \
+	-input_format $ifmt \
+	-i $vsrc \
+	-ss $ss \
+	-frames 1 \
+	$dest_dir/$(date +%Y-%m-%dT%H:%M:%S%z).png
