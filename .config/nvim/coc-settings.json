@@ -2,8 +2,18 @@
 	"ltex.latex.commands": {
 		"\\label{}": "ignore",
 		"\\documentclass[]{}": "ignore",
-		"\jtodo[]{}": "ignore"
+		"\\todo[]{}": "ignore"
 	},
+	"workspace.ignoredFolders": [
+		"$HOME",
+		"$HOME/.cargo/**",
+		"$HOME/.rustup/**"
+	],
+	"rust-analyzer.lens.enable": false,
+	"rust-analyzer.lens.implementations.enable": false,
+	"rust-analyzer.inlayHints.typeHints.enable": false,
+	"rust-analyzer.inlayHints.chainingHints.enable": false,
+	"rust-analyzer.inlayHints.parameterHints.enable": false,
 	"ltex.completionEnabled": true,
 	"ltex.additionalRules.enablePickyRules": true,
 	"python.formatting.provider": "black",
@@ -160,5 +170,6 @@
 		}
 	},
 	"git.enableGutters": true,
-	"snippets.ultisnips.pythonPrompt": false
+	"snippets.ultisnips.pythonPrompt": false,
+	"pyright.inlayHints.parameterTypes": false
 }
