@@ -3,7 +3,7 @@ Host imap.domeneshop.no
 Port  993
 User barskern1
 PassCmd "pass mutt-wizard-post"
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 MaildirStore post-local
@@ -29,7 +29,7 @@ Host imap.domeneshop.no
 Port  993
 User barskern3
 PassCmd "pass mutt-wizard-nett"
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 MaildirStore nett-local
@@ -55,7 +55,7 @@ Host imap.domeneshop.no
 Port  993
 User barskern2
 PassCmd "pass mutt-wizard-dev"
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 MaildirStore dev-local
@@ -85,7 +85,7 @@ ExpireUnread no
 #User 237334@usn.no
 #PassCmd "pass mutt-wizard-student"
 #AuthMechs LOGIN
-#SSLType IMAPS
+#TLSType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 
@@ -112,7 +112,7 @@ ExpireUnread no
 #User 10875441@polimi.it
 #PassCmd "pass mutt-wizard-student-polimi"
 #AuthMechs LOGIN
-#SSLType IMAPS
+#TLSType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 
@@ -140,7 +140,7 @@ ExpireUnread no
 #User ole.martin.ruud@argossolutions.no
 #PassCmd "pass mutt-wizard-work"
 #AuthMechs LOGIN
-#SSLType IMAPS
+#TLSType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 #MaildirStore work-local
@@ -165,7 +165,7 @@ ExpireUnread no
 #Port  993
 #User olemartinruud@outlook.com
 #PassCmd "pass mutt-wizard-hoved-old"
-#SSLType IMAPS
+#TLSType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 #MaildirStore hoved-old-local
@@ -190,7 +190,7 @@ ExpireUnread no
 #Port  993
 #User barskern@outlook.com
 #PassCmd "pass mutt-wizard-dev-old"
-#SSLType IMAPS
+#TLSType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 #MaildirStore dev-old-local
