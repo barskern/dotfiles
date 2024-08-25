@@ -103,12 +103,12 @@ mods = "Control"
 
 [[keyboard.bindings]]
 action = "IncreaseFontSize"
-key = "NumpadAdd"
+key = "+"
 mods = "Control"
 
 [[keyboard.bindings]]
 action = "DecreaseFontSize"
-key = "NumpadSubtract"
+key = "-"
 mods = "Control"
 
 [[keyboard.bindings]]
