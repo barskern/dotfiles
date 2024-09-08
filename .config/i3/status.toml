@@ -53,6 +53,12 @@ disconnected_format = ""
 
 [[block]]
 block = "bluetooth"
+mac = "F8:4E:17:E0:20:CC"
+format = "$icon WH-1000XM4"
+disconnected_format = ""
+
+[[block]]
+block = "bluetooth"
 mac = "2C:41:A1:83:12:64"
 format = "$icon bosie"
 disconnected_format = ""
