@@ -1,20 +1,23 @@
 "query:Unread Articles:unread = \"yes\" and tags !# \"youtube\""
 
-https://www.factorio.com/blog/rss "gaming" "official"
+https://www.factorio.com/blog/rss "blog" "gaming" "official"
+https://www.captain-of-industry.com/blog-feed.xml "blog" "gaming" "official"
+https://steamcommunity.com/games/1366540/rss/ "gaming" "official" "~Dyson Sphere Program"
 
-https://steamcommunity.com/games/1366540/rss/ "gaming" "official"
+
+https://archlinux.org/feeds/news/ "news" "distro" "linux" "~Arch Linux"
+https://blog.rust-lang.org/feed.xml "blog" "rust" "programming" "~Rust Blog"
+
 
 # These are too spammy
 #https://www.nrk.no/nyheter/siste.rss "news" "nrk" "~NRK Siste"
 #https://news.ycombinator.com/rss "news" "tech" "~HackerNews"
 #https://www.nrk.no/viten/toppsaker.rss "news" "nrk" "~NRK Viten"
-#https://www.hashicorp.com/blog/feed.xml "news" "terraform" "nomad" "consul" "vault"
+#https://www.hashicorp.com/blog/feed.xml "blog" "terraform" "nomad" "consul" "vault"
 
-https://archlinux.org/feeds/news/ "news" "distro" "linux" "~Arch Linux"
-https://blog.rust-lang.org/feed.xml "news" "rust" "programming" "~Rust Blog"
-
-"query:YouTube - Watch Later:tags # \"youtube\" and flags # \"w\""
-"query:YouTube - Subscriptions:tags # \"youtube\""
+# Too many youtube shorts... How to remove them?
+#"query:YouTube - Watch Later:tags # \"youtube\" and flags # \"w\""
+#"query:YouTube - Subscriptions:tags # \"youtube\""
 
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0MHs87ehhLOtPQf_bAWDEA "!" "youtube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0vBXGSyV14uvJ4hECDOl0Q "!" "youtube"
