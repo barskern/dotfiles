@@ -1,6 +1,8 @@
 [Unit]
 Description=Newsboat syncronization service
+Requires=unmetered-connection.service
+After=unmetered-connection.service
 
 [Service]
 Type=oneshot
-ExecStart=%h/.config/scripts/newsboatsync
+ExecStart=%E/scripts/newsboatsync

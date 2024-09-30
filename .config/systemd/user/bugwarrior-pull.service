@@ -1,9 +1,8 @@
 [Unit]
 Description=Run bugwarrior-pull to fetch tasks
+Requires=unmetered-connection.service
+After=unmetered-connection.service
 
 [Service]
 ExecStart=/usr/bin/bugwarrior pull
 Type=oneshot
-
-[Install]
-WantedBy=default.target

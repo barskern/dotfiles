@@ -1,0 +1,11 @@
+# This file is based on /usr/lib/systemd/system/systemd-networkd-wait-online.service
+
+[Unit]
+Description=Wait for Network to be Configured
+ConditionCapability=CAP_NET_ADMIN
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/systemd-networkd-wait-online --ignore docker0 --ignore=tailscale0 --any
+RemainAfterExit=yes

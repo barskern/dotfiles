@@ -1,0 +1,8 @@
+[Unit]
+Description=Check if the current connection is metered (aka. iPhone Hotspot)
+Requires=network-wait-online.service
+After=network-wait-online.service
+
+[Service]
+Type=oneshot
+ExecStart=%E/scripts/check-metered-connection.sh

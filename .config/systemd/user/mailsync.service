@@ -1,6 +1,8 @@
 [Unit]
 Description=Mailbox synchronization service
+Requires=unmetered-connection.service
+After=unmetered-connection.service
 
 [Service]
 Type=oneshot
-ExecStart=%h/.config/scripts/mailsync
+ExecStart=%E/scripts/mailsync
