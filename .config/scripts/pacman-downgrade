@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Downgrade an Arch package
+#
+
+set -e
+
+archive_base_url="https://europe.archive.pkgbuild.com"
+
+pkg_name="$1"
+version="$2"
+
+pkg="${pkg_name}-${version}"
+
+dest=$(mktemp -d "/tmp/$pkg.XXXXXX")
+mkdir -p $dest
+cd $dest
+echo "Moved to '$dest'"
+echo "Downloading pkg and sig from archive..."
+
+for arch in x86_64 any; do
+	pkg_archive="$pkg-$arch.pkg.tar.zst"
+
+	wget \
+		--no-verbose \
+		"$archive_base_url/packages/${pkg_name:0:1}/$pkg_name/$pkg_archive" \
+		&& break
+
+	pkg_archive=""
+done
+
+[ -z "$pkg_archive" ] && {
+	echo "Error: Did not find any archive packages for '$pkg'"
+	exit 1;
+}
+
+sudo pacman -U $pkg_archive
+
+echo "Remember to add (and remove) the package from /etc/pacman.conf"
