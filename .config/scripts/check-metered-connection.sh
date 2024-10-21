@@ -29,7 +29,7 @@ if [[ "$wireless_online" = "false" ]]; then
 fi
 
 ssid=$(wpa_cli status | grep '^ssid=' | sed 's/^ssid=//')
-if [[ "$ssid" =~ "sin iPhone" ]]; then
+if [[ "$ssid" =~ "s iPhone" ]]; then
 	echo "Connection through '$ssid' is metered!";
 	exit 1;
 else
