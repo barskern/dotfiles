@@ -77,52 +77,6 @@ for_window [instance="floater"] floating enable
 
 # }}}
 
-# Bars {{{
-
-# Bar for primary
-bar {
-	font pango:monospace, FontAwesome 12
-	position bottom
-	output primary
-	status_command i3status-rs ~/.config/i3/status.toml
-	tray_output primary
-
-	colors {
-		background $black
-		statusline $white
-		separator  $white
-
-		# Colors           border        background   text
-		focused_workspace  $bright_black $xgray3      $yellow
-		active_workspace   $xgray3       $xgray3      $bright_black
-		inactive_workspace $xgray3       $xgray1      $bright_black
-		urgent_workspace   $red          $red         $black
-		binding_mode       $magenta      $magenta     $bright_white
-	}
-}
-
-# Bar for secondary monitor
-bar {
-	font pango:monospace, FontAwesome 12
-	position bottom
-	output HDMI-0
-	tray_output none
-
-	colors {
-		background $black
-		statusline $white
-		separator  $white
-
-		# Colors           border        background   text
-		focused_workspace  $bright_black $xgray3      $yellow
-		active_workspace   $xgray3       $xgray3      $bright_black
-		inactive_workspace $xgray3       $xgray1      $bright_black
-		urgent_workspace   $red          $red         $black
-		binding_mode       $magenta      $magenta     $bright_white
-	}
-}
-
-# }}}
 
 # i3-specific keybindings {{{
 
@@ -420,6 +374,53 @@ mode $mode_gaps_outer {
 	bindsym Return       mode $mode_gaps
 	bindsym Escape       mode $mode_gaps
 	bindsym $mod+Shift+g mode $mode_gaps
+}
+
+# }}}
+
+# Bars {{{
+
+# Bar for primary
+bar {
+	font pango:monospace, FontAwesome 12
+	position bottom
+	output primary
+	status_command i3status-rs ~/.config/i3/status.toml
+	tray_output primary
+
+	colors {
+		background $black
+		statusline $white
+		separator  $white
+
+		# Colors           border        background   text
+		focused_workspace  $bright_black $xgray3      $yellow
+		active_workspace   $xgray3       $xgray3      $bright_black
+		inactive_workspace $xgray3       $xgray1      $bright_black
+		urgent_workspace   $red          $red         $black
+		binding_mode       $magenta      $magenta     $bright_white
+	}
+}
+
+# Bar for secondary monitor
+bar {
+	font pango:monospace, FontAwesome 12
+	position bottom
+	output HDMI-0
+	tray_output none
+
+	colors {
+		background $black
+		statusline $white
+		separator  $white
+
+		# Colors           border        background   text
+		focused_workspace  $bright_black $xgray3      $yellow
+		active_workspace   $xgray3       $xgray3      $bright_black
+		inactive_workspace $xgray3       $xgray1      $bright_black
+		urgent_workspace   $red          $red         $black
+		binding_mode       $magenta      $magenta     $bright_white
+	}
 }
 
 # }}}
