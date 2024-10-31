@@ -1,6 +1,6 @@
 [alias]
   # basic {{{
-  st = status -s
+  st = status -sb
   cl = clone
   co = checkout
   br = branch
