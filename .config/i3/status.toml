@@ -75,7 +75,7 @@ block = "sound"
 [[block]]
 block = "net"
 interval = 5
-format = "$icon {$ip|No IP-address} via {'$ssid'|wire}"
+format = "$icon {$ip|No IP-address} via {'$ssid'|$device}"
 missing_format = " ^icon_net no network "
 
 [[block]]
