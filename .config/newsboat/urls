@@ -1,13 +1,12 @@
 "query:Unread Articles:unread = \"yes\" and tags !# \"youtube\""
 
-https://www.factorio.com/blog/rss "blog" "gaming" "official"
-https://www.captain-of-industry.com/blog-feed.xml "blog" "gaming" "official"
-https://steamcommunity.com/games/1366540/rss/ "gaming" "official" "~Dyson Sphere Program"
-
-
+https://about.gitlab.com/security-releases.xml "release" "gitlab" "official"
 https://archlinux.org/feeds/news/ "news" "distro" "linux" "~Arch Linux"
 https://blog.rust-lang.org/feed.xml "blog" "rust" "programming" "~Rust Blog"
 
+https://www.factorio.com/blog/rss "blog" "gaming" "official"
+https://www.captain-of-industry.com/blog-feed.xml "blog" "gaming" "official"
+https://steamcommunity.com/games/1366540/rss/ "gaming" "official" "~Dyson Sphere Program"
 
 # These are too spammy
 #https://www.nrk.no/nyheter/siste.rss "news" "nrk" "~NRK Siste"
