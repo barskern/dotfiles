@@ -407,6 +407,9 @@ set $laptop eDP-1
 set $hdmi HDMI-A-1
 set $home_hub_2 "BNQ BenQ XL2411Z 14E03942SL0"
 set $home_hub_1 "Samsung Electric Company Odyssey G5 HNAX401856"
+set $work_hub_1 "Dell Inc. DELL U3023E DT956P3"
+set $work_hub_2 "Hewlett Packard HP Z24n CN46330ZFV"
+set $work_hub_3 "Dell Inc. DELL UP3017 Y7NWN6AF054L"
 
 # Extend displays when hdmi connected
 output $hdmi pos 0 0 res 1920x1080
@@ -416,6 +419,12 @@ output $laptop pos 0 1080 res 1920x1080
 output $home_hub_1 pos 0 360 res 2560x1440@119.998Hz
 output $home_hub_2 pos 2560 0 res 1920x1080@60Hz
 output $home_hub_2 transform 270
+
+# Setup for work hub(s)
+output $work_hub_1 pos 0 0 res 2560x1600@59.972Hz
+
+output $work_hub_2 pos 0 0 res 1920x1200@59.95Hz
+output $work_hub_3 pos 1920 0 res 2560x1600@59.972Hz
 
 # Disable laptop display when lid is closed
 bindswitch --reload --locked lid:on output $laptop disable
@@ -462,6 +471,8 @@ include /etc/sway/config.d/*
 bar {
 	output $laptop
 	output $home_hub_1
+	output $work_hub_1
+	output $work_hub_2
 
 	font pango:monospace 12
 	position bottom
@@ -485,6 +496,7 @@ bar {
 bar {
 	output $hdmi
 	output $home_hub_2
+	output $work_hub_3
 
 	font pango:monospace, FontAwesome 12
 	position bottom
