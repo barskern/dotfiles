@@ -15,17 +15,19 @@ source "$HOME/.config/antigen.zsh"
 antigen use oh-my-zsh
 
 # Bundles from the default repo
-antigen bundle cargo
+antigen bundle aliases
+antigen bundle ansible
+antigen bundle colored-man-pages
 antigen bundle docker
 antigen bundle docker-compose
-antigen bundle docker-machine
 antigen bundle dotenv
 antigen bundle fancy-ctrl-z
 antigen bundle fzf
 antigen bundle git-extras
+antigen bundle poetry-env
 antigen bundle pip
 antigen bundle pyenv
-antigen bundle sprunge
+antigen bundle rust
 antigen bundle stack
 antigen bundle sudo
 antigen bundle taskwarrior
