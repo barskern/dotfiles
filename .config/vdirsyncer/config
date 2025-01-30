@@ -6,6 +6,7 @@ a = "homie_local"
 b = "homie_remote"
 collections = ["from a", "from b"]
 metadata = ["displayname", "color"]
+conflict_resolution = "b wins"
 
 [storage homie_local]
 type = "filesystem"
@@ -23,6 +24,7 @@ a = "addressbook_local"
 b = "addressbook_remote"
 collections = ["from a", "from b"]
 metadata = ["displayname"]
+conflict_resolution = "b wins"
 
 [storage addressbook_local]
 type = "filesystem"
