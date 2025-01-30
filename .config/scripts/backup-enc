@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# A script to run periodic encrypted backups to a remote server
+#
+
+set -euo pipefail
+
+HOSTNAME=$(hostname)
+REMOTE="servie.home.iruud.cloud"
+SRC_DIR="$HOME/"
+DEST_DIR="/data/backups-enc/$HOSTNAME/"
+
+ssh "$REMOTE" "mkdir -p $DEST_DIR"
+
+echo "Running duplicity to '$REMOTE'..."
+duplicity backup \
+	--use-agent \
+	--encrypt-sign-key "D4A4ECC4A926C10DC4776DF8483D039B1A7F2DC6" \
+	--full-if-older-than 60D \
+	--exclude "$HOME/Documents/usn/thesis/" \
+	--exclude "$HOME/Documents/polimi/" \
+	--include "$HOME/Documents/" \
+	--exclude "**" \
+	"$SRC_DIR" \
+	"rsync://$REMOTE/$DEST_DIR" \

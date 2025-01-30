@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# A script to run periodic backups to a remote server
+#
+
+set -euo pipefail
+
+DAY=$(date +%A)
+HOSTNAME=$(hostname)
+REMOTE="servie.home.iruud.cloud"
+SRC_DIR="$HOME/"
+DEST_DIR="/data/backups/$HOSTNAME/"
+FILTER_FILE="$HOME/.config/backups.filter"
+
+# Make backup directory first
+remote_user="$(ssh $REMOTE id -nu)"
+remote_group="$(ssh $REMOTE id -ng)"
+
+if [[ -z "$remote_user" ]]; then
+	echo "Unable to connect to remote '$REMOTE'"
+	exit 1
+fi
+
+echo "Running rsync against '$REMOTE'..."
+rsync \
+	--archive \
+	--delete \
+	--owner \
+	--group \
+	--chown="$remote_user:$remote_group" \
+	--info=progress2 \
+	--filter="merge $FILTER_FILE" \
+	--rsh=ssh \
+	$SRC_DIR \
+	$REMOTE:$DEST_DIR \
