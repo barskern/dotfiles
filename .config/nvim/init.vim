@@ -44,6 +44,7 @@ Plug 'mattn/webapi-vim'
 Plug 'mxw/vim-jsx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovimhaskell/haskell-vim'
+Plug 'NoahTheDuke/vim-just'
 Plug 'pangloss/vim-javascript'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'plasticboy/vim-markdown'
