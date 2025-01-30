@@ -20,6 +20,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'axvr/zepl.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'cespare/vim-toml', {'branch': 'main'}
+Plug 'cmcaine/vim-uci'
 Plug 'derekwyatt/vim-scala'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
