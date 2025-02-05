@@ -1,7 +1,7 @@
 # vim: filetype=neomuttrc
 # muttrc file for account post
 set realname = "Ole Martin Ruud"
-set from = "post@barskern.no"
+set from = "Ole Martin Ruud <post@barskern.no>"
 set sendmail = "msmtp -a post"
 alias me Ole Martin Ruud <post@barskern.no>
 set folder = "/home/oruud/.local/share/mail/post"

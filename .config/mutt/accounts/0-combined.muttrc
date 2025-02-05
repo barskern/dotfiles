@@ -1,7 +1,7 @@
 # vim: filetype=neomuttrc
 # muttrc file for combined notmuch tab
 set realname = "Ole Martin Ruud"
-set from = "post@barskern.no"
+set from = "Ole Martin Ruud <post@barskern.no>"
 alias me Ole Martin Ruud <post@barskern.no>
 set folder = "/home/oruud/.local/share/mail/combined"
 set header_cache = /home/oruud/.cache/mutt-wizard/combined/headers
