@@ -422,4 +422,8 @@
     appname = teams-for-linux
     format = "<big><b>%s</b></big>\n%b"
 
+[discord]
+    appname = discord
+    format = "<big><b>%s</b></big>\n%b"
+
 # vim: ft=cfg
