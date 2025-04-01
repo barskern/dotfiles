@@ -90,9 +90,6 @@ syntax on
 " Set language settings
 set spelllang=en
 
-" Paste mode (disables autoindent etc)
-set pastetoggle=<F2>
-
 if has('autocmd')
 	augroup autowriteread
 		autocmd!
