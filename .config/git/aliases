@@ -4,6 +4,7 @@
   cl = clone
   co = checkout
   br = branch
+  sw = switch
   r = reset
   cp = cherry-pick
   gr = grep -Ii
