@@ -44,7 +44,7 @@ antigen apply
 # General settings {{{
 
 # Initialize keychain for current shell
-eval `keychain --quiet --agents gpg,ssh --eval`
+eval `keychain --quiet --eval`
 
 # Source aliases if present
 if [[ -f "$XDG_CONFIG_HOME/aliases" ]]; then
