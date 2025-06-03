@@ -1,7 +1,7 @@
 # Common formats etc
 set date_format="%d/%m/%y %H:%M"
 set index_format="%2C %Z %?X?A& ? %D %-20.20F %s"
-set signature = ~/.config/mutt/signature.nb
+set signature = ~/.config/mutt/signature.en
 set mailcap_path = ~/.config/mutt/mailcap
 
 # Use the trash folder instead of deleting

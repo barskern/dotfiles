@@ -37,17 +37,17 @@ url = "https://calendar.service.ruud.cloud/dav.php"
 username = "olemruud"
 password.fetch = ["command", "pass", "servie/calendar/olemruud"]
 
-[pair work]
-a = "work_local"
-b = "work_remote"
-collections = null
-conflict_resolution = "b wins"
-
-[storage work_local]
-type = "filesystem"
-path = "~/.local/share/calendars/work"
-fileext = ".ics"
-
-[storage work_remote]
-type = "http"
-url = "https://outlook.office365.com/owa/calendar/0d5ef7a384c144e1a3e0caf4bbf76fae@avinor.no/7a14659159da44e1bb18ac8e0135905215361133344810696758/calendar.ics"
+#[pair work]
+#a = "work_local"
+#b = "work_remote"
+#collections = null
+#conflict_resolution = "b wins"
+#
+#[storage work_local]
+#type = "filesystem"
+#path = "~/.local/share/calendars/work"
+#fileext = ".ics"
+#
+#[storage work_remote]
+#type = "http"
+#url = "https://outlook.office365.com/owa/calendar/0d5ef7a384c144e1a3e0caf4bbf76fae@avinor.no/7a14659159da44e1bb18ac8e0135905215361133344810696758/calendar.ics"
