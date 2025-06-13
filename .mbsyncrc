@@ -79,7 +79,7 @@ ExpireUnread no
 IMAPAccount cern
 Host outlook.office365.com
 Port 993
-User ole.martin.odevald.ruud@cern.ch
+User ole.martin.ruud@cern.ch
 PassCmd "mutt_oauth2.py -t ~/.password-store/cern-oauth.gpg"
 AuthMechs XOAUTH2
 TLSType IMAPS
