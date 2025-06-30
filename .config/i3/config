@@ -222,12 +222,13 @@ set $ws9 "9"
 set $ws10 "10:video"
 
 # Assign applications to specific workspaces
-assign [instance="discord"] $ws6
-assign [instance="zulip"] $ws6
-assign [instance="keybase"] $ws6
-assign [instance="whats-app*"] $ws6
-assign [instance="mail"] $ws7
-for_window [instance="rss"] move --no-auto-back-and-forth to workspace $ws7, focus
+assign [app_id="discord"] $ws6
+assign [app_id="Mattermost"] $ws6
+assign [app_id="zulip"] $ws6
+assign [app_id="keybase"] $ws6
+assign [app_id="whats-app*"] $ws6
+assign [app_id="mail"] $ws7
+for_window [app_id="rss"] move --no-auto-back-and-forth to workspace $ws7, focus
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws8
 assign [class="mpv"] $ws10
 for_window [class="Microsoft Teams - Preview"] move --no-auto-back-and-forth to workspace $ws6
