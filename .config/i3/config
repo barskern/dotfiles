@@ -265,13 +265,14 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Modes {{{
 
-set $sessionctl "session |s|hutdown |r|eboot sus|p|end |h|ibernate"
+set $sessionctl "session |s|hutdown |r|eboot sus|p|end |h|ibernate |l|ock"
 bindsym $mod+Shift+Delete mode $sessionctl
 mode $sessionctl {
 	bindsym s mode "default" ; exec --no-startup-id systemctl poweroff
 	bindsym r mode "default" ; exec --no-startup-id systemctl reboot
 	bindsym p mode "default" ; exec --no-startup-id systemctl suspend
 	bindsym h mode "default" ; exec --no-startup-id systemctl hibernate
+	bindsym l mode "default" ; exec --no-startup-id swaylock
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
