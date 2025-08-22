@@ -167,8 +167,9 @@ bindsym $mod+Shift+s exec select-display
 # Run todoman in a floating window
 bindsym $mod+Ctrl+c exec $term --title "calendar" --class "floater" -e ikhal
 
-# Run bluetoothctl
-bindsym $mod+Shift+b exec $term --title "bluetoothctl" --class "floater" -e bluetoothctl
+# Run bluetoothctl or bluetui for bluetooth administration
+bindsym $mod+Ctrl+Shift+b exec $term --title "bluetoothctl" --class "floater" -e bluetoothctl
+bindsym $mod+Shift+b exec $term --title "bluetui" --class "floater" -e bluetui
 
 # Kill focused window
 bindsym $mod+Shift+q kill
