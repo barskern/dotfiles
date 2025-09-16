@@ -116,7 +116,13 @@ bindsym $mod+y layout toggle split
 bindsym $mod+Shift+f floating toggle
 
 # Toggle stickyness
-bindsym $mod+Ctrl+s sticky toggle
+#bindsym $mod+Ctrl+s sticky toggle
+bindsym $mod+Ctrl+s \
+	floating enable; \
+	sticky enable; \
+	resize set width 33 ppt height 33 ppt; \
+	opacity 0.8; \
+	move position 8 px 8 px;
 
 # Change focus
 bindsym $mod+a focus parent
@@ -170,6 +176,9 @@ bindsym $mod+Ctrl+c exec $term --title "calendar" --class "floater" -e ikhal
 # Run bluetoothctl or bluetui for bluetooth administration
 bindsym $mod+Ctrl+Shift+b exec $term --title "bluetoothctl" --class "floater" -e bluetoothctl
 bindsym $mod+Shift+b exec $term --title "bluetui" --class "floater" -e bluetui
+
+# Run link from clipboard in MPV
+bindsym $mod+Shift+v exec mpv $(wl-paste --no-newline)
 
 # Kill focused window
 bindsym $mod+Shift+q kill
