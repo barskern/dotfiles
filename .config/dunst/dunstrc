@@ -389,41 +389,45 @@
 
 [spotify]
     appname = Spotify
-    format = "<big><b>%s</b></big>\n%b"
+    format = "<b>%s</b>\n%b"
     history_ignore = yes
 
 [flameshot]
     appname = flameshot
-    format = "<big><b>%s</b></big>\n%b\n%p"
+    format = "<b>%s</b>\n%b\n%p"
 
 [telegram]
     appname = telegram-desktop
-    format = "<big><b>%s</b></big>\n%b\n%p"
+    format = "<b>%s</b>\n%b\n%p"
 
 [whatsapp]
     appname = whatsapp-nativefier-d52542
-    format = "<big><b>%s</b></big>\n%b\n%p"
+    format = "<b>%s</b>\n%b\n%p"
 
 [audio-controls]
     appname = audio-controls
-    format = "<big>%b</big>"
+    format = "%b"
     history_ignore = yes
 
 [mail]
     appname = mutt-wizard
-    format = "<big><b>%s</b></big>\n%b"
+    format = "<b>%s</b>\n%b"
     new_icon = "mail-unread-symbolic"
 
 [bugwarrior]
     appname = bugwarrior
-    format = "<big><b>%s</b></big>\n%b"
+    format = "<b>%s</b>\n%b"
 
 [teams]
     appname = teams-for-linux
-    format = "<big><b>%s</b></big>\n%b"
+    format = "<b>%s</b>\n%b"
 
 [discord]
     appname = discord
-    format = "<big><b>%s</b></big>\n%b"
+    format = "<b>%s</b>\n%b"
+
+[mattermost]
+    appname = Mattermost
+    format = "<b>%s</b>\n%b"
 
 # vim: ft=cfg
