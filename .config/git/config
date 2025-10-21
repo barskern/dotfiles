@@ -1,10 +1,11 @@
 [user]
-	email = dev@barskern.no
+	#email = dev@barskern.no
+	email = ole.martin.ruud@cern.ch
 	name = Ole Martin Ruud
 [include]
 	path = /home/oruud/.config/git/aliases
-[commit]
-	gpgsign = true
+#[commit]
+#	gpgsign = true
 [pull]
 	rebase = true
 [fetch]
