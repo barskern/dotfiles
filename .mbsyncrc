@@ -4,7 +4,7 @@ Port  993
 User barskern1
 PassCmd "pass mutt-wizard-post"
 TLSType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 MaildirStore post-local
 Subfolders Verbatim
@@ -30,7 +30,7 @@ Port  993
 User barskern3
 PassCmd "pass mutt-wizard-nett"
 TLSType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 MaildirStore nett-local
 Subfolders Verbatim
@@ -56,7 +56,7 @@ Port  993
 User barskern2
 PassCmd "pass mutt-wizard-dev"
 TLSType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 MaildirStore dev-local
 Subfolders Verbatim
@@ -113,7 +113,7 @@ SyncState *
 #PassCmd "pass mutt-wizard-student"
 #AuthMechs LOGIN
 #TLSType IMAPS
-#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 
 #MaildirStore student-local
@@ -140,7 +140,7 @@ SyncState *
 #PassCmd "pass mutt-wizard-student-polimi"
 #AuthMechs LOGIN
 #TLSType IMAPS
-#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 
 #MaildirStore student-polimi-local
@@ -168,7 +168,7 @@ SyncState *
 #PassCmd "pass mutt-wizard-work"
 #AuthMechs LOGIN
 #TLSType IMAPS
-#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 #MaildirStore work-local
 #Subfolders Verbatim
@@ -193,7 +193,7 @@ SyncState *
 #User olemartinruud@outlook.com
 #PassCmd "pass mutt-wizard-hoved-old"
 #TLSType IMAPS
-#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 #MaildirStore hoved-old-local
 #Subfolders Verbatim
@@ -218,7 +218,7 @@ SyncState *
 #User barskern@outlook.com
 #PassCmd "pass mutt-wizard-dev-old"
 #TLSType IMAPS
-#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile /etc/ssl/certs/ca-bundle.crt
 
 #MaildirStore dev-old-local
 #Subfolders Verbatim
