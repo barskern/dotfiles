@@ -13,9 +13,15 @@
 	autosquash = true
 [core]
 	editor = /usr/bin/nvim
+[diff]
+	external = difft
 [merge]
 	tool = fugitive
 	ff = false
+	conflictStyle = "diff3"
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [mergetool]
 	prompt = false
     keepBackup = false
