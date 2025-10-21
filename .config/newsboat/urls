@@ -8,6 +8,8 @@ https://www.factorio.com/blog/rss "blog" "gaming" "official"
 https://www.captain-of-industry.com/blog-feed.xml "blog" "gaming" "official"
 https://steamcommunity.com/games/1366540/rss/ "gaming" "official" "~Dyson Sphere Program"
 
+https://forum.openwrt.org/c/announcements/14.rss "release" "openwrt" "official"
+
 # These are too spammy
 #https://www.nrk.no/nyheter/siste.rss "news" "nrk" "~NRK Siste"
 #https://news.ycombinator.com/rss "news" "tech" "~HackerNews"
