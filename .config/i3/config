@@ -101,7 +101,7 @@ bindsym $mod+Ctrl+Shift+h move workspace to output left
 bindsym $mod+Ctrl+Shift+l move workspace to output right
 
 # Enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+f fullscreen toggle; opacity 1;
 bindsym $mod+Ctrl+f focus mode_toggle
 
 # Make current container into a split container
@@ -113,7 +113,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+y layout toggle split
 
 # Toggle tiling / floating
-bindsym $mod+Shift+f floating toggle
+bindsym $mod+Shift+f floating toggle; opacity 1;
 
 # Toggle stickyness
 #bindsym $mod+Ctrl+s sticky toggle
