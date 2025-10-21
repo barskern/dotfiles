@@ -1,9 +1,9 @@
 # vim: filetype=neomuttrc
 # muttrc file for account nett
 set realname = "Ole Martin Ruud"
-set from = "Ole Martin Ruud <ole.martin.odevald.ruud@cern.ch>"
+set from = "Ole Martin Ruud <ole.martin.ruud@cern.ch>"
 set sendmail = "msmtp -a cern"
-alias me Ole Martin Ruud <ole.martin.odevald.ruud@cern.ch>
+alias me Ole Martin Ruud <ole.martin.ruud@cern.ch>
 set folder = "/home/oruud/.local/share/mail/cern"
 set header_cache = /home/oruud/.cache/mutt-wizard/cern/headers
 set message_cachedir = /home/oruud/.cache/mutt-wizard/cern/bodies
