@@ -423,7 +423,7 @@ map <leader>gg :Git<CR>
 map <leader>gw :Gwrite<CR>
 map <leader>gW :Gwrite!<CR>
 map <leader>gc :Git commit -v<CR>
-map <leader>gb :Git_blame<CR>
+map <leader>gb :Git blame<CR>
 map <leader>gm :Git_mergetool<CR>
 map <leader>gB :GBrowse<CR>
 map <leader>gl :0Gclog<CR>
