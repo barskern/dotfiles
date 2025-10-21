@@ -1,4 +1,7 @@
 {
+	"yaml.schemas": {
+		"kubernetes": "/*.yaml"
+	},
 	"ltex.latex.commands": {
 		"\\label{}": "ignore",
 		"\\documentclass[]{}": "ignore",
@@ -57,6 +60,7 @@
 		"jinja"
 	],
 	"codeLens.enable": true,
+	"codeLens.position": "eol",
 	"languageserver": {
 		"vhdl-tool": {
 			"command": "vhdl-tool",

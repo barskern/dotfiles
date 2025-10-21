@@ -189,6 +189,7 @@ let g:coc_global_extensions = [
 	\ "coc-snippets",
 	\ "coc-solargraph",
 	\ "coc-tailwindcss",
+	\ "coc-tsserver",
 	\ "coc-vimtex",
 	\ "coc-yaml"
 	\ ]
@@ -424,7 +425,7 @@ map <leader>gw :Gwrite<CR>
 map <leader>gW :Gwrite!<CR>
 map <leader>gc :Git commit -v<CR>
 map <leader>gb :Git blame<CR>
-map <leader>gm :Git_mergetool<CR>
+map <leader>gm :Git mergetool<CR>
 map <leader>gB :GBrowse<CR>
 map <leader>gl :0Gclog<CR>
 map <leader>gp :Git push<CR>
@@ -533,6 +534,7 @@ if has('autocmd')
 		autocmd FileType cpp set tabstop=2
 		autocmd FileType cpp set softtabstop=2
 		autocmd FileType cpp set shiftwidth=2
+		autocmd FileType cpp set expandtab
 	augroup END
 
 	augroup yaml
