@@ -42,5 +42,6 @@ x-scheme-handler/spice=org.remmina.Remmina.desktop;
 x-scheme-handler/vnc=org.remmina.Remmina.desktop;
 x-scheme-handler/remmina=org.remmina.Remmina.desktop;
 application/x-remmina=org.remmina.Remmina.desktop;
-image/png=feh.desktop;
+image/png=gimp.desktop;feh.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-DO7SJ1.desktop;org.telegram.desktop.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;gimp.desktop;
