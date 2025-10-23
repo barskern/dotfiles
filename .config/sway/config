@@ -405,26 +405,31 @@ mode $mode_gaps_outer {
 # See make-sway-outputs-of-current-setup
 set $laptop eDP-1
 set $hdmi HDMI-A-1
-set $home_hub_2 "BNQ BenQ XL2411Z 14E03942SL0"
-set $home_hub_1 "Samsung Electric Company Odyssey G5 HNAX401856"
-set $work_hub_1 "Dell Inc. DELL U3023E DT956P3"
-set $work_hub_2 "Hewlett Packard HP Z24n CN46330ZFV"
-set $work_hub_3 "Dell Inc. DELL UP3017 Y7NWN6AF054L"
+set $home_1 "Samsung Electric Company Odyssey G5 HNAX401856"
+set $home_2 "BNQ BenQ XL2411Z 14E03942SL0"
+set $work_1 "Dell Inc. DELL U3023E DT956P3"
+set $work_2 "Hewlett Packard HP Z24n CN46330ZFV"
+set $work_3 "Dell Inc. DELL UP3017 Y7NWN6AF054L"
+set $work_4 "Lenovo Group Limited T32p-30 V30DY31Y"
 
 # Extend displays when hdmi connected
 output $hdmi pos 0 0 res 1920x1080
 output $laptop pos 0 1080 res 1920x1080
 
-# Setup for home hub
-output $home_hub_1 pos 0 360 res 2560x1440@119.998Hz
-output $home_hub_2 pos 2560 0 res 1920x1080@60Hz
-output $home_hub_2 transform 270
+# Setup for home combinations
+output $home_1 pos 0 360 res 2560x1440@119.998Hz
+output $home_2 pos 2560 0 res 1920x1080@60Hz
+output $home_2 transform 270
 
-# Setup for work hub(s)
-output $work_hub_1 pos 0 0 res 2560x1600@59.972Hz
+# Setup for work combinations
+output $work_1 pos 0 0 res 2560x1600@59.972Hz
 
-output $work_hub_2 pos 0 0 res 1920x1200@59.95Hz
-output $work_hub_3 pos 1920 0 res 2560x1600@59.972Hz
+output $work_2 pos 0 0 res 1920x1200@59.95Hz
+output $work_3 pos 1920 0 res 2560x1600@59.972Hz
+
+output $work_4 pos 0 0 res 3840x2160@59.997Hz
+output $work_4 transform normal
+output $work_4 scale 1.3
 
 # Disable laptop display when lid is closed
 bindswitch --reload --locked lid:on output $laptop disable
@@ -432,7 +437,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 exec_always /home/oruud/.config/scripts/reload-lid
 
 # Set background
-output * background /home/oruud/.config/wall.png center #000000
+output * background /home/oruud/.config/wall.png fill #000000
 
 # Set keyboard input to us with altgr international keys and caps as escape
 input type:keyboard {
@@ -467,14 +472,15 @@ include /etc/sway/config.d/*
 
 # Bars {{{
 
-# Bar for primary
+# Bar for primary monitor(s)
 bar {
 	output $laptop
-	output $home_hub_1
-	output $work_hub_1
-	output $work_hub_2
+	output $home_1
+	output $work_1
+	output $work_2
+	output $work_4
 
-	font pango:monospace 12
+	font pango:monospace, FontAwesome 12
 	position bottom
 	status_command i3status-rs ~/.config/sway/status.toml
 
@@ -492,11 +498,11 @@ bar {
 	}
 }
 
-# Bar for secondary monitor
+# Bar for secondary monitor(s)
 bar {
-	output $hdmi
-	output $home_hub_2
-	output $work_hub_3
+	#output $hdmi
+	output $home_2
+	output $work_3
 
 	font pango:monospace, FontAwesome 12
 	position bottom
