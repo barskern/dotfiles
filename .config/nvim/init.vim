@@ -411,6 +411,7 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>L :Lines<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>rr :Rg<CR>
+nnoremap <leader>rw :Rg <C-R><C-W><CR>
 nnoremap <leader>bb :Buffers<CR>
 
 " Starting nvim-gdb
