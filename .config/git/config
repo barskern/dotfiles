@@ -13,6 +13,7 @@
 	autosquash = true
 [core]
 	editor = /usr/bin/nvim
+	pager = delta
 [diff]
 	external = difft
 [merge]
@@ -38,3 +39,12 @@
 	followTags = true
 [init]
 	defaultBranch = master
+[delta]
+	navigate = true
+	light = false
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = gruvbox-dark
+	file-style = bold yellow ul
+	file-decoration-style = none
+	hunk-header-style = file line-number syntax
