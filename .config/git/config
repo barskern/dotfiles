@@ -18,15 +18,15 @@
 [merge]
 	tool = fugitive
 	ff = false
-	conflictStyle = "diff3"
+	conflictStyle = diff3
 [merge "mergiraf"]
-    name = mergiraf
-    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+	name = mergiraf
+	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [mergetool]
 	prompt = false
-    keepBackup = false
+	keepBackup = false
 [mergetool "fugitive"]
-    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+	cmd = nvim -f -c 'Gdiffsplit!' $MERGED
 [gitflow "feature.finish"]
 	no-ff = yes
 [filter "lfs"]
