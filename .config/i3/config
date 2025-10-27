@@ -178,7 +178,7 @@ bindsym $mod+Ctrl+Shift+b exec $term --title "bluetoothctl" --class "floater" -e
 bindsym $mod+Shift+b exec $term --title "bluetui" --class "floater" -e bluetui
 
 # Run link from clipboard in MPV
-bindsym $mod+Shift+v exec mpv $(wl-paste --no-newline)
+bindsym $mod+Shift+v exec mpv-from-clipboard
 
 # Kill focused window
 bindsym $mod+Shift+q kill

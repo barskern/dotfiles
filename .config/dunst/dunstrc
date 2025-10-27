@@ -430,4 +430,8 @@
     appname = Mattermost
     format = "<b>%s</b>\n%b"
 
+[mpvc]
+    appname = mpv-from-clipboard
+    format = "<b>%s</b>\n%b"
+
 # vim: ft=cfg

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+link="$(wl-paste --no-newline)"
+
+title="Starting MPV with link..."
+content="<i>$link</i>"
+
+notify-send \
+	--app-name "mpv-from-clipboard" \
+	--urgency low \
+	"$title" \
+	"$content"
+
+mpv "$link"
