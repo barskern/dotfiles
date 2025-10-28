@@ -240,7 +240,14 @@ assign [app_id="whats-app*"] $ws6
 assign [app_id="mail"] $ws7
 for_window [app_id="rss"] move --no-auto-back-and-forth to workspace $ws7, focus
 for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws8
-assign [class="mpv"] $ws10
+#assign [class="mpv"] $ws10
+for_window [app_id="mpv"] \
+	floating enable, \
+	sticky enable, \
+	resize set width 33 ppt height 33 ppt, \
+	opacity 0.8, \
+	move position 8 px 8 px
+
 for_window [class="Microsoft Teams - Preview"] move --no-auto-back-and-forth to workspace $ws6
 
 # Move to workspaces (absolute)
