@@ -32,8 +32,8 @@ account cern
 host smtp.office365.com
 port 587
 auth xoauth2
-user ole.martin.odevald.ruud@cern.ch
-from ole.martin.odevald.ruud@cern.ch
+user ole.martin.ruud@cern.ch
+from ole.martin.ruud@cern.ch
 passwordeval "mutt_oauth2.py -t ~/.password-store/cern-oauth.gpg"
 
 # Expired!
