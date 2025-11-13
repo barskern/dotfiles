@@ -2,15 +2,15 @@
 # These will be generated for the shell, ranger and qutebrowser
 # After change the `shortcuts` script has to be run to update generated files
 h	~/
-c   ~/.config
+c	~/.config
 s	~/.config/scripts
-dn	~/Dokumenter/ntnu
-du	~/Dokumenter/usn
-dt	~/Dokumenter/usn/thesis
-dp	~/Dokumenter/polimi
-D	~/Nedlastinger
-m	~/Musikk
+dp	~/Documents/personal
+dc	~/Documents/personal/cern
+D	~/Downloads
+m	~/Music
 M	/media/
-i	~/Bilder
-v	~/Videoklipp
-pp  ~/Programming
+i	~/Pictures
+v	~/Videos
+pp	~/Projects
+ph	~/Projects/homelab
+pc	~/Projects/cern
