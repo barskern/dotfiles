@@ -228,7 +228,7 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 
 " vim-rooter
 
-let g:rooter_patterns = ['.git', '.git/', 'Cargo.toml', 'build.sbt']
+let g:rooter_patterns = ['.git', '.git/', 'Cargo.lock', 'build.sbt']
 
 " Fetch a env variable using vim-dotenv if it exist
 function! s:env(var) abort
