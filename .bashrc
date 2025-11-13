@@ -23,8 +23,3 @@ else
 fi
 
 PS1="\[\e[0;32m\]\u\[\e[m\]@\[\e[0;31m\]\h \[\e[1;34m\]\W\[\e[m\]\$ "
-
-# added by travis gem
-[ -f /home/oruud/.travis/travis.sh ] && source /home/oruud/.travis/travis.sh
-
-source /home/oruud/.config/broot/launcher/bash/br

@@ -62,12 +62,7 @@ fi
 
 # }}}
 
-# added by travis gem
-[ -f /home/oruud/.travis/travis.sh ] && source /home/oruud/.travis/travis.sh
-
 # Source generated folder shortcuts
 source /home/oruud/.config/shortcuts
 
 eval "$(starship init zsh)"
-
-source /home/oruud/.config/broot/launcher/bash/br
