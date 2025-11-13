@@ -23,8 +23,10 @@ alias lld="ls --almost-all -l --classify --directory */ .*/"
 alias path="echo -e \${PATH//:/'\n'} | sort"
 
 # Clipboard
-alias c="xclip -in -sel clipboard"
-alias v="xclip -out -sel clipboard"
+#alias c="xclip -in -sel clipboard"
+#alias v="xclip -out -sel clipboard"
+alias c="wl-copy"
+alias v="wl-paste"
 
 # IP-addresses
 alias ip="ip --color"
