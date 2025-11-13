@@ -12,6 +12,7 @@ set signature = ~/.config/mutt/signature.nb
 # TODO figure out this, how to send from here from possibly multiple accounts!
 set sendmail = "msmtp -a post"
 set record = "/home/oruud/.local/share/mail/post/Sent"
+set postponed = "/home/oruud/.local/share/mail/post/Drafts"
 
 # We need these custom binds here to prevent hard-deleting with D
 unbind index D
