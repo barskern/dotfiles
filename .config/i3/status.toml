@@ -6,14 +6,18 @@ icons = "/home/oruud/.config/i3/awesome.toml"
 [[block]]
 block = "watson"
 
-[[block]]
-block = "packages"
-package_manager = ["pacman", "aur"]
-interval = 6000
-error_interval = 500
-# aur_command should output available updates to stdout (ie behave as echo -ne "update\n")
-aur_command = "yay -Qua"
-signal = 13
+# TODO This has stopped working due to:
+# error: failed to create temporary download directory /var/lib/pacman/sync/download-xpi0PQ: Permission denied
+# error: failed to synchronize all databases (failed to initialize download)
+#
+#[[block]]
+#block = "packages"
+#package_manager = ["pacman", "aur"]
+#interval = 6000
+#error_interval = 500
+## aur_command should output available updates to stdout (ie behave as echo -ne "update\n")
+#aur_command = "yay -Qua"
+#signal = 13
 
 [[block]]
 block = "custom"
