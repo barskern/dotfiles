@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PKG_NAME=$1
+DEST_DIR=~/Projects/pkgs/$PKG_NAME
+git clone -q https://gitlab.archlinux.org/archlinux/packaging/packages/$PKG_NAME.git $DEST_DIR ${@:2}
+
+echo $DEST_DIR
