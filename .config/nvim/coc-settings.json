@@ -123,55 +123,6 @@
 				"main.tf"
 			],
 			"initializationOptions": {}
-		},
-		"dls": {
-			"command": "diagnostic-languageserver",
-			"args": [
-				"--stdio",
-				"--log-level",
-				"2"
-			],
-			"filetypes": [
-				"sh",
-				"email",
-				"text",
-				"tex",
-				"latex"
-			],
-			"initializationOptions": {
-				"linters": {
-					"proselint": {
-						"command": "proselint",
-						"isStdout": true,
-						"isStderr": false,
-						"debounce": 100,
-						"args": [
-							"-"
-						],
-						"offsetLine": 0,
-						"offsetColumn": 0,
-						"sourceName": "proselint",
-						"formatLines": 1,
-						"formatPattern": [
-							"^[^:]+:(\\d+):(\\d+):(\\s)(.*)$",
-							{
-								"line": 1,
-								"column": 2,
-								"security": 3,
-								"message": 4
-							}
-						],
-						"securities": {
-							" ": "info"
-						}
-					}
-				},
-				"filetypes": {
-					"latex": ["proselint"],
-					"text": ["proselint"],
-					"tex": ["proselint"]
-				}
-			}
 		}
 	},
 	"git.enableGutters": true,
