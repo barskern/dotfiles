@@ -189,6 +189,7 @@ let g:coc_global_extensions = [
 	\ "coc-snippets",
 	\ "coc-solargraph",
 	\ "coc-tailwindcss",
+	\ "coc-toml",
 	\ "coc-tsserver",
 	\ "coc-vimtex",
 	\ "coc-yaml"
