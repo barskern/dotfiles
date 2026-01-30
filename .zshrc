@@ -3,10 +3,16 @@
 #
 
 # Ensure zprofile is sourced
-source /etc/zsh/zprofile
+[[ -r "/etc/zsh/zprofile" ]] && source /etc/zsh/zprofile
 
-# setup pyenv environment
-eval "$(pyenv init -)"
+# Jump to tmux if present {{{
+
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    tmux has-session -t ${USER} 2>/dev/null \
+        && exec tmux attach-session -t ${USER} >/dev/null 2>&1
+fi
+
+# }}}
 
 # Antigen settings {{{
 
@@ -43,26 +49,17 @@ antigen apply
 
 # General settings {{{
 
+cfg_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
+[[ -r "$cfg_dir/environment.d/env.conf" ]] && source "$cfg_dir/environment.d/env.conf"
+
 # Initialize keychain for current shell
 eval `keychain --quiet --eval`
 
-# Source aliases if present
-if [[ -f "$XDG_CONFIG_HOME/aliases" ]]; then
-    . "$XDG_CONFIG_HOME/aliases";
-else
-    [[ -f "$HOME/.config/aliases" ]] && . "$HOME/.config/aliases";
-fi
-
-# Source functions if present
-if [[ -f "$XDG_CONFIG_HOME/functions" ]]; then
-    . "$XDG_CONFIG_HOME/functions";
-else
-    [[ -f "$HOME/.config/functions" ]] && . "$HOME/.config/functions";
-fi
+[[ -r "$cfg_dir/aliases" ]] && source "$cfg_dir/aliases"
+[[ -r "$cfg_dir/functions" ]] && source "$cfg_dir/functions"
+[[ -r "$cfg_dir/shortcuts" ]] && source "$cfg_dir/shortcuts"
 
 # }}}
 
-# Source generated folder shortcuts
-source /home/oruud/.config/shortcuts
 
 eval "$(starship init zsh)"
