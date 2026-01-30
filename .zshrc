@@ -61,5 +61,13 @@ eval `keychain --quiet --eval`
 
 # }}}
 
+# Custom completions {{{
+
+# OpenShift and kubectl completion
+command -v oc >/dev/null && source <(oc completion zsh)
+command -v kubectl >/dev/null && source <(kubectl completion zsh)
+command -v helm >/dev/null && source <(helm completion zsh)
+
+# }}}
 
 eval "$(starship init zsh)"
