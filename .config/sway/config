@@ -456,10 +456,8 @@ input type:touchpad {
 	tap_button_map "lrm"
 }
 
-# Set mouse to fix scrolling
-input type:mouse {
-	scroll_factor 4.0
-	pointer_accel 0.5
+input type:pointer {
+	pointer_accel 0.1
 }
 
 # Stop hiding cursor as it prevents hovering over graphs etc.
