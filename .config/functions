@@ -9,3 +9,10 @@ subs() {
 	)
 	cd "$NTNU_DIR/$choice"
 }
+
+# Export all variables in some file
+exp() {
+    set -a
+    source "$1"
+    set +a
+}
