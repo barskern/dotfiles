@@ -406,12 +406,13 @@ mode $mode_gaps_outer {
 set $laptop eDP-1
 set $hdmi HDMI-A-1
 set $home_1 "Samsung Electric Company Odyssey G5 HNAX401856"
-set $home_2 "BNQ BenQ XL2411Z 14E03942SL0"
 set $work_1 "Dell Inc. DELL U3023E DT956P3"
 set $work_2 "Hewlett Packard HP Z24n CN46330ZFV"
 set $work_3 "Dell Inc. DELL UP3017 Y7NWN6AF054L"
 set $work_4 "Lenovo Group Limited T32p-30 V30DY31Y"
 set $work_5 "Philips Consumer Electronics Company PHL 34B1U5600 UK02348023939"
+set $work_6 "Lenovo Group Limited T32p-30 V30DY31Y"
+set $work_7 "Lenovo Group Limited T32p-30 V30DY321"
 
 # Extend displays when hdmi connected
 output $hdmi pos 0 0 res 1920x1080
@@ -419,8 +420,6 @@ output $laptop pos 0 1080 res 1920x1080
 
 # Setup for home combinations
 output $home_1 pos 0 360 res 2560x1440@119.998Hz
-output $home_2 pos 2560 0 res 1920x1080@60Hz
-output $home_2 transform 270
 
 # Setup for work combinations
 output $work_1 pos 0 0 res 2560x1600@59.972Hz
@@ -433,6 +432,14 @@ output $work_4 transform normal
 output $work_4 scale 1.3
 
 output $work_5 pos 0 0 res 3440x1440@120Hz
+
+output $work_6 pos 0 0 res 3840x2160@59.996Hz
+output $work_6 scale 1.3
+
+# NOTE! x-pos has to be EXACTLY `width / scale` of work_6
+# https://github.com/swaywm/sway/issues/4792
+output $work_7 pos 2953 0 res 3840x2160@59.996Hz
+output $work_7 scale 1.3
 
 # Disable laptop display when lid is closed
 bindswitch --reload --locked lid:on output $laptop disable
@@ -481,6 +488,7 @@ bar {
 	output $work_2
 	output $work_4
 	output $work_5
+	output $work_6
 
 	font pango:monospace, FontAwesome 12
 	position bottom
@@ -503,8 +511,8 @@ bar {
 # Bar for secondary monitor(s)
 bar {
 	#output $hdmi
-	output $home_2
 	output $work_3
+	output $work_7
 
 	font pango:monospace, FontAwesome 12
 	position bottom
