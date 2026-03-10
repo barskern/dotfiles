@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Initialize keychain for current shell
-eval `keychain --agents gpg,ssh --eval`
+eval `keychain --quiet --eval`
 
 # Source the wanted environment setup if present
 cfg_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
