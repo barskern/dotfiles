@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+#
+# A simple utility script for neomutt to use your favorite cli
+# file manager to work with files in neomutt.
+# Can add attachments to emails or save attachments in a chosen directory.
+#
+# Use it as `neomutt-filer attach <my-base-dir>`
+# or `neomutt-filer saveto <my-base-dir>`
+#
+# Can be bound to neomutt macros like the following:
+#
+# macro compose A '<enter-command>source "neomutt-filer attach"|<enter>' "Attach with file manager"
+# macro attach S '<enter-command>source "neomutt-filer saveto"|<enter>' "Save attachment to dir"
+#
+# Adapted from Martys script: https://gist.github.com/marty-oehme/5fac4e9a28081fc8a8297b2ebc4a4ec7
+
+
+_file_picker() {
+    if command -v fzf >/dev/null 2>&1; then
+        fzf \
+            --multi \
+            --walker-skip .git,node_modules,target,.mozilla,.cache,.share,.config,.npm,.FlashPrint5 \
+            --preview 'bat -n --color=always {}' \
+            --bind 'ctrl-/:change-preview-window(down|hidden|)' \
+            --prompt='Choose attachments > ' "$@"
+    fi
+}
+_dir_picker() {
+    if command -v fzf >/dev/null 2>&1; then
+        fd "$@" \
+            --follow \
+            --type directory \
+            --exclude .git,node_modules,target,.mozilla \
+            | fzf --prompt='Choose savedir > '
+    fi
+}
+
+attachfile() {
+    _file_picker "$@" |
+        while IFS=$'\n' read -r attachment; do
+            printf "push '<attach-file>%s<enter>'\n" "$attachment"
+        done
+}
+
+savetodir() {
+    _dir_picker "$@" | xargs printf "push '<save-entry>%s<enter>y<enter>'\n"
+}
+
+_usage() {
+    echo """
+Usage: neomutt-filer <subcommand> [options...]
+Subcommands:
+    attach      Pick files to attach
+    saveto      Pick a directory to save into
+    """
+}
+
+case "${1:-}" in
+attach)
+    shift
+    attachfile "$@"
+    ;;
+saveto)
+    shift
+    savetodir "$@"
+    ;;
+-h | --help | *) _usage ;;
+esac
