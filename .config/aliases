@@ -66,3 +66,6 @@ alias fzp="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacma
 
 # Openstack
 alias os="openstack"
+
+# Docker
+alias driten="docker run --rm -it --network host"
