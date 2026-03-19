@@ -7,7 +7,7 @@
 
 # Jump to tmux if present {{{
 
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
     tmux has-session -t ${USER} 2>/dev/null \
         && exec tmux attach-session -t ${USER} >/dev/null 2>&1
 fi
