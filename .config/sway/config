@@ -400,7 +400,7 @@ output $hdmi pos 0 0 res 1920x1080
 output $laptop pos 0 1080 res 1920x1080
 
 # Setup for home combinations
-output $home_1 pos 0 360 res 2560x1440@119.998Hz
+output $home_1 pos 0 360 res 2560x1440@144Hz
 
 # Setup for work combinations
 output $work_1 pos 0 0 res 2560x1600@59.972Hz
