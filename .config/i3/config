@@ -140,42 +140,22 @@ bindsym $mod+Ctrl+Return exec $term \
 	--class "floater" \
 	--command tmux attach-session -d -t $USER
 
-# Shortcuts to programs
-bindsym $mod+r       exec $term -e ranger `xcwd`
-bindsym $mod+Shift+r exec $term -e sudo ranger `xcwd`
-
-bindsym $mod+b exec --no-startup-id $BROWSER
-
-bindsym $mod+n exec $term --title "neomutt" --class "mail" -e neomutt
-bindsym $mod+v exec $term --title "newsboat" --class "rss" -e newsboat
-
-bindsym $mod+Shift+m exec $term --title "ghci" --class "floater" -e stack ghci
-
-# Run config menu which lets the user chose a config file to edit
-bindsym $mod+c       exec --no-startup-id cred-menu
-bindsym $mod+Shift+c exec --no-startup-id config-menu
-
-# Run wifi menu
-bindsym $mod+Ctrl+w exec $term --title "wpa_cli" --class "floater" -e wpa_cli
-
-# Run watson repl
-bindsym $mod+Shift+w exec $term_wd --title "watson" --class "floater" -e watson-repl
-
-# Run todoman repl
-bindsym $mod+Shift+t exec $term_wd --title "todoman" --class "floater" -e todo-repl
-
-# Run audio controller interface
-bindsym $mod+s exec $term --title "pulsemixer" --class "floater" -e pulsemixer
-
-# Run display selection
-bindsym $mod+Shift+s exec select-display
-
-# Run todoman in a floating window
-bindsym $mod+Ctrl+c exec $term --title "calendar" --class "floater" -e ikhal
-
-# Run bluetoothctl or bluetui for bluetooth administration
+bindsym $mod+r            exec $term -e ranger `xcwd`
+bindsym $mod+Shift+r      exec $term -e sudo ranger `xcwd`
+bindsym $mod+b            exec --no-startup-id $BROWSER
+bindsym $mod+n            exec $term --title "neomutt" --class "mail" -e neomutt
+bindsym $mod+v            exec $term --title "newsboat" --class "rss" -e newsboat
+bindsym $mod+Shift+m      exec $term --title "ghci" --class "floater" -e stack ghci
+bindsym $mod+c            exec --no-startup-id cred-menu
+bindsym $mod+Shift+c      exec --no-startup-id config-menu
+bindsym $mod+Ctrl+w       exec $term --title "wpa_cli" --class "floater" -e wpa_cli
+bindsym $mod+Shift+w      exec $term_wd --title "watson" --class "floater" -e watson-repl
+bindsym $mod+Shift+t      exec $term_wd --title "todoman" --class "floater" -e todo-repl
+bindsym $mod+s            exec $term --title "pulsemixer" --class "floater" -e pulsemixer
+bindsym $mod+Shift+s      exec select-display
+bindsym $mod+Ctrl+c       exec $term --title "calendar" --class "floater" -e ikhal
 bindsym $mod+Ctrl+Shift+b exec $term --title "bluetoothctl" --class "floater" -e bluetoothctl
-bindsym $mod+Shift+b exec $term --title "bluetui" --class "floater" -e bluetui
+bindsym $mod+Shift+b      exec $term --title "bluetui" --class "floater" -e bluetui
 
 # Run link from clipboard in MPV
 bindsym $mod+Shift+v exec mpv-from-clipboard
