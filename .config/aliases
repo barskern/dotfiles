@@ -69,3 +69,6 @@ alias os="openstack"
 
 # Docker
 alias driten="docker run --rm -it --network host"
+
+# Math and calculations on the commandline
+aliases[=]="numbat -e"
