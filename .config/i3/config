@@ -148,6 +148,7 @@ bindsym $mod+v            exec $term --title "newsboat" --class "rss" -e newsboa
 bindsym $mod+Shift+m      exec $term --title "ghci" --class "floater" -e stack ghci
 bindsym $mod+c            exec --no-startup-id cred-menu
 bindsym $mod+Shift+c      exec --no-startup-id config-menu
+bindsym $mod+i            exec --no-startup-id locator-menu
 bindsym $mod+Ctrl+w       exec $term --title "wpa_cli" --class "floater" -e wpa_cli
 bindsym $mod+Shift+w      exec $term_wd --title "watson" --class "floater" -e watson-repl
 bindsym $mod+Shift+t      exec $term_wd --title "todoman" --class "floater" -e todo-repl

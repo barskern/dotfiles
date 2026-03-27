@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# locator-menu
+#
+
+locator_dir="${XDG_DATA_HOME:-$HOME/.local/share}/locator"
+choice=$(echo -e "cern\nhome" | rofi -dmenu -no-custom -p "location")
+
+status_bar="${STATUSBAR:-i3status-rs}"
+signal=15
+
+mkdir -p "$locator_dir"
+if [[ "$choice" != "" ]]; then
+	echo -n "$choice" > "$locator_dir/location"
+	( pkill -RTMIN+$signal "$status_bar" >/dev/null 2>&1 ) 2>/dev/null
+fi

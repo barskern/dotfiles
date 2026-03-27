@@ -22,6 +22,15 @@ block = "watson"
 [[block]]
 block = "custom"
 json = true
+interval = 10
+signal = 15
+command = """
+echo '{"state":"Info","text":"'$(whoami)@$(cat ${XDG_DATA_DIR:-$HOME/.local/share/locator/location})'"}'
+"""
+
+[[block]]
+block = "custom"
+json = true
 signal = 12
 command = """
 [[ -e "/tmp/newsboatsyncicon_oruud" ]] \
