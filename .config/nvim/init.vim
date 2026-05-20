@@ -185,6 +185,7 @@ let g:coc_global_extensions = [
 	\ "coc-html",
 	\ "coc-json",
 	\ "coc-ltex",
+	\ "coc-prettier",
 	\ "coc-pyright",
 	\ "coc-rust-analyzer",
 	\ "coc-snippets",
