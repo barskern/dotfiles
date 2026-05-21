@@ -1,12 +1,13 @@
 defaults
-auth	on
-tls	on
-tls_trust_file	/etc/ssl/certs/ca-certificates.crt
-#logfile	~/.config/msmtp/msmtp.log
+auth on
+tls on
+tls_starttls off
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile ~/.local/share/msmtp/msmtp.log
 
 account post
 host smtp.domeneshop.no
-port 587
+port 465
 from post@barskern.no
 user barskern1
 passwordeval "pass mutt-wizard-post"
@@ -14,7 +15,7 @@ passwordeval "pass mutt-wizard-post"
 
 account nett
 host smtp.domeneshop.no
-port 587
+port 465
 from nett@barskern.no
 user barskern3
 passwordeval "pass mutt-wizard-nett"
@@ -22,7 +23,7 @@ passwordeval "pass mutt-wizard-nett"
 
 account dev
 host smtp.domeneshop.no
-port 587
+port 465
 from dev@barskern.no
 user barskern2
 passwordeval "pass mutt-wizard-dev"
@@ -30,7 +31,9 @@ passwordeval "pass mutt-wizard-dev"
 
 account cern
 host smtp.office365.com
+host smtp-mail.outlook.com
 port 587
+tls_starttls on
 auth xoauth2
 user ole.martin.ruud@cern.ch
 from ole.martin.ruud@cern.ch
