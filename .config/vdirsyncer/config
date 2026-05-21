@@ -15,7 +15,7 @@ fileext = ".ics"
 
 [storage homie_remote]
 type = "caldav"
-url = "https://calendar.service.ruud.cloud/dav.php"
+url = "https://calendar.service.consul.ruudie.no/dav.php"
 username = "olemruud"
 password.fetch = ["command", "pass", "servie/calendar/olemruud"]
 
@@ -33,7 +33,7 @@ fileext = ".vcf"
 
 [storage addressbook_remote]
 type = "carddav"
-url = "https://calendar.service.ruud.cloud/dav.php"
+url = "https://calendar.service.consul.ruudie.no/dav.php"
 username = "olemruud"
 password.fetch = ["command", "pass", "servie/calendar/olemruud"]
 
