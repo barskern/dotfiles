@@ -10,6 +10,8 @@ https://steamcommunity.com/games/1366540/rss/ "gaming" "official" "~Dyson Sphere
 
 https://forum.openwrt.org/c/announcements/14.rss "release" "openwrt" "official"
 
+https://bcantrill.dtrace.org/index.xml
+
 # These are too spammy
 #https://www.nrk.no/nyheter/siste.rss "news" "nrk" "~NRK Siste"
 #https://news.ycombinator.com/rss "news" "tech" "~HackerNews"
