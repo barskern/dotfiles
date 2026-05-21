@@ -3,6 +3,8 @@
 # locator-menu
 #
 
+set -euo pipefail
+
 locator_dir="${XDG_DATA_HOME:-$HOME/.local/share}/locator"
 choice=$(echo -e "cern\nhome" | rofi -dmenu -no-custom -p "location")
 
@@ -10,7 +12,15 @@ status_bar="${STATUSBAR:-i3status-rs}"
 signal=15
 
 mkdir -p "$locator_dir"
-if [[ "$choice" != "" ]]; then
-	echo -n "$choice" > "$locator_dir/location"
-	( pkill -RTMIN+$signal "$status_bar" >/dev/null 2>&1 ) 2>/dev/null
+if [[ "$choice" == "" ]]; then
+	return 0
 fi
+
+echo -n "$choice" > "$locator_dir/location"
+( pkill -RTMIN+$signal "$status_bar" >/dev/null 2>&1 ) 2>/dev/null
+
+# TODO Figure out a way to update this thing when inside CERN
+# cat /etc/docker/daemon.json | jq --arg cern_mirror "" '.registry-mirrors |= $cern_mirror'
+# {
+#   "registry-mirrors": ["https://<my-docker-mirror-host>"]
+# }
