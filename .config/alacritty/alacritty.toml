@@ -8,33 +8,35 @@ duration = 1
 [colors]
 draw_bold_text_with_bright_colors = true
 
-[colors.bright]
-black = "0x918175"
-blue = "0x529CE0"
-cyan = "0x53FDE9"
-green = "0x98BC37"
-magenta = "0xFF5C8F"
-red = "0xF75341"
-white = "0xFCE8C3"
-yellow = "0xFED06E"
-
-[colors.cursor]
-cursor = "0xFCE8C3"
-text = "0x1C1B19"
-
-[colors.normal]
-black = "0x1C1B19"
-blue = "0x2C78BF"
-cyan = "0x0AAEB3"
-green = "0x519F50"
-magenta = "0xE02C6D"
-red = "0xEF2F27"
-white = "0xD0BFA1"
-yellow = "0xFBB829"
+# https://github.com/srcery-colors/srcery-terminal/
 
 [colors.primary]
-background = "0x1C1B19"
-foreground = "0xFCE8C3"
+background = "#121110"
+foreground = "#fce8c3"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "#fed06e"
+
+[colors.normal]
+black = "#121110"
+red = "#ef2f27"
+green = "#519f50"
+yellow = "#fbb829"
+blue = "#2c78bf"
+magenta = "#e02c6d"
+cyan = "#0aaeb3"
+white = "#c5b088"
+
+[colors.bright]
+black = "#917e6b"
+red = "#f75341"
+green = "#98bc37"
+yellow = "#fed06e"
+blue = "#68a8e4"
+magenta = "#ff5c8f"
+cyan = "#2be4d0"
+white = "#fce8c3"
 
 [cursor]
 style = "Block"
