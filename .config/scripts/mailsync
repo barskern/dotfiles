@@ -68,7 +68,7 @@ type &>/dev/null "$NOTMUCH_SYNC_SCRIPT" && \
 
 for account in $accounts
 do
-    syncandnotify
+    syncandnotify &
 done
 
 wait
