@@ -123,8 +123,8 @@ cmd = "alacritty --class floater -e ikhal"
 block = "privacy"
 [[block.driver]]
 name = "v4l"
-[[block.driver]]
-name = "pipewire"
+#[[block.driver]]
+#name = "pipewire"
 
 [[block]]
 block = "custom"
