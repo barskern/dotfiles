@@ -106,6 +106,13 @@ format = " $icon $utilization"
 format_alt = " $icon $frequency.eng(){ $boost.str()|}"
 
 [[block]]
+block = "temperature"
+format = " $icon $average "
+format_alt = " $icon $min min, $max max, $average avg "
+interval = 10
+chip = "*-isa-*"
+
+[[block]]
 block = "nvidia_gpu"
 idle = 65
 
