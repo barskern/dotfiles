@@ -1,6 +1,6 @@
 "query:Unread Articles:unread = \"yes\" and tags !# \"youtube\""
 
-https://about.gitlab.com/security-releases.xml "release" "gitlab" "official"
+#https://about.gitlab.com/security-releases.xml "release" "gitlab" "official"
 https://archlinux.org/feeds/news/ "news" "distro" "linux" "~Arch Linux"
 https://blog.rust-lang.org/feed.xml "blog" "rust" "programming" "~Rust Blog"
 
