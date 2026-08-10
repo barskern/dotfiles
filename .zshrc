@@ -29,6 +29,7 @@ antigen bundle docker-compose
 antigen bundle dotenv
 antigen bundle fancy-ctrl-z
 antigen bundle fzf
+antigen bundle git
 antigen bundle git-extras
 antigen bundle poetry-env
 antigen bundle pip
