@@ -454,6 +454,11 @@ nnoremap <silent> <leader>m :call jobstart('make')<CR>
 
 if has('autocmd')
 
+	augroup cmake
+		autocmd!
+		autocmd FileType cmake set expandtab
+	augroup END
+
 	augroup ampl
 		autocmd!
 		autocmd BufNewFile,BufRead *.mod  set ft=ampl
