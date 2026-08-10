@@ -72,3 +72,4 @@ alias driten="docker run --rm -it --network host"
 
 # Fix ssh agent and display environment in tmux sessions on reconnect
 alias tmux-fixenv='eval $(tmux showenv -s)'
+

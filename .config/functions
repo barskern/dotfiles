@@ -1,18 +1,25 @@
-# Change the directory to a subject folder
-subs() {
-	DOC_DIR="$(xdg-user-dir DOCUMENTS)"
-	NTNU_DIR="$DOC_DIR/ntnu"
-	choice=$(\
-		fd '^\w{3}\d{4}$' --type d --max-depth 1 "$NTNU_DIR" \
-		| xargs basename -a \
-		| fzf \
-	)
-	cd "$NTNU_DIR/$choice"
+# Export all variables in some file
+export_env_from_file() {
+	set -a
+	source "$1"
+	set +a
 }
 
-# Export all variables in some file
-exp() {
-    set -a
-    source "$1"
-    set +a
+# Run a prek command in the local directory with the same environment as the CI
+driten-ci-prek() {
+	local repo prek_skip
+	repo=$(pwd)
+	prek_skip=$(yq -r '.ci?.skip? // [] | join(",")' "$repo/.pre-commit-config.yaml") || return
+
+	docker run \
+		--rm \
+		-it \
+		--network host \
+		-v "${repo}:${repo}:rw" \
+		-e PREK_HOME=/tmp/prek-cache \
+		-e "PREK_SKIP=$prek_skip" \
+		-w "$repo" \
+		-u "$(id -u):$(id -g)" \
+		gitlab-registry.cern.ch/ship/pipelines/prek:latest \
+		"$@"
 }
