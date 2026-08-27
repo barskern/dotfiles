@@ -175,6 +175,7 @@ set updatetime=300
 " Install coc extensions
 let g:coc_global_extensions = [
 	\ "coc-actions",
+	\ "coc-clangd",
 	\ "coc-css",
 	\ "coc-diagnostic",
 	\ "coc-dictionary",
