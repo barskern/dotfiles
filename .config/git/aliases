@@ -595,4 +595,7 @@
     | \"$(command -v gnumfmt || echo numfmt)\" --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest; \
   }; f"
 
+  # Fetch common gitignores for given language
+  ignores-for = !"f() { curl -fsL --show-error https://www.toptal.com/developers/gitignore/api/$@; }; f"
+
   # }}}
