@@ -7,7 +7,8 @@ set -euo pipefail
 
 DAY=$(date +%A)
 HOSTNAME=$(hostname)
-REMOTE="servie.home.iruud.cloud"
+#REMOTE="servie.home.iruud.cloud"
+REMOTE="hp1.dc1.infra.ruudie.no"
 SRC_DIR="$HOME/"
 DEST_DIR="/data/backups/$HOSTNAME/"
 FILTER_FILE="$HOME/.config/backups.filter"
