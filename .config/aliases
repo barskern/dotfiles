@@ -69,6 +69,7 @@ alias os="openstack"
 
 # Docker
 alias driten="docker run --rm -it --network host"
+alias dritend="docker run --rm -it --network host -v $(pwd):$(pwd):ro -w $(pwd)"
 
 # Fix ssh agent and display environment in tmux sessions on reconnect
 alias tmux-fixenv='eval $(tmux showenv -s)'
