@@ -115,6 +115,17 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        ## Binary files and more
+        dat|bin)
+            hexyl \
+                --no-squeezing \
+                --border none \
+                --terminal-width="${PV_WIDTH}" \
+                --length 4096 \
+                "${FILE_PATH}" \
+            && exit 5
+            ;; # Continue with next handler on failure
     esac
 }
 
