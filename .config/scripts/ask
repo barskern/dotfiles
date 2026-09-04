@@ -5,6 +5,7 @@
 
 import asyncio
 import os
+import sys
 import subprocess
 
 from agents import (
@@ -61,16 +62,25 @@ async def main():
     set_default_openai_client(client)
     set_default_openai_api("chat_completions")
     set_tracing_disabled(disabled=True)
-
     agent = Agent(
         name="Assistant",
         model=MODEL,
         # TODO Make these instructions better
-        instructions="You are a helpful assistant.",
+        instructions="You are a helpful but concise assistant.",
     )
 
-    if len(os.sys.argv) > 1:
-        await ask(agent, console, " ".join(os.sys.argv[1:]))
+    # If we are not in an interactive terminal or user provided something
+    # through argv, combine stdin and provided args for a one-off prompt
+    if not sys.stdin.isatty() or len(sys.argv) > 1:
+        prompt_parts = [
+            " ".join(sys.argv[1:]),
+            sys.stdin.read().strip() if not sys.stdin.isatty() else "",
+        ]
+        prompt = "\n\n".join(filter(lambda p: len(p) > 0, prompt_parts))
+        if len(prompt) == 0:
+            return
+
+        await ask(agent, console, prompt)
         return
 
     console.print(f"[bold]CERN AIGW[/bold] — {MODEL}")
